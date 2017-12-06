@@ -1,0 +1,85 @@
+:root{
+    --main: #00ADEF;
+    --second: gray;
+}
+
+a,.tp-caption a.btn:hover {
+/*	color: #67b0d1;*/
+    color: var(--second);
+}
+.top-nav-collapse {
+    background: var(--main);
+/*	background: #67b0d1;*/
+}
+
+.navbar-custom ul.nav ul.dropdown-menu li a:hover {
+/*	color: #67b0d1;*/
+    color: var(--main);
+}
+
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span {
+/*    background-color: #67b0d1;*/
+    background-color: var(--main);
+}
+
+.widget-avatar .avatar:hover {
+/*    border: 5px solid #67b0d1;*/
+    border: 5px solid var(--main);
+}
+
+.bg-skin {
+/*	background: #67b0d1;*/
+    background: var(--main);
+}
+
+form#contact-form input:focus,form#contact-form select:focus,form#contact-form textarea:focus {
+/*	border-color: #67b0d1;*/
+    border-color: var(--main);
+}
+
+footer {
+/*    background-color: #67b0d1;*/
+    background-color: var(--main);
+}
+
+.btn-skin {
+  color: #fff;
+  background-color: var(--main);
+  border-color: var(--main);
+}
+
+/*Universal Colors for page 2 */
+.nav-pills > li.active > a,.nav-pills > li.active > a:focus {
+  color: #ffffff;
+  background-color: var(--main);
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    z-index: 2;
+    color: #ffffff;
+    background-color: var(--main);
+    border-color: var(--main);
+}
+
+.btn-template-main {
+    color: var(--main);
+    background-color: #ffffff;
+    border-color: var(--main);
+}
+
+.btn-template-main:hover, .btn-template-main:focus, .btn-template-main:active, .btn-template-main.active {
+    background: var(--main);
+    color: #ffffff;
+    border-color: var(--main);
+}
+
+.panel.sidebar-menu .panel-heading h1, .panel.sidebar-menu .panel-heading h2, .panel.sidebar-menu .panel-heading h3, .panel.sidebar-menu .panel-heading h4, .panel.sidebar-menu .panel-heading h5 {
+    border-bottom: solid 5px var(--main);
+}
+
+.ribbon.sale .theribbon {
+    
+    background-color: var(--second);
+}
+
