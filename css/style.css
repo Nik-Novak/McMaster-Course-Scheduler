@@ -213,6 +213,10 @@ hr {
 	color: #fff;
 }
 
+.scrollable{
+    overflow-y: auto;
+}
+
 
 
 /* ===========================
@@ -292,12 +296,19 @@ hr {
 /* ===========================
 --- Content-Accordion Button
 ============================ */
+#menu .top{
+}
+
+#menu .bottom{
+    /*background-color: white;*/
+}
 
 #menu{
     padding-top: 35px;
     /*margin-right: 10px;*/
     width: 33% ;
-    margin-left: 10px; 
+    height: 100%;
+    margin-left: 10px;
 }   
 
 #menu button.accordion {
@@ -483,6 +494,43 @@ hr {
 .btn-huge {
     padding: 25px;
     font-size: 26px;
+}
+
+/* ===========================
+--- Scroll Bar
+============================ */
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #ebebeb;
+}
+::-webkit-scrollbar-track {
+  background: #666666;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 
