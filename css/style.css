@@ -9,8 +9,6 @@ body {
     height: 100%;
     font-family: 'Lato',sans-serif;
 	font-weight: 300;
-    color: #666;
-    background-color: #fff;
 }
 
 html {
@@ -46,6 +44,7 @@ a {
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
+    display: inline-block;
 }
 
 a:hover,
@@ -219,9 +218,70 @@ hr {
 /* ===========================
 --- Navbar
 ============================ */
-#navbar .left img{
- width: 3%; 
+
+#navbar h5{
+    display: inline-block;
+    font-size: 15px;
+    margin-bottom: 0;
 }
+
+#navbar{
+    height: 41.33px; 
+    width: 100%;
+    position: fixed;
+}
+
+/*left*/
+#navbar .left img{
+    width: 25px;
+    padding-top: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#navbar .left{
+    display: inline-block;
+    padding-top: 3px;
+}
+
+/*center*/
+#navbar .center{
+    display: inline-block;
+    margin: 0 200px;
+}
+
+/*right*/
+#navbar .right{
+    display: inline-block;
+    float: right;
+    margin-top: 3px; 
+}
+
+#navbar .right a{
+    margin-right: 8px;
+}
+
+#navbar .subleft{
+    display: inline-block;
+}
+
+#navbar .subcenter{
+    display: inline-block;
+}
+
+#navbar .subright{
+    display: inline-block;
+}
+
+#navbar .right img{
+    width: 35px;
+    height: 35px;
+    padding-left: 5px;
+    padding-right: 5px;
+    
+}
+
+
 
 /* ===========================
 --- Content-Left
@@ -236,6 +296,8 @@ hr {
 /* ===========================
 --- Elements
 ============================ */
+
+
 
 .btn {
 	border-radius: 0;

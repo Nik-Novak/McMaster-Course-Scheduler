@@ -1,9 +1,46 @@
 :root{
-    --main: #00ADEF;
+    --main: #990033;
     --second: gray;
-    --bg: #990033;
+    --bg: #666666;
 }
 
+
+
+body{
+    background-color: var(--bg);
+}
+
+
+/* ===========================
+--- Navbar
+============================ */
+
+#navbar{
+    background-color: var(--main);    
+}
+
+#navbar h5{
+    color: white;    
+}
+
+#navbar .right a:hover{
+    background: #363636;
+}
+
+
+/* ===========================
+--- Content-Left
+============================ */
+
+
+/* ===========================
+--- Content-Right
+============================ */
+
+
+/* ===========================
+--- Elements
+============================ */
 
 
 a,.tp-caption a.btn:hover {
@@ -11,12 +48,9 @@ a,.tp-caption a.btn:hover {
     color: var(--second);
 }
 
-#navbar{
-    background-color: var(--bg);    
-}
 
 
 footer {
 /*    background-color: #67b0d1;*/
-    background-color: var(--bg);
+    background-color: var(--main);
 }
