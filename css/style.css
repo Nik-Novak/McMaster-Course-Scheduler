@@ -11,7 +11,7 @@ body {
     height: 100%;
     font-family: 'Lato', sans-serif;
     font-weight: 300;
-    
+
 }
 
 html {
@@ -235,11 +235,11 @@ hr {
     color: #fff;
 }
 
-.scrollable{
+.scrollable {
     overflow-y: auto;
 }
 
-#contentwrapper{
+#contentwrapper {
     display: inline-block;
 }
 
@@ -258,7 +258,7 @@ hr {
 #navbar {
     height: 41.33px;
     width: 100%;
-    
+
 }
 
 /*left*/
@@ -320,25 +320,26 @@ hr {
 
 
 /* ===========================
---- Content-Accordion Button
+--- Search Menus
 ============================ */
-#menu .top{
-}
 
-#menu .bottom{
+#menu .top {}
+
+#menu .bottom {
     /*background-color: white;*/
     display: inline-block;
 }
 
 #menu {
-    display: inline-block;
+    /*    display: inline-block;*/
+    display: none;
     padding-top: 35px;
     /*margin-right: 10px;*/
-    width: 29% ;
+    width: 29%;
     padding-left: 10px;
     padding-right: 10px;
     vertical-align: top;
-}   
+}
 
 #menu button.accordion {
     background-color: white;
@@ -381,9 +382,194 @@ button.accordion:hover {
     /*transition: 0.1s !important;*/
 }
 
+
 /* ===========================
---- Content-Left
+--- Course & Accordion Button
 ============================ */
+
+#coursecontent .top {}
+
+#coursecontent .bottom {
+    /*background-color: white;*/
+    display: inline-block;
+}
+
+#coursecontent {
+    display: inline-block;
+
+    padding-top: 35px;
+    /*margin-right: 10px;*/
+    width: 29%;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: top;
+}
+
+#coursecontent i {
+    float: right;
+}
+
+
+
+#coursecontent button.accordion {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 15px;
+    /*transition: 0.1s;*/
+}
+
+#coursecontent button.accordion.active {
+    border-bottom: none !important;
+    border-radius: 4px 4px 0 0;
+    background-color: #ccc;
+}
+
+#coursecontent button.accordion.active i {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+}
+
+#coursecontent button.accordion.active,
+button.accordion:hover {
+    background-color: #ccc !important;
+
+}
+
+#coursecontent .panel {
+    margin: 0px;
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0 0 4px 4px;
+    border-top: none !important;
+    /*transition: 0.1s !important;*/
+}
+
+
+
+
+
+
+/* ===========================
+--- Calendar Banner
+============================ */
+
+#calendarbanner {
+    width: 75%;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+#calendarbanner i {
+    float: right;
+}
+
+#calendarbanner button.accordion {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 15px;
+    /*transition: 0.1s;*/
+}
+
+#calendarbanner button.accordion.active {
+    /*    border-bottom: none !important;*/
+    border-radius: 4px 4px 0 0;
+    border-color: black black #ccc black;
+    background-color: #ccc;
+}
+
+#calendarbanner button.accordion.active i {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+}
+
+#calendarbanner button.accordion.active,
+button.accordion:hover {
+    background-color: #ccc !important;
+
+}
+
+#calendarbanner .panel {
+    margin: 0px;
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0 0 4px 4px;
+    border-top: none !important;
+    position: absolute;
+    width: 52.5%;
+    z-index: 10;
+    /*transition: 0.1s !important;*/
+}
+
+/* ===========================
+--- Calendar Legend
+============================ */
+
+#legend {
+    display: table;
+    width: 55%;
+    margin: 0 auto;
+    background-color: #232B2B;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    margin-top: -25px;
+}
+
+#legend i {
+    margin-right: 3px;
+}
+
+#legend .blue {
+    color: #7FDBFF;
+    float: left;
+    width: 33%;
+    text-align: center;
+}
+
+#legend .green {
+    color: #2ECC40;
+    float: left;
+    width: 33%;
+    text-align: center;
+}
+
+#legend .red {
+    color: #FF4136;
+    float: right;
+    width: 33%;
+    text-align: center;
+}
+
+
 
 /* ===========================
 --- Content-Right
@@ -392,14 +578,13 @@ button.accordion:hover {
 /* ===========================
 --- Calendar
 ============================ */
-#calendarcontent{
+
+#calendarcontent {
     display: inline-block;
     width: 70%;
 }
 
-#calendar{ 
-    
-}
+#calendar {}
 
 #calendar table {
     font-family: sans-serif;
@@ -447,7 +632,7 @@ button.accordion:hover {
     display: none;
 }
 
-table thead tr th i {
+#calendar table thead tr th i {
     vertical-align: middle;
     font-size: 2em;
 }
@@ -460,7 +645,9 @@ table thead tr th i {
     background: #c8cdd4;
 }
 
-#calendar table tbody tr:nth-child(4n + 0) td {
+/* n is the number of rows before border bottom */
+
+#calendar table tbody tr:nth-child(n + 0) td {
     border-bottom: 1px solid #626E7E;
 }
 
@@ -469,7 +656,7 @@ table thead tr th i {
     vertical-align: middle;
     border-left: 1px solid #626E7E;
     position: relative;
-    height: 32px;
+    height: 46px;
     cursor: pointer;
 }
 
@@ -478,7 +665,7 @@ table thead tr th i {
 }
 
 #calendar table tbody tr td.hour {
-    font-size: 2em;
+    font-size: 1em;
     padding: 0;
     color: #626E7E;
     background: #fff;
@@ -488,11 +675,15 @@ table thead tr th i {
     cursor: default;
 }
 
+#calendar table tbody tr td.last {
+    border-bottom: none;
+}
+
 #calendar table tbody tr td.hour span {
     display: block;
 }
 
-span.day{
+span.day {
     font-family: 'Lato', sans-serif;
 }
 
@@ -505,11 +696,13 @@ span.day{
     #calendar table thead tr th .short {
         display: block;
     }
+    /*
     #calendar table tbody tr td.hour span {
         transform: rotate(270deg);
         -webkit-transform: rotate(270deg);
         -moz-transform: rotate(270deg);
     }
+*/
 }
 
 @media (max-width: 27em) {
@@ -530,13 +723,15 @@ span.day{
         color: #626E7E;
     }
     #calendar table tbody tr td.hour {
-        font-size: 1.7em;
+        font-size: 1em;
     }
+    /*
     #calendar table tbody tr td.hour span {
         transform: translateY(16px) rotate(270deg);
         -webkit-transform: translateY(16px) rotate(270deg);
         -moz-transform: translateY(16px) rotate(270deg);
     }
+*/
 }
 
 
@@ -678,38 +873,47 @@ span.day{
 /* ===========================
 --- Scroll Bar
 ============================ */
+
 ::-webkit-scrollbar {
-  width: 2px;
-  height: 2px;
+    width: 2px;
+    height: 2px;
 }
+
 ::-webkit-scrollbar-button {
-  width: 0px;
-  height: 0px;
+    width: 0px;
+    height: 0px;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #e1e1e1;
-  border: 0px none #ffffff;
-  border-radius: 50px;
+    background: #e1e1e1;
+    border: 0px none #ffffff;
+    border-radius: 50px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffffff;
+    background: #ffffff;
 }
+
 ::-webkit-scrollbar-thumb:active {
-  background: #ebebeb;
+    background: #ebebeb;
 }
+
 ::-webkit-scrollbar-track {
-  background: #666666;
-  border: 0px none #ffffff;
-  border-radius: 50px;
+    background: #666666;
+    border: 0px none #ffffff;
+    border-radius: 50px;
 }
+
 ::-webkit-scrollbar-track:hover {
-  background: #666666;
+    background: #666666;
 }
+
 ::-webkit-scrollbar-track:active {
-  background: #333333;
+    background: #333333;
 }
+
 ::-webkit-scrollbar-corner {
-  background: transparent;
+    background: transparent;
 }
 
 
@@ -733,6 +937,12 @@ span.day{
 
 }
 
+@media (max-width:1199px) {
+    #legend {
+        width: 85%
+    }
+}
+
 @media (max-width:768px) {
     #navbar h5,
     #navbar .center {
@@ -744,11 +954,24 @@ span.day{
     #navbar .right {
         width: 80%;
     }
-	
-    #menu{
+
+    #menu {
         width: 80%;
         margin: 0 auto;
     }
+    #legend {
+        width: 95%
+    }
+    #coursecontent {
+        display: none;
+    }
+    #calendarcontent {
+        width: 100%;
+    }
+    #calendar table tbody tr td {
+        height: 32px;
+    }
+
 }
 
 }
