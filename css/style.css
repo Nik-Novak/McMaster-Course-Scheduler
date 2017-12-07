@@ -50,6 +50,10 @@ a {
     display: inline-block;
 }
 
+th {
+    text-align: center;
+}
+
 a:hover,
 a:focus {
     text-decoration: none;
@@ -427,8 +431,8 @@ button.accordion:hover {
     display: block;
     font-size: 1.2em;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin: 0 auto 5px;
     padding: 5px;
     line-height: 1.8;
@@ -487,6 +491,12 @@ table thead tr th i {
 #calendar table tbody tr td.hour span {
     display: block;
 }
+
+span.day{
+    font-family: 'Lato', sans-serif;
+}
+
+
 
 @media (max-width: 60em) {
     #calendar table thead tr th .long {
