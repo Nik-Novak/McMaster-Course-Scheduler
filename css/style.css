@@ -467,7 +467,7 @@ button.accordion:hover {
 --- Calendar Banner
 ============================ */
 
-#calendarbanner{
+#calendarbanner {
     width: 75%;
     margin: 0 auto;
     margin-bottom: 5px;
@@ -494,7 +494,7 @@ button.accordion:hover {
 }
 
 #calendarbanner button.accordion.active {
-/*    border-bottom: none !important;*/
+    /*    border-bottom: none !important;*/
     border-radius: 4px 4px 0 0;
     border-color: black black #ccc black;
     background-color: #ccc;
@@ -531,7 +531,8 @@ button.accordion:hover {
 /* ===========================
 --- Calendar Legend
 ============================ */
-#legend{
+
+#legend {
     display: table;
     width: 55%;
     margin: 0 auto;
@@ -543,25 +544,25 @@ button.accordion:hover {
     margin-top: -25px;
 }
 
-#legend i{
+#legend i {
     margin-right: 3px;
 }
 
-#legend .blue{
+#legend .blue {
     color: #7FDBFF;
     float: left;
     width: 33%;
     text-align: center;
 }
 
-#legend .green{
+#legend .green {
     color: #2ECC40;
     float: left;
     width: 33%;
     text-align: center;
 }
 
-#legend .red{
+#legend .red {
     color: #FF4136;
     float: right;
     width: 33%;
@@ -935,8 +936,9 @@ span.day {
 
 
 }
+
 @media (max-width:1199px) {
-    #legend{
+    #legend {
         width: 85%
     }
 }
@@ -957,9 +959,19 @@ span.day {
         width: 80%;
         margin: 0 auto;
     }
-    #legend{
+    #legend {
         width: 95%
     }
+    #coursecontent {
+        display: none;
+    }
+    #calendarcontent {
+        width: 100%;
+    }
+    #calendar table tbody tr td {
+        height: 32px;
+    }
+
 }
 
 }
