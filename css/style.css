@@ -247,7 +247,7 @@ hr {
 /*center*/
 #navbar .center{
     display: inline-block;
-    margin: 0 200px;
+    padding-left: 30%;
 }
 
 /*right*/
