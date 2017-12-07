@@ -437,7 +437,9 @@ hr {
 
 
 
-/* Media queries */
+/* ===========================
+--- Media Queries
+============================ */
 
 @media(min-width:767px) {
 
@@ -454,6 +456,15 @@ hr {
 
 }
 @media (max-width:768px) {
+    #navbar h5, #navbar .center{
+        display: none;
+    }
+    #navbar .left{
+        width: 20%;
+    }
+    #navbar .right{
+        width: 80%;
+    }
 	
 }
 
