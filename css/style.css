@@ -723,7 +723,7 @@ span.day {
         color: #626E7E;
     }
     #calendar table tbody tr td.hour {
-        font-size: 1em;
+        font-size: 0.85em;
     }
     /*
     #calendar table tbody tr td.hour span {
@@ -969,7 +969,10 @@ span.day {
         width: 100%;
     }
     #calendar table tbody tr td {
-        height: 32px;
+        height: 29px;
+    }
+    #calendarbanner .panel {
+        width: 75%;
     }
 
 }
