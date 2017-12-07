@@ -447,7 +447,7 @@ button.accordion:hover {
     display: none;
 }
 
-table thead tr th i {
+#calendar table thead tr th i {
     vertical-align: middle;
     font-size: 2em;
 }
@@ -460,7 +460,8 @@ table thead tr th i {
     background: #c8cdd4;
 }
 
-#calendar table tbody tr:nth-child(4n + 0) td {
+/* n is the number of rows before border bottom */
+#calendar table tbody tr:nth-child(n + 0) td {
     border-bottom: 1px solid #626E7E;
 }
 
@@ -478,7 +479,7 @@ table thead tr th i {
 }
 
 #calendar table tbody tr td.hour {
-    font-size: 2em;
+    font-size: 1em;
     padding: 0;
     color: #626E7E;
     background: #fff;
@@ -486,6 +487,10 @@ table thead tr th i {
     border-collapse: separate;
     min-width: 100px;
     cursor: default;
+}
+
+#calendar table tbody tr td.last{
+    border-bottom: none;
 }
 
 #calendar table tbody tr td.hour span {
@@ -505,11 +510,13 @@ span.day{
     #calendar table thead tr th .short {
         display: block;
     }
+/*
     #calendar table tbody tr td.hour span {
         transform: rotate(270deg);
         -webkit-transform: rotate(270deg);
         -moz-transform: rotate(270deg);
     }
+*/
 }
 
 @media (max-width: 27em) {
@@ -530,13 +537,15 @@ span.day{
         color: #626E7E;
     }
     #calendar table tbody tr td.hour {
-        font-size: 1.7em;
+        font-size: 1em;
     }
+/*
     #calendar table tbody tr td.hour span {
         transform: translateY(16px) rotate(270deg);
         -webkit-transform: translateY(16px) rotate(270deg);
         -moz-transform: translateY(16px) rotate(270deg);
     }
+*/
 }
 
 
