@@ -315,9 +315,10 @@ hr {
 
 #menu {
     padding-top: 35px;
-    margin-left: 10px;
-    width: 33%;
-}
+    /*margin-right: 10px;*/
+    width: 33% ;
+    margin-left: 10px; 
+}   
 
 #menu button.accordion {
     background-color: white;
@@ -360,8 +361,6 @@ button.accordion:hover {
     /*transition: 0.1s !important;*/
 }
 
-
-
 /* ===========================
 --- Content-Left
 ============================ */
@@ -373,8 +372,13 @@ button.accordion:hover {
 /* ===========================
 --- Calendar
 ============================ */
+#calendarcontent{
+     width: 60%;
+    display: inline-block;
+}
+
 #calendar{ 
-    width: 60%;
+    display: inline-block;
 }
 
 #calendar table {
@@ -675,6 +679,12 @@ table thead tr th i {
     #navbar .right {
         width: 80%;
     }
+	
+    #menu{
+        width: 80%;
+        margin: 0 auto;
+    }
+}
 
 }
 
