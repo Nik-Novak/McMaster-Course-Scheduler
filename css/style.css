@@ -282,6 +282,60 @@ hr {
 }
 
 
+/* ===========================
+--- Content-Accordion Button
+============================ */
+
+#menu{
+    padding-top: 35px;
+    margin-left: 10px; 
+    width: 33%;
+}   
+
+#menu button.accordion {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 15px;
+    /*transition: 0.1s;*/
+}
+
+#menu button.accordion.active{
+    border-bottom: none !important;
+    border-radius: 4px 4px 0 0 ;
+    background-color: #ccc ;
+}
+
+#menu button.accordion.active, button.accordion:hover {
+    background-color: #ccc !important;
+    
+}
+
+#menu .panel {
+    margin: 0px;
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0 0 4px 4px;
+    border-top: none !important;
+    /*transition: 0.1s !important;*/
+
+
+
+}
+
+
 
 /* ===========================
 --- Content-Left
