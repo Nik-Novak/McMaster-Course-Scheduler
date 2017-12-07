@@ -295,8 +295,9 @@ hr {
 
 #menu{
     padding-top: 35px;
+    /*margin-right: 10px;*/
+    width: 33% ;
     margin-left: 10px; 
-    width: 33%;
 }   
 
 #menu button.accordion {
@@ -337,12 +338,7 @@ hr {
     border-radius: 0 0 4px 4px;
     border-top: none !important;
     /*transition: 0.1s !important;*/
-
-
-
 }
-
-
 
 /* ===========================
 --- Content-Left
@@ -520,6 +516,10 @@ hr {
         width: 80%;
     }
 	
+    #menu{
+        width: 80%;
+        margin: 0 auto;
+    }
 }
 
 @media (max-width:480px) {
