@@ -574,6 +574,74 @@ button.accordion:hover {
 /* ===========================
 --- Content-Right
 ============================ */
+#coursecontent .panel {
+    padding: 0 !important;
+}
+
+#coursecontent .table-holder{
+    width: 100%;
+    /*height: 400px;*/
+    margin: 0 auto;
+}
+
+#coursecontent .table-center{
+    width: 100%;
+    /*display:block-inline;*/
+}
+
+#coursecontent table{
+    border-collapse;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#coursecontent table tbody, #coursecontent table thead{
+    /*display: block;*/
+}
+
+#coursecontent tbody{
+    /*width: 100%;*/
+    /*padding-right: 10px;*/
+}
+
+#coursecontent table tbody{
+   /*overflow: auto;*/
+   /*height: 350px;*/
+   background-color: var(--bg);
+}
+
+#coursecontent th , #coursecontent td{
+    text-align: center;
+    font-size: 18px;
+    /*padding: 5px;*/
+    border-bottom: 1px solid #ddd;
+    /*width: 233px;*/
+}
+#coursecontent tr:nth-child(even){
+    color: black !important;
+    background-color: #EEF6EB !important;
+}
+
+#coursecontent th{
+    font-size: 20px !important;
+    color: black !important;
+    background-color: #EEF6EB !important;
+    height: 50px;
+}
+
+#coursecontent tr:nth-child(odd){
+    color: var(--bg) !important;
+    background-color: white !important;
+}
+
+
+
+
+
+
+
+
+
 
 /* ===========================
 --- Calendar
