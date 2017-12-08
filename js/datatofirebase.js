@@ -25,13 +25,18 @@ function uploadToFirebase() {
 //        writeCoursesByName(json.timetables[2017][6].courses); //DONE
         
             getData('/course_department',(e)=>{
-//                console.log(e.val());
-                for (course in e.val()){
-                    console.log(course)
-//                    $.each(course.sections, (key,value)=>{
-//                        console.log(value);
-//                    });
-                }
+                var list = [];
+                e.val().forEach((course)=>{
+                    $.each(course.sections, (key1,value1)=>{
+                        $.each(value1, (key2,value2)=>{
+                            value2.r_periods.forEach((section)=>{
+                                if(section.supervisors.length > 1)
+                                    list.push(section.supervisors);
+                            });
+                        });
+                    });
+                });
+                console.log(list);
             });
 
 
