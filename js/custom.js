@@ -91,20 +91,22 @@ function mClass(searchObject) {
             this.section_full = searchObject.sections[i][j].section_full;
 
             //initialize r_periods double array
-            this.r_periodsArr = new Array(r_periods.length);
+            r_periodsArr = new Array(r_periods.length);
             for (var cnt = 0; cnt < r_periods.length; cnt++) {
-                this.r_periodsArr[cnt] = new Array(5);
+                r_periodsArr[cnt] = new Array(6);
             }
 
             //populating r_periods douvle array
             for (var k = 0; k < r_periods.length; k++) {
-                this.r_periodsArr[k][0] = r_periods[k].end;
-                this.r_periodsArr[k][1] = r_periods[k].room;
-                this.r_periodsArr[k][2] = r_periods[k].term;
-                this.r_periodsArr[k][3] = r_periods[k].start;
-                this.r_periodsArr[k][4] = r_periods[k].day;
+                r_periodsArr[k][0] = r_periods[k].end;
+                r_periodsArr[k][1] = r_periods[k].room;
+                r_periodsArr[k][2] = r_periods[k].term;
+                r_periodsArr[k][3] = r_periods[k].start;
+                r_periodsArr[k][4] = r_periods[k].day;
+                r_periodsArr[k][5] = r_periods[k].supervisors;
             }
 
+            this.r_periodsArr = r_periodsArr;
             var tempObj = new build(this.progCode, this.code, this.department, this.name, this.type, this.section, this.r_periodsArr, this.serial, this.section_full);
             objectList.push(tempObj);
 
@@ -138,11 +140,27 @@ function mClass(searchObject) {
 //    console.log(objectList[4]);
 //    console.log(objectList[5]);
 //    console.log(objectList[6]);
+    quikmafs(objectList[0]);
 
 }
 
 
-
+function quikmafs(courseObj){
+    
+    var courseLengths =[];
+    
+    for(var i=0; i<courseObj.r_periodsArr.length; i++){
+        var startHour = courseObj.r_periodsArr[0][3].split(":")[0];
+        var startMin = courseObj.r_periodsArr[0][3].split(":")[0];
+        var endTime = courseObj.r_periodsArr[0][0];
+        
+        
+        
+    }
+    console.log(courseObj.r_periodsArr[0][0]);
+    console.log(courseObj.r_periodsArr[0][3]);
+    
+}
 
 //searchObject.sections[i][j].r_periods.forEach(() => {
 //    for
