@@ -570,7 +570,6 @@ button.accordion:hover {
 }
 
 
-
 /* ===========================
 --- Content-Right
 ============================ */
@@ -633,14 +632,6 @@ button.accordion:hover {
     color: var(--bg) !important;
     background-color: white !important;
 }
-
-
-
-
-
-
-
-
 
 
 /* ===========================
@@ -724,7 +715,7 @@ button.accordion:hover {
     vertical-align: middle;
     border-left: 1px solid #626E7E;
     position: relative;
-    height: 46px;
+    height: 3.2em;/*46px*/
     cursor: pointer;
 }
 
