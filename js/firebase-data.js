@@ -2,7 +2,7 @@ var database = firebase.database();
 
 $(document).ready(() => {
     
-//    getData('/',(snapshot)=>{
+//    getData('/courses',(snapshot)=>{
 //        console.log(snapshot.val()); //print whoel database
 //    });
 //    
@@ -28,6 +28,7 @@ function loadDepartments(){
             var t = $('<option value="'+key+'">'+departments[key]+'</option>')
             $('.select-department').append(t);
         }
+        console.trace('Departments successfully loaded:');
         console.log(departments);
     });
 }
