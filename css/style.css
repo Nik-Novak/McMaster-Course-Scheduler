@@ -243,15 +243,6 @@ hr {
     display: inline-block;
 }
 
-.fa-check{
-    color: #2ECC40;
-    font-size: 20px;
-}
-
-.fa-times{
-    color: #FF4136;
-    font-size: 20px;
-}
 
 
 /* ===========================
@@ -442,7 +433,7 @@ button.accordion:hover {
     vertical-align: top;
 }
 
-#coursecontent .accordion i {
+#coursecontent i {
     float: right;
 }
 
@@ -462,9 +453,6 @@ button.accordion:hover {
     border-width: 1px;
     font-size: 15px;
     /*transition: 0.1s;*/
-
-    border-radius: 4px;
-    border-color: black;
 }
 
 #coursecontent button.accordion.active {
@@ -530,10 +518,6 @@ button.accordion:hover {
     border-style: solid;
     border-width: 1px;
     font-size: 15px;
-
-    border-radius: 4px;
-    border-color: black;
-
     /*transition: 0.1s;*/
 }
 
@@ -617,7 +601,7 @@ button.accordion:hover {
 --- Practice Buttons
 ============================ */
 
-#calendarcontent .screenswitch{
+#calendarcontent .screenswitch {
     display: table;
     background-color: #232B2B;
     border-color: #AAAAAA;
@@ -626,7 +610,7 @@ button.accordion:hover {
     margin-top: 6px;
 }
 
-#calendarcontent .remWeekend{
+#calendarcontent .remWeekend {
     display: table;
     background-color: #232B2B;
     border-color: #AAAAAA;
@@ -640,14 +624,15 @@ button.accordion:hover {
 --- Content-Right
 ============================ */
 
-#coursecontent{
+#coursecontent {
     width: 29%;
 }
 
-#coursecontent .bottom{
+#coursecontent .bottom {
     width: 100%;
 }
-#coursecontent .accordion{
+
+#coursecontent .accordion {
     width: 100%;
 }
 
@@ -656,38 +641,41 @@ button.accordion:hover {
     padding: 0 !important;
 }
 
-#coursecontent .table-holder{
+#coursecontent .table-holder {
     width: 100%;
     margin: 0 auto;
 }
 
-#coursecontent .table-center{
+#coursecontent .table-center {
     width: 100%;
-    display:block-inline;
+    display: block-inline;
 }
 
-#coursecontent table{
+#coursecontent table {
     border-collapse;
     width: 100%;
     margin: 0 auto;
 }
 
-#coursecontent table tbody, #coursecontent table thead{
+#coursecontent table tbody,
+#coursecontent table thead {
+    /*display: block;*/
 }
 
-#coursecontent tbody{
+#coursecontent tbody {
     width: 100%;
     padding-right: 10px;
 }
 
-#coursecontent  table tbody{
-   /*overflow: auto;*/
-   width: 100%;
-   /*height: 350px;*/
-   background-color: black;
+#coursecontent table tbody {
+    /*overflow: auto;*/
+    width: 100%;
+    /*height: 350px;*/
+    background-color: black;
 }
 
-#coursecontent  th , #coursecontent td{
+#coursecontent th,
+#coursecontent td {
     text-align: center;
     font-size: 16px;
     padding: 5px;
@@ -695,37 +683,23 @@ button.accordion:hover {
     /*width: 1000px;*/
 }
 
-#coursecontent  tr{
-    background-color: white;
-}
+#coursecontent tr {}
 
 
-#coursecontent .top tr:nth-child(even){
+#coursecontent tr:nth-child(even) {
     color: black !important;
     background-color: #B9A5AB !important;
 }
 
-#coursecontent .top th{
+#coursecontent th {
     /*font-size: 15px !important;*/
     color: black !important;
     background-color: #B9A5AB !important;
 }
 
-#coursecontent .top tr:nth-child(odd){
+#coursecontent tr:nth-child(odd) {
     color: black !important;
     background-color: white !important;
-}
-
-.enrollButton {
-    background-color: #7FDBFF; /* tentative blue */
-    border: none;
-    color: white;
-    /*padding: 15px 32px;*/
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    /*font-size: 16px;*/
-    /*margin: 4px 2px;*/
 }
 
 
@@ -810,8 +784,11 @@ button.accordion:hover {
     vertical-align: middle;
     border-left: 1px solid #626E7E;
     position: relative;
-    height: 4.5vh;/*46px*/
+    height: 4.5vh;
+    /*46px*/
     cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 #calendar table tbody tr td:last-child {
@@ -841,12 +818,9 @@ span.day {
     font-family: 'Lato', sans-serif;
 }
 
-#calendar .sat{
-    
-}
-#calendar .sun{
-    
-}
+#calendar .sat {}
+
+#calendar .sun {}
 
 
 @media (max-width: 60em) {
@@ -894,7 +868,7 @@ span.day {
 */
 }
 
-#calendar .tues span{
+#calendar .tues span {
     font-size: 10px;
 }
 
@@ -1137,7 +1111,7 @@ span.day {
     #calendarbanner .panel {
         width: 75%;
     }
-    #coursecontent{
+    #coursecontent {
         width: 100%;
     }
 
