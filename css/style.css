@@ -849,6 +849,9 @@ span.day {
 */
 }
 
+#calendar .tues span{
+    font-size: 10px;
+}
 
 
 
