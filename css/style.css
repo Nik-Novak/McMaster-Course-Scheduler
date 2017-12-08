@@ -865,6 +865,7 @@ span.day {
 #calendar .sat span,
 #calendar .sun span {
     font-size: 2vw;
+    font-weight: bold;
 }
 
 
