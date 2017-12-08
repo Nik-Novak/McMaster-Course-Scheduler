@@ -110,7 +110,7 @@ function mClass(searchObject) {
             var tempObj = new build(this.progCode, this.code, this.department, this.name, this.type, this.section, this.r_periodsArr, this.serial, this.section_full);
             objectList.push(tempObj);
 
-
+            
             //             For testing purposes
             //                        for (var t1 = 0; t1 < this.r_periods.length; t1++) {
             //                            for (var t2 = 0; t2 < 5; t2++) {
@@ -140,7 +140,7 @@ function mClass(searchObject) {
 //    console.log(objectList[4]);
 //    console.log(objectList[5]);
 //    console.log(objectList[6]);
-    quikmafs(objectList[0]);
+    var numBlocks = quikmafs(objectList[0]);
 
 }
 
@@ -194,10 +194,32 @@ function build(progCode, code, department, name, type, section, r_periodsArr, se
     }
 }
 
-var grid = new Array(14);
-for (var i = 0; i < 14; i++) {
+var grid = new Array(28);
+for (var i = 0; i < 28; i++) {
     grid[i] = new Array(7);
 }
+
+
+function locationMap(courseObject, numBlocks){
+    
+    var obj = courseObject;
+    var startTimeArr = [];
+    
+    for(var i = 0; i < numBlocks.length; i++){
+        
+    }
+    
+    
+    
+    
+}
+
+function timeToLocation(startTime, day){
+    
+    
+    
+}
+
 
 
 jQuery(window).load(function () {
