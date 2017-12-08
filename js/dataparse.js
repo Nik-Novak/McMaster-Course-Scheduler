@@ -11,7 +11,7 @@ $.getJSON("data/databank.json", function(json) {
     sortResults(courses, 'department', false);
     sortResults(courses, 'code', true);
     console.log(courses);
-});
+});\
 
 function sortResults(array, prop, asc) {
     if(prop=='code')

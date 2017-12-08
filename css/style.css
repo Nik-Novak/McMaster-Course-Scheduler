@@ -340,8 +340,8 @@ hr {
 }
 
 #menu {
-    /*    display: inline-block;*/
-    display: none;
+        display: inline-block;
+/*    display: none;*/
     padding-top: 35px;
     /*margin-right: 10px;*/
     width: 29%;
@@ -414,8 +414,8 @@ button.accordion:hover {
 }
 
 #coursecontent {
-    display: inline-block;
-
+/*    display: inline-block;*/
+    display:none;
     padding-top: 35px;
     /*margin-right: 10px;*/
     width: 29%;
