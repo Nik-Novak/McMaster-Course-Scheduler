@@ -826,7 +826,7 @@ span.day {
     }
     #calendar table thead tr th .day {
         display: block;
-        font-size: 1.2em;
+        font-size: 0.85em;
         border-radius: 50%;
         width: 20px;
         height: 20px;
