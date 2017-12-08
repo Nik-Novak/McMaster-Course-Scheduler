@@ -243,6 +243,15 @@ hr {
     display: inline-block;
 }
 
+.fa-check{
+    color: #2ECC40;
+    font-size: 20px;
+}
+
+.fa-times{
+    color: #FF4136;
+    font-size: 20px;
+}
 
 
 /* ===========================
@@ -415,7 +424,7 @@ button.accordion:hover {
     vertical-align: top;
 }
 
-#coursecontent i {
+#coursecontent .accordion i {
     float: right;
 }
 
@@ -435,6 +444,9 @@ button.accordion:hover {
     border-width: 1px;
     font-size: 15px;
     /*transition: 0.1s;*/
+
+    border-radius: 4px;
+    border-color: black;
 }
 
 #coursecontent button.accordion.active {
@@ -500,6 +512,10 @@ button.accordion:hover {
     border-style: solid;
     border-width: 1px;
     font-size: 15px;
+
+    border-radius: 4px;
+    border-color: black;
+
     /*transition: 0.1s;*/
 }
 
@@ -639,7 +655,6 @@ button.accordion:hover {
 }
 
 #coursecontent table tbody, #coursecontent table thead{
-    /*display: block;*/
 }
 
 #coursecontent tbody{
@@ -647,14 +662,14 @@ button.accordion:hover {
     padding-right: 10px;
 }
 
-#coursecontent table tbody{
+#coursecontent  table tbody{
    /*overflow: auto;*/
    width: 100%;
    /*height: 350px;*/
    background-color: black;
 }
 
-#coursecontent th , #coursecontent td{
+#coursecontent  th , #coursecontent td{
     text-align: center;
     font-size: 16px;
     padding: 5px;
@@ -662,25 +677,37 @@ button.accordion:hover {
     /*width: 1000px;*/
 }
 
-#coursecontent tr{
-
+#coursecontent  tr{
+    background-color: white;
 }
 
 
-#coursecontent tr:nth-child(even){
+#coursecontent .top tr:nth-child(even){
     color: black !important;
     background-color: #B9A5AB !important;
 }
 
-#coursecontent th{
+#coursecontent .top th{
     /*font-size: 15px !important;*/
     color: black !important;
     background-color: #B9A5AB !important;
 }
 
-#coursecontent tr:nth-child(odd){
+#coursecontent .top tr:nth-child(odd){
     color: black !important;
     background-color: white !important;
+}
+
+.enrollButton {
+    background-color: #7FDBFF; /* tentative blue */
+    border: none;
+    color: white;
+    /*padding: 15px 32px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /*font-size: 16px;*/
+    /*margin: 4px 2px;*/
 }
 
 
