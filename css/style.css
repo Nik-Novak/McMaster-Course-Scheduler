@@ -243,6 +243,27 @@ hr {
     display: inline-block;
 }
 
+.fa-check{
+    color: #2ECC40;
+    font-size: 20px;
+}
+
+.fa-times{
+    color: #FF4136;
+    font-size: 20px;
+}
+
+.enrollButton {
+    background-color: #7FDBFF; /* tentative blue */
+    border: none;
+    color: white;
+    /*padding: 15px 32px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /*font-size: 16px;*/
+    /*margin: 4px 2px;*/
+}
 
 
 /* ===========================
@@ -355,6 +376,8 @@ hr {
     border-width: 1px;
     font-size: 15px;
     /*transition: 0.1s;*/
+    border-radius: 4px;
+    border-color: black;
 }
 
 #menu button.accordion.active {
@@ -415,7 +438,7 @@ button.accordion:hover {
     vertical-align: top;
 }
 
-#coursecontent i {
+#coursecontent .accordion i {
     float: right;
 }
 
@@ -435,6 +458,8 @@ button.accordion:hover {
     border-width: 1px;
     font-size: 15px;
     /*transition: 0.1s;*/
+    border-radius: 4px;
+    border-color: black;
 }
 
 #coursecontent button.accordion.active {
@@ -501,6 +526,8 @@ button.accordion:hover {
     border-width: 1px;
     font-size: 15px;
     /*transition: 0.1s;*/
+    border-radius: 4px;
+    border-color: black;
 }
 
 #calendarbanner button.accordion.active {
@@ -665,21 +692,23 @@ button.accordion:hover {
     /*width: 1000px;*/
 }
 
-#coursecontent tr {}
+#coursecontent tr {
+    background-color: white;
+}
 
 
-#coursecontent tr:nth-child(even) {
+#coursecontent .top tr:nth-child(even) {
     color: black !important;
     background-color: #B9A5AB !important;
 }
 
-#coursecontent th {
+#coursecontent .top th {
     /*font-size: 15px !important;*/
     color: black !important;
     background-color: #B9A5AB !important;
 }
 
-#coursecontent tr:nth-child(odd) {
+#coursecontent .top tr:nth-child(odd) {
     color: black !important;
     background-color: white !important;
 }
