@@ -23,24 +23,21 @@ function uploadToFirebase() {
 //        writeCoursesByDepartment(json.timetables[2017][6].courses); //DONE
 //            writeCoursesByCode(json.timetables[2017][6].courses); //DONE
 //        writeCoursesByName(json.timetables[2017][6].courses); //DONE
+//            writeProfessors();//DONE
         
-            getData('/course_department',(e)=>{
-                var list = [];
-                e.val().forEach((course)=>{
-                    $.each(course.sections, (key1,value1)=>{
-                        $.each(value1, (key2,value2)=>{
-                            value2.r_periods.forEach((section)=>{
-                                if(section.supervisors.length > 1)
-                                    list.push(section.supervisors);
-                            });
-                        });
-                    });
-                });
-                console.log(list);
-            });
 
+        
+        
 
     });
+}
+
+function arrayToUnique(array){
+    var unique = [];
+    $.each(array, function(i, el){
+        if($.inArray(el, unique) === -1) unique.push(el);
+    });
+    return unique;
 }
 
 function writeCoursesByDepartment(coursesjson){
@@ -63,6 +60,40 @@ function writeCoursesByName(coursesjson){
     var courses = convertObjectToArray(coursesjson);
     sortResults(courses, 'name', true);
     writeData('/course_name',courses);
+}
+
+function writeProfessors(){
+    getData('/course_department',(e)=>{
+                var list = {};
+                e.val().forEach((course)=>{
+                    $.each(course.sections, (key1,value1)=>{
+                        $.each(value1, (key2,value2)=>{
+                            value2.r_periods.forEach((section)=>{
+                                section.supervisors.forEach((supervisor)=>{
+                                    supervisor = supervisor.toString().trim();
+                                    if(list[supervisor]==null)
+                                        list[supervisor] = [];
+                                    list[supervisor].push( course.code );
+                                });
+                            });
+                        });
+                    });
+                });
+                
+                $.each(list, (key,value)=>{
+                    var uniquelist = [];
+                    $.each(value, function(i, el){
+                        if($.inArray(el, uniquelist) === -1) uniquelist.push(el);
+                    });
+                    list[key] = uniquelist;
+                });
+                
+                var array = convertObjectToArrayWithKey(list);
+                sortKeys(array, true);
+                writeData('/professors', array);
+                
+    });
+    
 }
 
 function writeData(path, data){
@@ -114,10 +145,36 @@ function sortResults(array, prop, asc) {
         });
 }
 
+
+function sortKeys(array, asc){
+    return array.sort(function (a, b) {
+            if (asc) {
+                return (Object.keys(a)[0] > Object.keys(b)[0]) ? 1 : ((Object.keys(a)[0] < Object.keys(b)[0]) ? -1 : 0);
+            } else {
+                return (Object.keys(b)[0] > Object.keys(a)[0]) ? 1 : ((Object.keys(b)[0] < Object.keys(a)[0]) ? -1 : 0);
+            }
+        });   
+}
+
 function convertObjectToArray(json) {
     var array = [];
     $.each(json, function (key, value) {
         array.push(value);
+    });
+    return array;
+}
+
+function test() {
+    console.log();
+}
+
+function convertObjectToArrayWithKey(json) {
+    var array = [];
+    $.each(json, function (key, value) {
+        key = key.replace('.','');
+        var dummyobj = {};
+        dummyobj[key]=value;
+        array.push(dummyobj);
     });
     return array;
 }
