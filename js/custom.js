@@ -2,24 +2,16 @@
 //---------Niks Nonesense
 //////////////////////////////////////
 
-
-
 //2676 courses
 var dummy = {};
 $.getJSON("data/databank.json", function (json) {
-    //console.log(json);
-    console.log(json.timetables[2017][6].courses); //console.log(Object.keys(json.timetables[2017][6].courses).length);
-    //    sortResults();
     var courses = convertKeysToArray(json.timetables[2017][6].courses);
     sortResults(courses, 'department', true);
-    //    sortResults(courses, 'name', true);
-    //    sortResults(courses, 'department', true);
-    //    sortResults(courses, 'name', false);
-    //    sortResults(courses, 'department', false);
-    //    sortResults(courses, 'code', true);
-    //    searchFor(courses);
-    dummy = courses[829];
+    dummy = courses[373];
+
     console.log(dummy);
+    mClass(dummy);
+
 });
 
 function searchFor(courses) {
@@ -31,7 +23,7 @@ function searchFor(courses) {
                     empty.push(e);
             });
     });
-    console.log(empty);
+    //console.log(empty);
 }
 
 function sortResults(array, prop, asc) {
@@ -62,29 +54,119 @@ function convertKeysToArray(json) {
 }
 
 function test() {
-    console.log();
+    //console.log();
 }
 
 
 test();
-
-
-
-
-
-
-
-
 
 //////////////////////////////////////
 //-------Niks Nonesense
 //////////////////////////////////////
 
 
+var objectList = [];
+
+function mClass(searchObject) {
+
+    this.progCode = searchObject.code;
+    this.code = this.progCode.split(" ")[1]; //grabbing just course code
+    this.department = searchObject.department;
+    this.name = searchObject.name;
+
+
+    for (var i in searchObject.sections) {
+        if (!searchObject.sections.hasOwnProperty(i))
+            continue;
+
+        this.type = i;
+        for (var j in searchObject.sections[i]) {
+            if (!searchObject.sections[i].hasOwnProperty(j))
+                continue;
+
+
+            this.section = j;
+            this.r_periods = searchObject.sections[i][j].r_periods;
+            this.serial = searchObject.sections[i][j].serial;
+            this.section_full = searchObject.sections[i][j].section_full;
+
+            //initialize r_periods double array
+            this.r_periodsArr = new Array(r_periods.length);
+            for (var cnt = 0; cnt < r_periods.length; cnt++) {
+                this.r_periodsArr[cnt] = new Array(5);
+            }
+
+            //populating r_periods douvle array
+            for (var k = 0; k < r_periods.length; k++) {
+                this.r_periodsArr[k][0] = r_periods[k].end;
+                this.r_periodsArr[k][1] = r_periods[k].room;
+                this.r_periodsArr[k][2] = r_periods[k].term;
+                this.r_periodsArr[k][3] = r_periods[k].start;
+                this.r_periodsArr[k][4] = r_periods[k].day;
+            }
+
+            var tempObj = new build(this.progCode, this.code, this.department, this.name, this.type, this.section, this.r_periodsArr, this.serial, this.section_full);
+            objectList.push(tempObj);
+
+
+            //             For testing purposes
+            //                        for (var t1 = 0; t1 < this.r_periods.length; t1++) {
+            //                            for (var t2 = 0; t2 < 5; t2++) {
+            //                                console.log(this.r_periodsArr[t1][t2]);
+            //            
+            //                            }
+            //                        }
+            //            
+            //                        console.log(
+            //                            "Type: " + this.type +
+            //                            "\nSection: " + this.section +
+            //                            "\nr_periods: " + this.r_periodsArr[0][1] +
+            //                            "\nserial: " + this.serial +
+            //                            "\nsection_full: " + this.section_full
+            //                        );
+
+
+        }
+
+
+    }
+
+    console.log(objectList[0]);
+    console.log(objectList[1]);
+    console.log(objectList[2]);
+    console.log(objectList[3]);
+    console.log(objectList[4]);
+    console.log(objectList[5]);
+    console.log(objectList[6]);
+
+}
 
 
 
 
+//searchObject.sections[i][j].r_periods.forEach(() => {
+//    for
+//})
+
+
+function build(progCode, code, department, name, type, section, r_periodsArr, serial, section_full) {
+    return {
+        progCode: progCode,
+        code: code,
+        department: department,
+        name: name,
+        type: type,
+        section: section,
+        r_periodsArr: r_periodsArr,
+        serial: serial,
+        section_full: section_full
+    }
+}
+
+var grid = new Array(14);
+for (var i = 0; i < 14; i++) {
+    grid[i] = new Array(7);
+}
 
 
 jQuery(window).load(function () {
@@ -111,9 +193,13 @@ $(".remWeekend").click(function () {
     if (tableDisplay === "table-cell") {
         $(".sun").css("display", "none");
         $(".sat").css("display", "none");
+        $(".th-sun").css("display", "none");
+        $(".th-sat").css("display", "none");
     } else {
         $(".sun").css("display", "table-cell");
         $(".sat").css("display", "table-cell");
+        $(".th-sun").css("display", "table-cell");
+        $(".th-sat").css("display", "table-cell");
     }
 })
 
@@ -212,14 +298,11 @@ function startTimeConvert(start) {
     return startTimeClass;
 }
 
-var grid = new Array(14);
-for (var i = 0; i < 14; i++) {
-  grid[i] = new Array(7);
-}
+
 //grid[0][0] = "hello";
 //
 //console.log(grid[0][1]);
-
+//console.log(dummy.code);
 
 inputClass("4HC3", "ITB AB102", "hello", "15:30", "hello", 4);
 //input to calendar
@@ -234,6 +317,7 @@ function inputClass(courseCode, room, instructor, startTime, endTime, day) {
 
 
 inputClass("4HC3", "ITB AB102", "hello", "15:30", "hello", 4);
+
 function removeClass(courseCode, room, instructor, startTime, endTime, day) {
     var dayClass = dayChange(day);
     var startTimeClass = startTimeConvert(startTime);
