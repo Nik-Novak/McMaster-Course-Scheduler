@@ -363,6 +363,16 @@ hr {
     background-color: #ccc;
 }
 
+#menu i {
+    float: right;
+}
+
+#menu button.accordion.active i {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+}
+
 #menu button.accordion.active,
 button.accordion:hover {
     background-color: #ccc !important;
@@ -1061,6 +1071,9 @@ span.day {
     }
     #calendarbanner .panel {
         width: 75%;
+    }
+    #coursecontent{
+        width: 100%;
     }
 
 }
