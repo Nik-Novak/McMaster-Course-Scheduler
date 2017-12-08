@@ -331,8 +331,8 @@ hr {
 }
 
 #menu {
-        display: inline-block;
-/*    display: none;*/
+    display: inline-block;
+    /*    display: none;*/
     padding-top: 35px;
     /*margin-right: 10px;*/
     width: 29%;
@@ -363,7 +363,7 @@ hr {
     background-color: #ccc;
 }
 
-#menu .accordion i {
+#menu i {
     float: right;
 }
 
@@ -393,24 +393,6 @@ button.accordion:hover {
 }
 
 
-
-#menu input[type=text] {
-    margin-top: 5px;
-    width: 80%;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    background-image: url('/img/search.svg');
-    background-size: 20px 20px;
-    background-position: 8px 12px; 
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    width: 100%;
-}
-
-
 /* ===========================
 --- Course & Accordion Button
 ============================ */
@@ -423,8 +405,8 @@ button.accordion:hover {
 }
 
 #coursecontent {
-/*    display: inline-block;*/
-    display:none;
+    /*    display: inline-block;*/
+    display: none;
     padding-top: 35px;
     /*margin-right: 10px;*/
     width: 29%;
@@ -747,7 +729,7 @@ button.accordion:hover {
     width: 40px;
     height: 40px;
     margin: 0 auto 5px;
-    padding: 5px;
+    padding: 2px;
     line-height: 1.8;
 }
 
@@ -785,11 +767,18 @@ button.accordion:hover {
     border-left: 1px solid #626E7E;
     position: relative;
     height: 4.5vh;
+    !importnant
     /*46px*/
     cursor: pointer;
-    overflow: hidden;
-    white-space: nowrap;
+    line-height: 2vh;
 }
+
+/*
+#calendar table tbody tr td:after {
+    content: "\00A0";
+
+}
+*/
 
 #calendar table tbody tr td:last-child {
     border-right: 1px solid #626E7E;
@@ -869,7 +858,7 @@ span.day {
 }
 
 #calendar .tues span {
-    font-size: 10px;
+    font-size: 2vw;
 }
 
 
@@ -1080,6 +1069,104 @@ span.day {
     }
 }
 
+@media (min-width:1081px) {
+    #calendar .tues span {
+        font-size: 1em;
+    }
+}
+
+@media (max-width:1080px) {
+    #calendar .tues span {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width:875px) {
+    #calendar .tues span {
+        font-size: 0.75em;
+    }
+}
+
+@media (max-width: 830px) {
+    #calendar .tues span {
+        font-size: 0.7em;
+    }
+}
+
+@media (max-width: 780px) {
+    /*
+    #calendar .tues span {
+        font-size: 0.7em;
+    }
+*/
+    #calendar table tbody tr td {
+        line-height: 1.2vh;
+    }
+}
+
+
+@media (max-width: 580px) {
+    #calendar .tues span {
+        font-size: 0.7em;
+    }
+}
+
+@media (max-width: 550px) {
+    /*
+    #calendar .tues span {
+        font-size: 0.65em;
+    }
+*/
+    #calendar table tbody tr td {
+        line-height: 1.14vh;
+    }
+}
+
+@media (max-width: 495px) {
+
+    #calendar .tues span {
+        font-size: 0.65em;
+    }
+
+    #calendar table tbody tr td {
+        line-height: 1.1vh;
+    }
+}
+
+@media (max-width: 460px) {
+    #calendar .tues span {
+        font-size: 0.6em;
+    }
+}
+
+@media (max-width: 420px) {
+    #calendar .tues span {
+        font-size: 0.55em;
+    }
+}
+
+@media (max-width: 395px) {
+    #calendar .tues span {
+        font-size: 0.5em;
+    }
+    #calendar table tbody tr td {
+        line-height: 1vh;
+    }
+}
+
+@media (max-width: 360px) {
+    #calendar .tues span {
+        font-size: 0.44em;
+    }
+}
+
+@media (max-width: 315px) {
+    #calendar .tues span {
+        font-size: 0.4em;
+    }
+}
+
+
 @media (max-width:768px) {
     #navbar h5,
     #navbar .center {
@@ -1105,15 +1192,18 @@ span.day {
     #calendarcontent {
         width: 100%;
     }
+    /*
     #calendar table tbody tr td {
         height: 29px;
     }
+*/
     #calendarbanner .panel {
         width: 75%;
     }
     #coursecontent {
         width: 100%;
     }
+
 
 }
 
