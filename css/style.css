@@ -363,6 +363,16 @@ hr {
     background-color: #ccc;
 }
 
+#menu i {
+    float: right;
+}
+
+#menu button.accordion.active i {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+}
+
 #menu button.accordion.active,
 button.accordion:hover {
     background-color: #ccc !important;
@@ -595,19 +605,31 @@ button.accordion:hover {
 /* ===========================
 --- Content-Right
 ============================ */
+
+#coursecontent{
+    width: 29%;
+}
+
+#coursecontent .bottom{
+    width: 100%;
+}
+#coursecontent .accordion{
+    width: 100%;
+}
+
 #coursecontent .panel {
+    width: 100%;
     padding: 0 !important;
 }
 
 #coursecontent .table-holder{
     width: 100%;
-    /*height: 400px;*/
     margin: 0 auto;
 }
 
 #coursecontent .table-center{
     width: 100%;
-    /*display:block-inline;*/
+    display:block-inline;
 }
 
 #coursecontent table{
@@ -621,37 +643,43 @@ button.accordion:hover {
 }
 
 #coursecontent tbody{
-    /*width: 100%;*/
-    /*padding-right: 10px;*/
+    width: 100%;
+    padding-right: 10px;
 }
 
 #coursecontent table tbody{
    /*overflow: auto;*/
+   width: 100%;
    /*height: 350px;*/
-   background-color: var(--bg);
+   background-color: black;
 }
 
 #coursecontent th , #coursecontent td{
     text-align: center;
-    font-size: 18px;
-    /*padding: 5px;*/
+    font-size: 16px;
+    padding: 5px;
     border-bottom: 1px solid #ddd;
-    /*width: 233px;*/
+    /*width: 1000px;*/
 }
+
+#coursecontent tr{
+
+}
+
+
 #coursecontent tr:nth-child(even){
     color: black !important;
-    background-color: #EEF6EB !important;
+    background-color: #B9A5AB !important;
 }
 
 #coursecontent th{
-    font-size: 20px !important;
+    /*font-size: 15px !important;*/
     color: black !important;
-    background-color: #EEF6EB !important;
-    height: 50px;
+    background-color: #B9A5AB !important;
 }
 
 #coursecontent tr:nth-child(odd){
-    color: var(--bg) !important;
+    color: black !important;
     background-color: white !important;
 }
 
@@ -1060,6 +1088,9 @@ span.day {
     }
     #calendarbanner .panel {
         width: 75%;
+    }
+    #coursecontent{
+        width: 100%;
     }
 
 }
