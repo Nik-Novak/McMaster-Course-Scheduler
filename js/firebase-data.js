@@ -6,9 +6,8 @@ $(document).ready(() => {
 
 
 function fireTest() {
-    var userId = '1cedb40b-b869-439a-b4b7-ab4dd77387b1';
-    return firebase.database().ref().once('value').then(function (snapshot) {
-        var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+    return firebase.database().ref('mcmaster-course-scheduler').once('value').then(function (snapshot) {
+        console.log(snapshot);
         // ...
     });
 }
