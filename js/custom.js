@@ -110,7 +110,7 @@ function mClass(searchObject) {
             var tempObj = new build(this.progCode, this.code, this.department, this.name, this.type, this.section, this.r_periodsArr, this.serial, this.section_full);
             objectList.push(tempObj);
 
-            
+
             //             For testing purposes
             //                        for (var t1 = 0; t1 < this.r_periods.length; t1++) {
             //                            for (var t2 = 0; t2 < 5; t2++) {
@@ -133,44 +133,50 @@ function mClass(searchObject) {
 
     }
 
-//    console.log(objectList[0]);
-//    console.log(objectList[1]);
-//    console.log(objectList[2]);
-//    console.log(objectList[3]);
-//    console.log(objectList[4]);
-//    console.log(objectList[5]);
-//    console.log(objectList[6]);
+    //    console.log(objectList[0]);
+    //    console.log(objectList[1]);
+    //    console.log(objectList[2]);
+    //    console.log(objectList[3]);
+    //    console.log(objectList[4]);
+    //    console.log(objectList[5]);
+    //    console.log(objectList[6]);
     var numBlocks = quikmafs(objectList[0]);
+    locationMap(objectList[0], numBlocks);
+
+
+
+    var numBlocks1 = quikmafs(objectList[1]);
+    locationMap(objectList[1], numBlocks1);
 
 }
 
-function round(value, step){
+function round(value, step) {
     step || step(1.0);
-    var inv =1.0 / step;
-    return Math.round(value * inv) /inv;
+    var inv = 1.0 / step;
+    return Math.round(value * inv) / inv;
 }
 
-function quikmafs(courseObj){
-    
-    var courseLengths =[];
-    
-    for(var i=0; i<courseObj.r_periodsArr.length; i++){
+function quikmafs(courseObj) {
+
+    var courseLengths = [];
+
+    for (var i = 0; i < courseObj.r_periodsArr.length; i++) {
         var startHour = courseObj.r_periodsArr[i][3].split(":")[0];
         var startMin = courseObj.r_periodsArr[i][3].split(":")[1];
         var endHour = courseObj.r_periodsArr[i][0].split(":")[0];
         var endMin = courseObj.r_periodsArr[i][0].split(":")[1];
-        
-        
-        var lenHour = (endHour - startHour)*60;
-        var lenMin = (parseInt(endMin/10) - parseInt(startMin/10))*10;
-        
-        var cLength = round((lenHour + lenMin)/60, .5);
-        
-        var numBlocks = cLength*2;
-        
+
+
+        var lenHour = (endHour - startHour) * 60;
+        var lenMin = (parseInt(endMin / 10) - parseInt(startMin / 10)) * 10;
+
+        var cLength = round((lenHour + lenMin) / 60, .5);
+
+        var numBlocks = cLength * 2;
+
         courseLengths.push(numBlocks);
-        
-        
+
+
     }
     return courseLengths;
 }
@@ -199,26 +205,83 @@ for (var i = 0; i < 28; i++) {
     grid[i] = new Array(7);
 }
 
+window.fullGrid = grid;
 
-function locationMap(courseObject, numBlocks){
-    
+fullGrid[0][1] = 12;
+
+function timeToNum(time) {
+    var hr = time.split(":")[0];
+    var min = time.split(":")[1];
+
+    var starthr = 8;
+    var startmin = 0;
+
+    var lenhr = (hr - starthr) * 60;
+    var lenmin = (parseInt(min / 10) - parseInt(startmin / 10)) * 10;
+
+    var number = round((lenhr + lenmin) / 60, .5) * 2;
+    return number;
+}
+
+console.log(timeToNum("18:00"));
+
+function locationMap(courseObject, numBlocks) {
+
     var obj = courseObject;
-    var startTimeArr = [];
-    
-    for(var i = 0; i < numBlocks.length; i++){
-        
+    var loc = [numBlocks.length];
+    for (var y = 0; y < numBlocks.length; y++) {
+        loc[y] = new Array(2);
     }
-    
-    
-    
-    
+
+    for (var i = 0; i < numBlocks.length; i++) {
+
+        loc[i][0] = timeToNum(obj.r_periodsArr[i][3]);
+        loc[i][1] = numBlocks[i];
+
+        console.log(loc[i][0] + " " + loc[i][1]);
+
+    }
+    console.log("HELLO: " + loc.length);
+    meshGrid(obj, loc);
 }
 
-function timeToLocation(startTime, day){
-    
-    
-    
+function meshGrid(courseObject, locations) {
+
+    for (var i = 0; i < fullGrid.length; i++) {
+        for (var j = 0; j < fullGrid[i].length; j++) {
+            console.log("i: " + i + "j: " + j + " " + fullGrid[i][j]);
+        }
+    }
+    for (var cnt1 = 0; cnt1 < locations.length; cnt1++) {
+        var day = (courseObject.r_periodsArr[cnt1][4]) - 1;
+        console.log("yoyo " + day);
+        for (var cnt2 = 0; cnt2 < locations[cnt1][1] / 2; cnt2++) {
+
+            if (cnt2 == 0) {
+                fullGrid[locations[cnt1][0]][day] = courseObject;
+            } else {
+                fullGrid[locations[cnt1][0] + cnt2][day] = "-";
+            }
+
+        }
+    }
+    for (var i = 0; i < fullGrid.length; i++) {
+        for (var j = 0; j < fullGrid[i].length; j++) {
+            console.log("i: " + i + "j: " + j + " " + fullGrid[i][j]);
+        }
+    }
+    for (var i = 0; i < fullGrid.length; i++) {
+        for (var j = 0; j < fullGrid[i].length; j++) {
+            console.log("i: " + i + "j: " + j + " " + fullGrid[i][j]);
+        }
+    }
+
 }
+
+
+
+
+
 
 
 
