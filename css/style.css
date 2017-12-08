@@ -243,6 +243,15 @@ hr {
     display: inline-block;
 }
 
+.fa-check{
+    color: #2ECC40;
+    font-size: 20px;
+}
+
+.fa-times{
+    color: #FF4136;
+    font-size: 20px;
+}
 
 
 /* ===========================
@@ -363,6 +372,16 @@ hr {
     background-color: #ccc;
 }
 
+#menu i {
+    float: right;
+}
+
+#menu button.accordion.active i {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+}
+
 #menu button.accordion.active,
 button.accordion:hover {
     background-color: #ccc !important;
@@ -405,7 +424,7 @@ button.accordion:hover {
     vertical-align: top;
 }
 
-#coursecontent i {
+#coursecontent .accordion i {
     float: right;
 }
 
@@ -425,6 +444,9 @@ button.accordion:hover {
     border-width: 1px;
     font-size: 15px;
     /*transition: 0.1s;*/
+
+    border-radius: 4px;
+    border-color: black;
 }
 
 #coursecontent button.accordion.active {
@@ -490,6 +512,10 @@ button.accordion:hover {
     border-style: solid;
     border-width: 1px;
     font-size: 15px;
+
+    border-radius: 4px;
+    border-color: black;
+
     /*transition: 0.1s;*/
 }
 
@@ -541,7 +567,7 @@ button.accordion:hover {
     border-style: solid;
     border-width: 1px;
     border-radius: 4px;
-    margin-top: -25px;
+    margin-top: -35px;
 }
 
 #legend i {
@@ -569,11 +595,121 @@ button.accordion:hover {
     text-align: center;
 }
 
+/* ===========================
+--- Practice Buttons
+============================ */
+
+#calendarcontent .screenswitch{
+    display: table;
+    background-color: #232B2B;
+    border-color: #AAAAAA;
+    color: #FF851B;
+    margin: 0 auto;
+    margin-top: 6px;
+}
+
+#calendarcontent .remWeekend{
+    display: table;
+    background-color: #232B2B;
+    border-color: #AAAAAA;
+    color: #F012BE;
+    margin: 0 auto;
+    margin-top: 6px;
+}
 
 
 /* ===========================
 --- Content-Right
 ============================ */
+
+#coursecontent{
+    width: 29%;
+}
+
+#coursecontent .bottom{
+    width: 100%;
+}
+#coursecontent .accordion{
+    width: 100%;
+}
+
+#coursecontent .panel {
+    width: 100%;
+    padding: 0 !important;
+}
+
+#coursecontent .table-holder{
+    width: 100%;
+    margin: 0 auto;
+}
+
+#coursecontent .table-center{
+    width: 100%;
+    display:block-inline;
+}
+
+#coursecontent table{
+    border-collapse;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#coursecontent table tbody, #coursecontent table thead{
+}
+
+#coursecontent tbody{
+    width: 100%;
+    padding-right: 10px;
+}
+
+#coursecontent  table tbody{
+   /*overflow: auto;*/
+   width: 100%;
+   /*height: 350px;*/
+   background-color: black;
+}
+
+#coursecontent  th , #coursecontent td{
+    text-align: center;
+    font-size: 16px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    /*width: 1000px;*/
+}
+
+#coursecontent  tr{
+    background-color: white;
+}
+
+
+#coursecontent .top tr:nth-child(even){
+    color: black !important;
+    background-color: #B9A5AB !important;
+}
+
+#coursecontent .top th{
+    /*font-size: 15px !important;*/
+    color: black !important;
+    background-color: #B9A5AB !important;
+}
+
+#coursecontent .top tr:nth-child(odd){
+    color: black !important;
+    background-color: white !important;
+}
+
+.enrollButton {
+    background-color: #7FDBFF; /* tentative blue */
+    border: none;
+    color: white;
+    /*padding: 15px 32px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /*font-size: 16px;*/
+    /*margin: 4px 2px;*/
+}
+
 
 /* ===========================
 --- Calendar
@@ -656,7 +792,7 @@ button.accordion:hover {
     vertical-align: middle;
     border-left: 1px solid #626E7E;
     position: relative;
-    height: 46px;
+    height: 4.5vh;/*46px*/
     cursor: pointer;
 }
 
@@ -687,6 +823,12 @@ span.day {
     font-family: 'Lato', sans-serif;
 }
 
+#calendar .sat{
+    
+}
+#calendar .sun{
+    
+}
 
 
 @media (max-width: 60em) {
@@ -711,7 +853,7 @@ span.day {
     }
     #calendar table thead tr th .day {
         display: block;
-        font-size: 1.2em;
+        font-size: 0.85em;
         border-radius: 50%;
         width: 20px;
         height: 20px;
@@ -723,7 +865,7 @@ span.day {
         color: #626E7E;
     }
     #calendar table tbody tr td.hour {
-        font-size: 1em;
+        font-size: 0.85em;
     }
     /*
     #calendar table tbody tr td.hour span {
@@ -969,7 +1111,13 @@ span.day {
         width: 100%;
     }
     #calendar table tbody tr td {
-        height: 32px;
+        height: 29px;
+    }
+    #calendarbanner .panel {
+        width: 75%;
+    }
+    #coursecontent{
+        width: 100%;
     }
 
 }
