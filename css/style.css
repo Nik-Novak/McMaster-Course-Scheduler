@@ -570,6 +570,17 @@ button.accordion:hover {
 }
 
 
+
+#calendarcontent .screenswitch{
+    display: table;
+    background-color: #232B2B;
+    border-color: #AAAAAA;
+    color: #FF851B;
+    margin: 0 auto;
+    margin-top: 6px;
+}
+
+
 /* ===========================
 --- Content-Right
 ============================ */

@@ -4,6 +4,25 @@ jQuery(window).load(function() {
 });
 
 // accordion collapse
+var screenSwitch = document.getElementsByClassName("screenswitch");
+$(".screenswitch").click(function(){
+    var screen = $('#coursecontent').css('display');
+    if(screen === "inline-block"){
+        $( "#coursecontent" ).css( "display", "none" );
+        $( "#menu" ).css( "display", "inline-block" );
+        
+    }
+    else{
+        $( "#coursecontent" ).css( "display", "inline-block" );
+        $( "#menu" ).css( "display", "none" );
+        
+    }
+    
+    
+})
+
+
+
 var acc = document.getElementsByClassName("accordion");
 
 for (var i = 0; i < acc.length; i++) {
