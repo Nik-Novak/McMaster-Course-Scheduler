@@ -857,7 +857,13 @@ span.day {
 */
 }
 
-#calendar .tues span {
+#calendar .mon span,
+#calendar .tues span,
+#calendar .wed span,
+#calendar .thur span,
+#calendar .fri span,
+#calendar .sat span,
+#calendar .sun span {
     font-size: 2vw;
 }
 
@@ -1070,25 +1076,49 @@ span.day {
 }
 
 @media (min-width:1081px) {
-    #calendar .tues span {
+    #calendar .mon span,
+    #calendar .tues span,
+    #calendar .wed span,
+    #calendar .thur span,
+    #calendar .fri span,
+    #calendar .sat span,
+    #calendar .sun span {
         font-size: 1em;
     }
 }
 
 @media (max-width:1080px) {
-    #calendar .tues span {
+    #calendar .mon span,
+    #calendar .tues span,
+    #calendar .wed span,
+    #calendar .thur span,
+    #calendar .fri span,
+    #calendar .sat span,
+    #calendar .sun span {
         font-size: 0.8em;
     }
 }
 
 @media (max-width:875px) {
-    #calendar .tues span {
+    #calendar .mon span,
+    #calendar .tues span,
+    #calendar .wed span,
+    #calendar .thur span,
+    #calendar .fri span,
+    #calendar .sat span,
+    #calendar .sun span {
         font-size: 0.75em;
     }
 }
 
 @media (max-width: 830px) {
-    #calendar .tues span {
+    #calendar .mon span,
+    #calendar .tues span,
+    #calendar .wed span,
+    #calendar .thur span,
+    #calendar .fri span,
+    #calendar .sat span,
+    #calendar .sun span {
         font-size: 0.7em;
     }
 }
@@ -1106,7 +1136,13 @@ span.day {
 
 
 @media (max-width: 580px) {
-    #calendar .tues span {
+    #calendar .mon span,
+    #calendar .tues span,
+    #calendar .wed span,
+    #calendar .thur span,
+    #calendar .fri span,
+    #calendar .sat span,
+    #calendar .sun span {
         font-size: 0.7em;
     }
 }
@@ -1124,7 +1160,13 @@ span.day {
 
 @media (max-width: 495px) {
 
-    #calendar .tues span {
+    #calendar .mon span,
+    #calendar .tues span,
+    #calendar .wed span,
+    #calendar .thur span,
+    #calendar .fri span,
+    #calendar .sat span,
+    #calendar .sun span {
         font-size: 0.65em;
     }
 
@@ -1134,19 +1176,37 @@ span.day {
 }
 
 @media (max-width: 460px) {
-    #calendar .tues span {
+    #calendar .mon span,
+    #calendar .tues span,
+    #calendar .wed span,
+    #calendar .thur span,
+    #calendar .fri span,
+    #calendar .sat span,
+    #calendar .sun span {
         font-size: 0.6em;
     }
 }
 
 @media (max-width: 420px) {
-    #calendar .tues span {
+    #calendar .mon span,
+    #calendar .tues span,
+    #calendar .wed span,
+    #calendar .thur span,
+    #calendar .fri span,
+    #calendar .sat span,
+    #calendar .sun span {
         font-size: 0.55em;
     }
 }
 
 @media (max-width: 395px) {
-    #calendar .tues span {
+    #calendar .mon span,
+    #calendar .tues span,
+    #calendar .wed span,
+    #calendar .thur span,
+    #calendar .fri span,
+    #calendar .sat span,
+    #calendar .sun span {
         font-size: 0.5em;
     }
     #calendar table tbody tr td {
@@ -1155,13 +1215,25 @@ span.day {
 }
 
 @media (max-width: 360px) {
-    #calendar .tues span {
+    #calendar .mon span,
+    #calendar .tues span,
+    #calendar .wed span,
+    #calendar .thur span,
+    #calendar .fri span,
+    #calendar .sat span,
+    #calendar .sun span {
         font-size: 0.44em;
     }
 }
 
 @media (max-width: 315px) {
-    #calendar .tues span {
+    #calendar .mon span,
+    #calendar .tues span,
+    #calendar .wed span,
+    #calendar .thur span,
+    #calendar .fri span,
+    #calendar .sat span,
+    #calendar .sun span {
         font-size: 0.4em;
     }
 }
