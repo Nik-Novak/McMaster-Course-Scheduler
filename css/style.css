@@ -569,13 +569,24 @@ button.accordion:hover {
     text-align: center;
 }
 
-
+/* ===========================
+--- Practice Buttons
+============================ */
 
 #calendarcontent .screenswitch{
     display: table;
     background-color: #232B2B;
     border-color: #AAAAAA;
     color: #FF851B;
+    margin: 0 auto;
+    margin-top: 6px;
+}
+
+#calendarcontent .remWeekend{
+    display: table;
+    background-color: #232B2B;
+    border-color: #AAAAAA;
+    color: #F012BE;
     margin: 0 auto;
     margin-top: 6px;
 }
@@ -757,6 +768,12 @@ span.day {
     font-family: 'Lato', sans-serif;
 }
 
+#calendar .sat{
+    
+}
+#calendar .sun{
+    
+}
 
 
 @media (max-width: 60em) {
