@@ -82,7 +82,7 @@
 
             <button class="accordion">Quick Search <i class="fa fa-caret-down" aria-hidden="true"></i></button>
             <div class="panel">
-               <input id='quicksearch' type="text">
+               <input id='quicksearch' type="text" onchange="">
                
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
@@ -396,18 +396,33 @@
                 </div>                                       
             </div>
 
-            </div>
+            
 
         </div>
     </section>
 
     </div>
-
+    
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyC2rhl11fCMHh414kIwvxK0y6CBtff8WMs",
+    authDomain: "mcmaster-course-scheduler.firebaseapp.com",
+    databaseURL: "https://mcmaster-course-scheduler.firebaseio.com",
+    projectId: "mcmaster-course-scheduler",
+    storageBucket: "mcmaster-course-scheduler.appspot.com",
+    messagingSenderId: "714844002358"
+  };
+  firebase.initializeApp(config);
+</script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- Custom JavaScript -->
     <script src="js/custom.js"></script>
     <script src="js/dataparse.js"></script>
+    <script src="js/firebase-data.js"></script>
 </body>
 
 </html>
