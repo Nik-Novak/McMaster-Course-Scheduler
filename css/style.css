@@ -766,11 +766,15 @@ button.accordion:hover {
     vertical-align: middle;
     border-left: 1px solid #626E7E;
     position: relative;
-    height: 4.5vh;
+    height: 2.5vh;
     !importnant
     /*46px*/
     cursor: pointer;
     line-height: 2vh;
+}
+
+#calendar table tbody tr:nth-child(odd) td{
+    border-bottom: 1px dashed #626E7E;
 }
 
 /*
@@ -857,13 +861,15 @@ span.day {
 */
 }
 
-#calendar .mon span,
-#calendar .tues span,
-#calendar .wed span,
-#calendar .thur span,
-#calendar .fri span,
-#calendar .sat span,
-#calendar .sun span {
+/*
+#calendar table tbody tr td {
+    color: red;
+    font-size: 2vw;
+    font-weight: bold;
+}
+*/
+
+#calendar tr td:not(.hour) {
     font-size: 2vw;
     font-weight: bold;
 }
@@ -1077,49 +1083,25 @@ span.day {
 }
 
 @media (min-width:1081px) {
-    #calendar .mon span,
-    #calendar .tues span,
-    #calendar .wed span,
-    #calendar .thur span,
-    #calendar .fri span,
-    #calendar .sat span,
-    #calendar .sun span {
+    #calendar tr td:not(.hour) {
         font-size: 1em;
     }
 }
 
 @media (max-width:1080px) {
-    #calendar .mon span,
-    #calendar .tues span,
-    #calendar .wed span,
-    #calendar .thur span,
-    #calendar .fri span,
-    #calendar .sat span,
-    #calendar .sun span {
+    #calendar tr td:not(.hour) {
         font-size: 0.8em;
     }
 }
 
 @media (max-width:875px) {
-    #calendar .mon span,
-    #calendar .tues span,
-    #calendar .wed span,
-    #calendar .thur span,
-    #calendar .fri span,
-    #calendar .sat span,
-    #calendar .sun span {
+    #calendar tr td:not(.hour) {
         font-size: 0.75em;
     }
 }
 
 @media (max-width: 830px) {
-    #calendar .mon span,
-    #calendar .tues span,
-    #calendar .wed span,
-    #calendar .thur span,
-    #calendar .fri span,
-    #calendar .sat span,
-    #calendar .sun span {
+    #calendar tr td:not(.hour) {
         font-size: 0.7em;
     }
 }
@@ -1137,13 +1119,7 @@ span.day {
 
 
 @media (max-width: 580px) {
-    #calendar .mon span,
-    #calendar .tues span,
-    #calendar .wed span,
-    #calendar .thur span,
-    #calendar .fri span,
-    #calendar .sat span,
-    #calendar .sun span {
+    #calendar tr td:not(.hour) {
         font-size: 0.7em;
     }
 }
@@ -1161,13 +1137,7 @@ span.day {
 
 @media (max-width: 495px) {
 
-    #calendar .mon span,
-    #calendar .tues span,
-    #calendar .wed span,
-    #calendar .thur span,
-    #calendar .fri span,
-    #calendar .sat span,
-    #calendar .sun span {
+    #calendar tr td:not(.hour) {
         font-size: 0.65em;
     }
 
@@ -1177,37 +1147,19 @@ span.day {
 }
 
 @media (max-width: 460px) {
-    #calendar .mon span,
-    #calendar .tues span,
-    #calendar .wed span,
-    #calendar .thur span,
-    #calendar .fri span,
-    #calendar .sat span,
-    #calendar .sun span {
+    #calendar tr td:not(.hour) {
         font-size: 0.6em;
     }
 }
 
 @media (max-width: 420px) {
-    #calendar .mon span,
-    #calendar .tues span,
-    #calendar .wed span,
-    #calendar .thur span,
-    #calendar .fri span,
-    #calendar .sat span,
-    #calendar .sun span {
+    #calendar tr td:not(.hour) {
         font-size: 0.55em;
     }
 }
 
 @media (max-width: 395px) {
-    #calendar .mon span,
-    #calendar .tues span,
-    #calendar .wed span,
-    #calendar .thur span,
-    #calendar .fri span,
-    #calendar .sat span,
-    #calendar .sun span {
+    #calendar tr td:not(.hour) {
         font-size: 0.5em;
     }
     #calendar table tbody tr td {
@@ -1216,25 +1168,13 @@ span.day {
 }
 
 @media (max-width: 360px) {
-    #calendar .mon span,
-    #calendar .tues span,
-    #calendar .wed span,
-    #calendar .thur span,
-    #calendar .fri span,
-    #calendar .sat span,
-    #calendar .sun span {
+    #calendar tr td:not(.hour) {
         font-size: 0.44em;
     }
 }
 
 @media (max-width: 315px) {
-    #calendar .mon span,
-    #calendar .tues span,
-    #calendar .wed span,
-    #calendar .thur span,
-    #calendar .fri span,
-    #calendar .sat span,
-    #calendar .sun span {
+    #calendar tr td:not(.hour) {
         font-size: 0.4em;
     }
 }
