@@ -6,6 +6,9 @@ $.getJSON("data/databank.json", function(json) {
    var courses = convertKeysToArray(json.timetables[2017][6].courses);
     sortResults(courses, 'department', true);
     sortResults(courses, 'name', true);
+    sortResults(courses, 'department', true);
+    sortResults(courses, 'name', false);
+    sortResults(courses, 'department', false);
     sortResults(courses, 'code', true);
     console.log(courses);
 });
