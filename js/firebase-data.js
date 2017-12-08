@@ -1,13 +1,41 @@
 var database = firebase.database();
 
 $(document).ready(() => {
-    fireTest();
+    
+//    getData('/',(snapshot)=>{
+//        console.log(snapshot.val()); //print whoel database
+//    });
+//    
+//    getData('departments',(e)=>{
+//        var departments = e.val();
+//        console.log(departments);
+//    });
+    
+    loadDepartments();
+    
+    
 });
 
-
-function fireTest() {
-    return firebase.database().ref('mcmaster-course-scheduler').once('value').then(function (snapshot) {
-        console.log(snapshot);
-        // ...
+function loadDepartments(){
+    onData('departments',(e)=>{
+        var departments = e.val();
+        var def = $('<option value="-">Select Department</option>');
+        $('.select-department').html('');
+        $('.select-department').append(def);
+        for (var key in departments){
+            if(!departments.hasOwnProperty(key))
+                continue;
+            var t = $('<option value="'+key+'">'+departments[key]+'</option>')
+            $('.select-department').append(t);
+        }
+        console.log(departments);
     });
+}
+
+function getData(path, callback) {
+    return firebase.database().ref(path).once('value').then(callback);
+}
+
+function onData(path, callback) {
+    return firebase.database().ref(path).on('value',callback);
 }

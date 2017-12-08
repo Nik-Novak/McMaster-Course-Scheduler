@@ -55,7 +55,7 @@
             <h5>McMaster University</h5>
         </div>
         <div class='center'>
-            <h5>Course Scheduler</h5>
+            <h5 onClick="uploadToFirebase();">Course Scheduler</h5>
         </div>
         <div class='right'>
             <div class='subleft'>
@@ -82,7 +82,55 @@
 
                 <button class="accordion">Quick Search <i class="fa fa-caret-down" aria-hidden="true"></i></button>
                 <div class="panel">
-                    <input id='quicksearch' type="text">
+                    <form>
+                    <input id='quicksearch' placeholder="Search..." type="text">
+                    <br>
+                    <select name="department" value="department" class='select-department'>
+                        <option value="-">Select Department</option>
+<!--
+                        <option value="Engineering">Engineering</option>
+                        <option value="Math">Math</option>
+                        <option value="LifeScience">Life Science</option>
+                        <option value="Economics">Economics</option>
+-->
+                    </select>
+                    <br>
+                    <select name="credits">
+                        <option value="-">Select Number of Units</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <br>
+                    <select name="term">
+                        <option value="-">Select Term</option>
+                        <option value="Fall">Fall</option>
+                        <option value="Winter">Winter</option>
+                        <option value="Summer Term 1">Summer Term 1</option>
+                        <option value="Summer Term 2">Summer Term 2</option>
+                    </select>               
+                    <br>
+                    <select name="level">
+                        <option value="-">Select Level</option>
+                        <option value="First Year">First Year</option>
+                        <option value="Second Year">Second Year</option>
+                        <option value="Third Year">Third Year</option>
+                        <option value="Fourth Year">Fourth Year</option>
+                        <option value="Masters">Masters</option>
+                        <option value="PhD">PhD</option>
+                    </select>               
+
+                    <br>
+                    <select name="status">
+                        <option value="-">Select Status</option>
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                    <button type="submit" value="Submit">Submit</button>              
+                </form>
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
@@ -433,7 +481,6 @@
                                         <td>Tuesday<br> 7:00-10:00 pm</td>
                                         <td>ITB AB102</td>
                                     </tr>
-
                                 </tbody>
                             </table>
                         </div>
@@ -467,6 +514,7 @@
     <script src="js/custom.js"></script>
     <script src="js/dataparse.js"></script>
     <script src="js/firebase-data.js"></script>
+    <script src="js/datatofirebase.js"></script>
 </body>
 
 </html>

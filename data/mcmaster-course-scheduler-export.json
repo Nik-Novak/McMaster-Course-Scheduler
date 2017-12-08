@@ -1,0 +1,11 @@
+{
+  "courses" : {
+    "SFWRENG2XA3" : "Franek",
+    "SFWRENG3XA3" : "Smith",
+    "STATS3Y03" : "CHilds"
+  },
+  "departments" : {
+    "anthro" : "anthropology",
+    "sfwr" : "softwareeng"
+  }
+}
