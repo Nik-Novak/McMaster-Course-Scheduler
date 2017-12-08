@@ -248,9 +248,13 @@ hr {
     font-size: 20px;
 }
 
-.fa-times{
+.fa-ban{
     color: #FF4136;
     font-size: 20px;
+}
+
+.fa-times{
+    /*font-size: 20px;*/
 }
 
 .enrollButton {
