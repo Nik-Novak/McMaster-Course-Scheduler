@@ -650,7 +650,7 @@ button.accordion:hover {
     vertical-align: middle;
     border-left: 1px solid #626E7E;
     position: relative;
-    height: 3.2em;/*46px*/
+    height: 4.5vh;/*46px*/
     cursor: pointer;
 }
 
