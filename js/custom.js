@@ -9,7 +9,7 @@ $.getJSON("data/databank.json", function (json) {
     sortResults(courses, 'department', true);
     dummy = courses[373];
 
-//    console.log(dummy);
+    console.log(dummy);
     mClass(dummy);
 
 });
