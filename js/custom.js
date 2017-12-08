@@ -144,22 +144,35 @@ function mClass(searchObject) {
 
 }
 
+function round(value, step){
+    step || step(1.0);
+    var inv =1.0 / step;
+    return Math.round(value * inv) /inv;
+}
 
 function quikmafs(courseObj){
     
     var courseLengths =[];
     
     for(var i=0; i<courseObj.r_periodsArr.length; i++){
-        var startHour = courseObj.r_periodsArr[0][3].split(":")[0];
-        var startMin = courseObj.r_periodsArr[0][3].split(":")[0];
-        var endTime = courseObj.r_periodsArr[0][0];
+        var startHour = courseObj.r_periodsArr[i][3].split(":")[0];
+        var startMin = courseObj.r_periodsArr[i][3].split(":")[1];
+        var endHour = courseObj.r_periodsArr[i][0].split(":")[0];
+        var endMin = courseObj.r_periodsArr[i][0].split(":")[1];
         
+        
+        var lenHour = (endHour - startHour)*60;
+        var lenMin = (parseInt(endMin/10) - parseInt(startMin/10))*10;
+        
+        var cLength = round((lenHour + lenMin)/60, .5);
+        
+        var numBlocks = cLength*2;
+        
+        courseLengths.push(numBlocks);
         
         
     }
-    console.log(courseObj.r_periodsArr[0][0]);
-    console.log(courseObj.r_periodsArr[0][3]);
-    
+    return courseLengths;
 }
 
 //searchObject.sections[i][j].r_periods.forEach(() => {
