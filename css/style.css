@@ -569,12 +569,6 @@ button.accordion:hover {
     text-align: center;
 }
 
-
-
-/* ===========================
---- Content-Right
-============================ */
-
 /* ===========================
 --- Calendar
 ============================ */
@@ -656,7 +650,7 @@ button.accordion:hover {
     vertical-align: middle;
     border-left: 1px solid #626E7E;
     position: relative;
-    height: 46px;
+    height: 3.2em;/*46px*/
     cursor: pointer;
 }
 
