@@ -147,6 +147,9 @@ function mClass(searchObject) {
 
     var numBlocks1 = quikmafs(objectList[1]);
     locationMap(objectList[1], numBlocks1);
+    
+    
+    render();
 
 }
 
@@ -206,8 +209,6 @@ for (var i = 0; i < 28; i++) {
 }
 
 window.fullGrid = grid;
-
-fullGrid[0][1] = 12;
 
 function timeToNum(time) {
     var hr = time.split(":")[0];
@@ -276,6 +277,21 @@ function meshGrid(courseObject, locations) {
         }
     }
 
+}
+
+function render(){
+    
+    var masterRenderList = [];
+    for(var i = fullGrid.length - 1; i >= 0; i--){
+        var tempTransferList = [];
+        for(var j = fullGrid[i].length - 1; j >= 0; j--){
+            console.log("row: " + i + "col: " + j);
+            
+            
+            
+        }
+    }
+    
 }
 
 
