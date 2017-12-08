@@ -27,7 +27,7 @@ function uploadToFirebase() {
         
 
         
-        
+//        getData('/course_department',(e)=>{  console.log(e.val());  }); //VIEW ALL COURSES
 
     });
 }
@@ -94,6 +94,8 @@ function writeProfessors(){
                 
     });
     
+    
+    
 }
 
 function writeData(path, data){
@@ -113,15 +115,7 @@ function removeData(path) {
 //SEPARATOR
 
 function searchFor(courses) {
-    var empty = [];
-    courses.forEach((e) => {
-        if (e.sections.C != null && e.sections.C != undefined && e.sections.C.C01 != null && e.sections.C.C01.r_periods != null)
-            e.sections.C.C01.r_periods.forEach((f) => {
-                if (f.day == 6)
-                    empty.push(e);
-            });
-    });
-    console.log(empty);
+    
 }
 
 function sortResults(array, prop, asc) {
