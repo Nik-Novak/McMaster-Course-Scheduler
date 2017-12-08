@@ -18,15 +18,23 @@ function uploadToFirebase() {
         //    dummy = courses[829];
         //    console.log(dummy);
 
-
+//        removeData('/courses');
 //        writeDepartments(json.departments); //DONE
 //        writeCoursesByDepartment(json.timetables[2017][6].courses); //DONE
 //            writeCoursesByCode(json.timetables[2017][6].courses); //DONE
+//        writeCoursesByName(json.timetables[2017][6].courses); //DONE
         
-//            getData('/course_department',(e)=>{
+            getData('/course_department',(e)=>{
 //                console.log(e.val());
-//            });
-//        
+                for (course in e.val()){
+                    console.log(course)
+//                    $.each(course.sections, (key,value)=>{
+//                        console.log(value);
+//                    });
+                }
+            });
+
+
     });
 }
 
@@ -46,16 +54,24 @@ function writeDepartments(departments){
         writeData('/departments',departments);
 }
 
+function writeCoursesByName(coursesjson){
+    var courses = convertObjectToArray(coursesjson);
+    sortResults(courses, 'name', true);
+    writeData('/course_name',courses);
+}
+
 function writeData(path, data){
     database.ref(path).set(data);
 }
 
 
 function getData(path, callback) {
-    return firebase.database().ref(path).once('value').then(callback);
+    return database.ref(path).once('value').then(callback);
 }
 
-
+function removeData(path) {
+    database.ref(path).remove();
+}
 
 
 //SEPARATOR
