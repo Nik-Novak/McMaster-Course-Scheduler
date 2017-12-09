@@ -378,7 +378,10 @@ for (var i = 0; i < acc.length; i++) {
     }
 }
 
-
+// Course listings Table Details collapse 
+$('.header').click(function(){
+    $(this).nextUntil('tr.header').slideToggle(1);
+});
 
 
 
