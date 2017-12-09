@@ -55,6 +55,6 @@ function onData(path, callback) {
 
 function checkLoad(){
     if(window.course_code!=null && window.course_name!=null && window.course_department!=null && window.professors!=null){
-        alert('fully loaded dawg');
+        $('#menu .loading-span').css('display', 'none');
     }
 }

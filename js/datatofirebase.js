@@ -154,9 +154,7 @@ function convertObjectToArray(json) {
     return array;
 }
 
-function test() {
-    console.log();
-}
+
 
 function convertObjectToArrayWithKey(json) {
     var array = [];
@@ -169,6 +167,3 @@ function convertObjectToArrayWithKey(json) {
     return array;
 }
 
-function test() {
-    console.log();
-}
