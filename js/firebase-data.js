@@ -156,7 +156,7 @@ function onData(path, callback) {
 function checkLoad(){
     if(window.course_code!=null && window.course_name!=null && window.course_department!=null && window.professors!=null){
         $('#menu .loading-span').css('display', 'none');
-        console.log(window.course_department[1523]);
-        mClass(window.course_department[1523]);
+        console.log(window.course_department[800]);
+        parseSearch(window.course_department[800]);
     }
 }
