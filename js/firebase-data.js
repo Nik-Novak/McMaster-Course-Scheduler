@@ -48,9 +48,27 @@ function loadDepartments(){
 }
 
 function populateBrowseProgram(program){
+    
+    $('.select-department').change(function(){
+        alert(this.value);
+        var dep = this.value.toString();
+        console.log(dep);
+        var index = binSearch(window.course_department, dep,'department');
+        if(index!=-1){
+            $('#unicornsdontexist').html('');
+            extractAll(window.course_department,index, dep, 'department').forEach((course)=>{
+                $('#unicornsdontexist').append($('<p>'+course.code+'</p>'));
+            });
+        }
+    });
+    
     var index = binSearch(window.course_department, program,'department');
-    if(index!=-1)
-        console.log(extractAll(window.course_department,index, program, 'department'));
+    if(index!=-1){
+        $('#butterytests').html('');
+        extractAll(window.course_department,index, program, 'department').forEach((course)=>{
+            $('#butterytests').append($('<p>'+course.code+'</p>'));
+        });
+    }
     
 }
 
