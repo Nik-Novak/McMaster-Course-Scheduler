@@ -2,7 +2,7 @@ var database = firebase.database();
 //2676 courses
 
 function uploadToFirebase() {
-    $.getJSON("data/databank.json", function (json) {
+//    $.getJSON("data/databank.json", function (json) {
         console.log('\nOVERWRITING DATABASE CONTENTS WITH NEW DATA\n');
         //    //console.log(json);
         //    console.log(json.timetables[2017][6].courses);//console.log(Object.keys(json.timetables[2017][6].courses).length);
@@ -24,12 +24,8 @@ function uploadToFirebase() {
 //            writeCoursesByCode(json.timetables[2017][6].courses); //DONE
 //        writeCoursesByName(json.timetables[2017][6].courses); //DONE
 //            writeProfessors();//DONE
-        
-
-        
-//        getData('/course_department',(e)=>{  console.log(e.val());  }); //VIEW ALL COURSES
-
-    });
+    
+//    });
 }
 
 function arrayToUnique(array){
@@ -158,9 +154,7 @@ function convertObjectToArray(json) {
     return array;
 }
 
-function test() {
-    console.log();
-}
+
 
 function convertObjectToArrayWithKey(json) {
     var array = [];
@@ -173,6 +167,3 @@ function convertObjectToArrayWithKey(json) {
     return array;
 }
 
-function test() {
-    console.log();
-}
