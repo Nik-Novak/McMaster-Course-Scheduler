@@ -9,7 +9,7 @@ $.getJSON("data/databank.json", function (json) {
     sortResults(courses, 'department', true);
     dummy = courses[373];
 
-    console.log(dummy);
+//    console.log(dummy);
     mClass(dummy);
 
 });
@@ -224,7 +224,7 @@ function timeToNum(time) {
     return number;
 }
 
-console.log(timeToNum("18:00"));
+//console.log(timeToNum("18:00"));
 
 function locationMap(courseObject, numBlocks) {
 
@@ -239,10 +239,10 @@ function locationMap(courseObject, numBlocks) {
         loc[i][0] = timeToNum(obj.r_periodsArr[i][3]);
         loc[i][1] = numBlocks[i];
 
-        console.log(loc[i][0] + " " + loc[i][1]);
+//        console.log(loc[i][0] + " " + loc[i][1]);
 
     }
-    console.log("HELLO: " + loc.length);
+//    console.log("HELLO: " + loc.length);
     meshGrid(obj, loc);
 }
 
@@ -250,12 +250,12 @@ function meshGrid(courseObject, locations) {
 
     for (var i = 0; i < fullGrid.length; i++) {
         for (var j = 0; j < fullGrid[i].length; j++) {
-            console.log("i: " + i + "j: " + j + " " + fullGrid[i][j]);
+//            console.log("i: " + i + "j: " + j + " " + fullGrid[i][j]);
         }
     }
     for (var cnt1 = 0; cnt1 < locations.length; cnt1++) {
         var day = (courseObject.r_periodsArr[cnt1][4]) - 1;
-        console.log("yoyo " + day);
+//        console.log("yoyo " + day);
         for (var cnt2 = 0; cnt2 < locations[cnt1][1] / 2; cnt2++) {
 
             if (cnt2 == 0) {
@@ -268,12 +268,12 @@ function meshGrid(courseObject, locations) {
     }
     for (var i = 0; i < fullGrid.length; i++) {
         for (var j = 0; j < fullGrid[i].length; j++) {
-            console.log("i: " + i + "j: " + j + " " + fullGrid[i][j]);
+//            console.log("i: " + i + "j: " + j + " " + fullGrid[i][j]);
         }
     }
     for (var i = 0; i < fullGrid.length; i++) {
         for (var j = 0; j < fullGrid[i].length; j++) {
-            console.log("i: " + i + "j: " + j + " " + fullGrid[i][j]);
+//            console.log("i: " + i + "j: " + j + " " + fullGrid[i][j]);
         }
     }
 
@@ -297,14 +297,14 @@ function render() {
         var tempTransferList = [];
         for (var j = 0; j < fullGrid[i].length; j++) {
             var row = $("<tr>");
-            console.log("DEBUG: " + row + "   yolo");
+//            console.log("DEBUG: " + row + "   yolo");
             row.append($("<td>Text-1</td>"));
             
             
 //            var row = document.getElementsByClassName('r1');
 //            var x = row.insertCell(-1);
 //            x.innerHTML = "New cell";
-            console.log("row: " + i + "col: " + j);
+//            console.log("row: " + i + "col: " + j);
 
 
 

@@ -15,11 +15,13 @@ $(document).ready(() => {
     loadProfs();
     loadCourses();
     
+//    populateBrowseProgram();
+    
 });
 
 
 function loadCourses(){
-    onData('/course_department',(e)=>{  console.warn('Courses by Department Successfully Loaded.'); window.course_department = e.val(); checkLoad(); }); //VIEW ALL COURSES
+    onData('/course_department',(e)=>{  console.warn('Courses by Department Successfully Loaded.'); window.course_department = e.val(); checkLoad(); populateBrowseProgram('SFWRENG'); }); //VIEW ALL COURSES
         onData('/course_name',(e)=>{  console.warn('Courses by Name Successfully Loaded.'); window.course_name = e.val();  checkLoad(); }); //VIEW ALL COURSES
         onData('/course_code',(e)=>{  console.warn('Courses by Code Successfully Loaded.'); window.course_code = e.val();  checkLoad(); }); //VIEW ALL COURSES
 }
@@ -27,7 +29,7 @@ function loadCourses(){
 function loadProfs(){
     onData('/professors',(e)=>{  console.warn('Professors  Successfully Loaded.'); window.professors = e.val();  }); //VIEW ALL COURSES
 }
-
+window.course_code
 function loadDepartments(){
     onData('departments',(e)=>{
         var departments = e.val();
@@ -37,12 +39,73 @@ function loadDepartments(){
         for (var key in departments){
             if(!departments.hasOwnProperty(key))
                 continue;
-            var t = $('<option value="'+key+'">'+departments[key]+'</option>')
+            var t = $('<option value="'+key+'">'+departments[key]+'</option>');
             $('.select-department').append(t);
         }
         console.warn('Departments Successfully Loaded.');
         console.log(departments);
     });
+}
+
+function populateBrowseProgram(program){
+    var index = binSearch(window.course_department, program,'department');
+    if(index!=-1)
+        console.log(extractAll(window.course_department,index, program, 'department'));
+    
+}
+
+function binSearch(array,program,prop){
+    var low=0, high=array.length-1;
+    var mid = parseInt(high/2);
+    console.log('wtf: ' + low + ' - ' + mid + ' - ' + high);
+    while(low < mid && high > mid){
+        console.log('iter: ' + low + ' - ' + mid + ' - ' + high);
+        console.log(program);
+        console.log(array[mid]);
+        
+    if(program < array[mid][prop]){
+        high = mid;
+        mid= parseInt((high-low)/2 + low);
+    }
+        else if (program > array[mid][prop]){
+            low = mid;
+            mid=parseInt((high-low)/2+low);
+        }
+        else{
+            console.log('found! at index: ' + mid);
+            console.log(array[mid]);
+            return mid;
+        }
+    }
+    console.error('not found');
+    return -1;
+}
+
+function extractAll(array, index, program, prop){
+    var reclist = [];
+    reclist.push(array[index]);
+    console.error(prop);
+    return extractAllRec(array, index, program, prop, reclist, index-1, index+1);
+}
+
+function extractAllRec(array, index, program, prop, reclist, reclow, rechigh){
+    
+    var lowresult = (array[reclow][prop]==program);
+    var highresult = (array[rechigh][prop]==program);
+    if(!lowresult && !highresult)
+        return reclist;
+    else if(!lowresult){
+        reclist.push(array[rechigh]);
+        return extractAllRec(array,index,program,prop,reclist,reclow,rechigh+1);
+    }
+    else if (!highresult){
+        reclist.unshift(array[reclow]);
+        return extractAllRec(array,index,program,prop,reclist,reclow-1,rechigh);
+    }
+    else{
+        return extractAllRec(array,index,program,prop,reclist,reclow-1,rechigh+1);
+    }
+//        extractAll(array, index, program, prop, reclist, reclow, rechigh);
 }
 
 function getData(path, callback) {
