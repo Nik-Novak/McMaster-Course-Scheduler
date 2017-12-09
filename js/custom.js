@@ -147,8 +147,8 @@ function mClass(searchObject) {
 
     var numBlocks1 = quikmafs(objectList[1]);
     locationMap(objectList[1], numBlocks1);
-    
-    
+
+
     render();
 
 }
@@ -279,19 +279,39 @@ function meshGrid(courseObject, locations) {
 
 }
 
-function render(){
-    
+function render() {
+
     var masterRenderList = [];
-    for(var i = fullGrid.length - 1; i >= 0; i--){
+    //    for(var i = fullGrid.length - 1; i >= 0; i--){
+    //        var tempTransferList = [];
+    //        for(var j = fullGrid[i].length - 1; j >= 0; j--){
+    //            console.log("row: " + i + "col: " + j);
+    //            
+    //            
+    //            
+    //        }
+    //    }
+    //
+
+    for (var i = 0; i < fullGrid.length; i++) {
         var tempTransferList = [];
-        for(var j = fullGrid[i].length - 1; j >= 0; j--){
+        for (var j = 0; j < fullGrid[i].length; j++) {
+            var row = $("<tr>");
+            console.log("DEBUG: " + row + "   yolo");
+            row.append($("<td>Text-1</td>"));
+            
+            
+//            var row = document.getElementsByClassName('r1');
+//            var x = row.insertCell(-1);
+//            x.innerHTML = "New cell";
             console.log("row: " + i + "col: " + j);
-            
-            
-            
+
+
+
         }
     }
-    
+
+
 }
 
 
