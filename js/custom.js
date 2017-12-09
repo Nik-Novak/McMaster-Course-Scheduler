@@ -5,12 +5,12 @@
 //2676 courses
 var dummy = {};
 $.getJSON("data/databank.json", function (json) {
-    var courses = convertKeysToArray(json.timetables[2017][6].courses);
-    sortResults(courses, 'department', true);
-    dummy = courses[373];
-
-    console.log(dummy);
-    mClass(dummy);
+    //    var courses = convertKeysToArray(json.timetables[2017][6].courses);
+    //    sortResults(courses, 'department', true);
+    //    dummy = courses[373];
+    //
+    //    console.log(dummy);
+    //    mClass(dummy);
 
 });
 
@@ -96,7 +96,7 @@ function mClass(searchObject) {
                 r_periodsArr[cnt] = new Array(6);
             }
 
-            //populating r_periods douvle array
+            //populating r_periods double array
             for (var k = 0; k < r_periods.length; k++) {
                 r_periodsArr[k][0] = r_periods[k].end;
                 r_periodsArr[k][1] = r_periods[k].room;
@@ -110,47 +110,30 @@ function mClass(searchObject) {
             var tempObj = new build(this.progCode, this.code, this.department, this.name, this.type, this.section, this.r_periodsArr, this.serial, this.section_full);
             objectList.push(tempObj);
 
-
-            //             For testing purposes
-            //                        for (var t1 = 0; t1 < this.r_periods.length; t1++) {
-            //                            for (var t2 = 0; t2 < 5; t2++) {
-            //                                console.log(this.r_periodsArr[t1][t2]);
-            //            
-            //                            }
-            //                        }
-            //            
-            //                        console.log(
-            //                            "Type: " + this.type +
-            //                            "\nSection: " + this.section +
-            //                            "\nr_periods: " + this.r_periodsArr[0][1] +
-            //                            "\nserial: " + this.serial +
-            //                            "\nsection_full: " + this.section_full
-            //                        );
-
-
         }
 
 
     }
 
-    //    console.log(objectList[0]);
-    //    console.log(objectList[1]);
-    //    console.log(objectList[2]);
-    //    console.log(objectList[3]);
-    //    console.log(objectList[4]);
-    //    console.log(objectList[5]);
-    //    console.log(objectList[6]);
-    //    
     //    var insert = "<td><span></span><br><span></span></td>";
     //            $("#calendar tbody tr.r0").append(insert);
     //        $("#calendar tbody tr.r1").append(insert);
 
-    for(var q = 0; q < objectList.length; q++){
+    for (var q = 0; q < objectList.length; q++) {
+//        if (objectList[q].r_periodsArr[q][0] === undefined || objectList[q].r_periodsArr[q][3] === undefined){
+//            alert("WARNING: Start or End Time Undefined.");
+//        }
+//            
+//        else {
+//            var numBlocks = quikmafs(objectList[q]);
+//            locationMap(objectList[q], numBlocks);
+//        }
         var numBlocks = quikmafs(objectList[q]);
-        locationMap(objectList[q], numBlocks);
-        
+            locationMap(objectList[q], numBlocks);
+
+
     }
-    
+
 
     render();
 
@@ -245,7 +228,7 @@ function locationMap(courseObject, numBlocks) {
         console.log(loc[i][0] + " " + loc[i][1]);
 
     }
-//    console.log("HELLO: " + loc.length);
+    //    console.log("HELLO: " + loc.length);
     meshGrid(obj, loc);
 }
 
@@ -273,11 +256,11 @@ function meshGrid(courseObject, locations) {
         }
     }
 
-//    for (var i = 0; i < fullGrid.length; i++) {
-//        for (var j = 0; j < fullGrid[i].length; j++) {
-//            console.log("i: " + i + "j: " + j + " " + fullGrid[i][j]);
-//        }
-//    }
+    //    for (var i = 0; i < fullGrid.length; i++) {
+    //        for (var j = 0; j < fullGrid[i].length; j++) {
+    //            console.log("i: " + i + "j: " + j + " " + fullGrid[i][j]);
+    //        }
+    //    }
 
 }
 
@@ -297,21 +280,18 @@ function render() {
 
         for (var j = fullGrid[i].length - 1; j >= 0; j--) {
 
-//            console.log("Type= " + typeof(fullGrid[i][j]));
+            //            console.log("Type= " + typeof(fullGrid[i][j]));
 
             //                console.log("i: "+ i + "j: " + j +"     " + fullGrid[i][j]);
-            
-            if(typeof(fullGrid[i][j]) === "object"){
+
+            if (typeof (fullGrid[i][j]) === "object") {
                 var formatted = format(fullGrid[i][j]);
                 tempTransferList.unshift(formatted);
-            }
-            else if(typeof(fullGrid[i][j]) === "undefined"){
+            } else if (typeof (fullGrid[i][j]) === "undefined") {
                 tempTransferList.unshift(insert);
-            }
-            else if(typeof(fullGrid[i][j]) === "string"){
+            } else if (typeof (fullGrid[i][j]) === "string") {
                 tempTransferList.unshift(null);
-            }
-            else{
+            } else {
                 alert("Not one of object, undefined or string");
             }
 
@@ -330,18 +310,18 @@ function render() {
 }
 
 function format(objWithClassNum) {
-        var code = objWithClassNum.courseObject.code;
-        var section = objWithClassNum.courseObject.section;
-        var classNum = objWithClassNum.classNum;
-        
-        var numBlocks = quikmafs(objWithClassNum.courseObject)[classNum];
-        
-        var room = objWithClassNum.courseObject.r_periodsArr[classNum][1];
-        var cInsertion = "<td rowspan='"+numBlocks+"'><span>"+code+"-"+section+"</span><br><span>"+room+"</span></td>";
-        
-    
-//        console.log(cInsertion);
-        return cInsertion;
+    var code = objWithClassNum.courseObject.code;
+    var section = objWithClassNum.courseObject.section;
+    var classNum = objWithClassNum.classNum;
+
+    var numBlocks = quikmafs(objWithClassNum.courseObject)[classNum];
+
+    var room = objWithClassNum.courseObject.r_periodsArr[classNum][1];
+    var cInsertion = "<td rowspan='" + numBlocks + "'><span>" + code + "-" + section + "</span><br><span>" + room + "</span></td>";
+
+
+    //        console.log(cInsertion);
+    return cInsertion;
 }
 
 
