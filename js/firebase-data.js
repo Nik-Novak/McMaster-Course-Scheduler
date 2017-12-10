@@ -1,6 +1,6 @@
 var database = firebase.database();
 var load = true;
-
+//var test = new Set();
 
 var loader = {
     init: function(){
@@ -38,7 +38,7 @@ var loader = {
 loader.init();
 
 function initializeMenu() {
-    console.log(loader.getCourseById(1562));
+//    console.log(loader.getCourseById(1562));
     var departments = loader.departments;
     var def = $('<option value="-">Select Department</option>');
     $('.select-department').html('');
@@ -63,13 +63,15 @@ function initializeMenu() {
     $('#quicksearch').on('input',function(){
         $('#unicornsdontexist').html('');
         this.value.split(' ').forEach((word)=>{
+            let indexresults = new Set();
+            let coderesults = new Set();
             console.log('search: ' + word + ' result:');
             if(loader.searchindex[word]!=null)
                 loader.searchindex[word].forEach((result)=>{
                     if(result.type!='id')
                         return;
                     var courseid = result.indexedkey;
-                    $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '</p>'));
+//                    $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '</p>'));
                 });
             console.log(loader.searchindex[word]);
         });
