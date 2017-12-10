@@ -50,6 +50,9 @@ var loader = {
     getCourseById: function(id){
         return this.courses[id];
     },
+    getCourseIDsByCode: function(code){
+        return this.coursecodes[code];
+    },
     getCoursesByDepartment: function(department){
         let list = [];
         if(loader.departments[department]!=null)
@@ -62,12 +65,12 @@ var loader = {
             return loader.departments[department].courses;
     }
     
-}
+} 
 
 loader.init();
 
 function initializeMenu() {
-//    console.log(loader.getCourseById(1562));
+    console.log(loader.coursecodes['1AA3']);
     var departments = loader.departments;
     var def = $('<option value="-">Select Department</option>');
     $('.select-department').html('');
@@ -97,6 +100,12 @@ function initializeMenu() {
         $('#unicornsdontexist').html('');
         this.value.split(' ').forEach((word)=>{
             console.log('search: ' + word + ' result:');
+            if(/[0-9][A-Za-z][A-Za-z0-9][0-9]/.test(word)){
+                loader.getCourseIDsByCode(word.match(/[0-9][A-Za-z][A-Za-z0-9][0-9]/)).forEach((courseid)=>{
+                    depresults.add(courseid);
+                });
+                return;
+            }
             if(loader.searchindex[word]!=null)
                 loader.searchindex[word].forEach((result)=>{
                     if(result.type=='name')
@@ -111,9 +120,10 @@ function initializeMenu() {
 //                    var courseid = result.indexedkey;
 //                    $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '</p>'));
                 });
-//            console.log(loader.searchindex[word]);
         });
         console.log(' ');
+        console.log('Code Results:');
+        console.log(coderesults);
         console.log('Department Results:');
         console.log(depresults);
         console.log('Name Results:');
@@ -122,11 +132,11 @@ function initializeMenu() {
         console.log(instructresults);
         
         console.log('Union results:');
-        var union = depresults.union(nameresults).union(instructresults);
+        var union = depresults.union(nameresults).union(instructresults).union(coderesults);
         console.log(union);
         
         union.forEach((courseid)=>{
-            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '--------'+ courseid + '</p>'));
+            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '  ----  '+ courseid + '</p>'));
         });
     });
 }
