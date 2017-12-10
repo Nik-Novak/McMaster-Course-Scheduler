@@ -73,6 +73,24 @@ a:focus {
 }
 
 
+/*Sliiide Buttons*/
+
+.buttonHolder{
+    /*display: inline-block;*/
+    width: 100%
+    background-color: red;
+}
+
+#sliiider-toggle-menu{
+    display: inline-block;
+    float: left;
+}
+#sliiider-toggle-coursecontent{
+    display: inline-block;
+    float: right;
+}
+
+/*End Sliiide Buttons*/
 
 
 /* loader */
