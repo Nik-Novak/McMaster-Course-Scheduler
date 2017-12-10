@@ -38,6 +38,7 @@ var loader = {
 loader.init();
 
 function initializeMenu() {
+    console.log(loader.getCourseById(1562));
     var departments = loader.departments;
     var def = $('<option value="-">Select Department</option>');
     $('.select-department').html('');
