@@ -768,6 +768,14 @@ button.accordion:hover {
     margin: 0 auto;
     margin-top: 6px;
 }
+#calendarcontent .cores, #calendarcontent .labs, #calendarcontent .tutorials{
+    display: table;
+    background-color: #232B2B;
+    border-color: #AAAAAA;
+    color: #01FF70;
+    margin: 0 auto;
+    margin-top: 6px;
+}
 
 
 /* ===========================
@@ -858,6 +866,15 @@ button.accordion:hover {
 /* ===========================
 --- Calendar
 ============================ */
+#calendar .tentativeBox{
+    background-color: #7FDBFF;
+    opacity: 0.3;
+    border: 1px solid #7FDBFF;
+    
+}
+
+
+
 
 #calendarcontent {
     display: inline-block;

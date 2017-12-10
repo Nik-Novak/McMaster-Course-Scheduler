@@ -14,7 +14,7 @@ $.getJSON("data/databank.json", function (json) {
 //    loader.courses;
 //    loader.onLoad(parseSearch);
     loader.onLoad(()=>{
-        parseSearch(loader.getCourseById(1562))
+        parseSearch(loader.getCourseById(1562));
     });
 
 });
@@ -303,7 +303,7 @@ function format(objWithClassNum) {
     var numBlocks = quikmafs(objWithClassNum.courseObject)[classNum];
 
     var room = objWithClassNum.courseObject.r_periodsArr[classNum][1];
-    var cInsertion = "<td rowspan='" + numBlocks + "'><span>" + code + "-" + section + "</span><br><span>" + room + "</span></td>";
+    var cInsertion = "<td class='tentativeBox' rowspan='" + numBlocks + "'><span>" + code + "-" + section + "</span><br><span>" + room + "</span></td>";
 
 
     //        console.log(cInsertion);
