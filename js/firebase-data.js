@@ -44,7 +44,7 @@ var loader = {
             if(this.loadqueue!=null)
                 this.loadqueue.forEach((callback)=>{
                     callback();
-                });
+                }); 
         }
     },
     getCourseById: function(id){
@@ -54,15 +54,18 @@ var loader = {
         return this.coursecodes[code];
     },
     getCoursesByDepartment: function(department){
+        if(loader.departments[department]==null)
+            return;
         let list = [];
-        if(loader.departments[department]!=null)
-            loader.departments[department].courses.forEach((courseid)=>{
-                list.push(this.getCourseById(courseid));
-            });
+        loader.departments[department].courses.forEach((courseid)=>{
+            list.push(this.getCourseById(courseid));
+        });
         return list;
     },
     getCourseIDsByDepartment: function(department){
-            return loader.departments[department].courses;
+        var courseids = loader.departments[department];
+        if (courseids!=null)
+            return courseids.courses;
     }
     
 } 
@@ -100,12 +103,32 @@ function initializeMenu() {
         $('#unicornsdontexist').html('');
         this.value.split(' ').forEach((word)=>{
             console.log('search: ' + word + ' result:');
-            if(/[0-9][A-Za-z][A-Za-z0-9][0-9]/.test(word)){
-                loader.getCourseIDsByCode(word.match(/[0-9][A-Za-z][A-Za-z0-9][0-9]/)).forEach((courseid)=>{
-                    depresults.add(courseid);
+            
+            word=word.toUpperCase();
+            //course code
+            if(/[0-9][A-Za-z][A-Za-z0-9][0-9]/.test(word,'i')){
+                wordtrim = word.match(/[0-9][A-Za-z][A-Za-z0-9][0-9]/)[0].toUpperCase();
+                if(wordtrim.toString().charAt(2)=='O')
+                    wordtrim = wordtrim.substr(0,2) + '0' + wordtrim.substr(3);
+                loader.getCourseIDsByCode(wordtrim).forEach((courseid)=>{
+                    coderesults.add(courseid);
                 });
                 return;
             }
+            
+            //department
+            if(word.length<=8 && word.length>=2){
+                var courses = loader.getCourseIDsByDepartment(word);
+                console.error(courses + '--' + word);
+                if(courses!=null)
+                    courses.forEach((courseid)=>{
+                        depresults.add(courseid);
+                    });
+            }
+            
+            word=word.toLowerCase();
+            
+            //searchindex
             if(loader.searchindex[word]!=null)
                 loader.searchindex[word].forEach((result)=>{
                     if(result.type=='name')
@@ -121,22 +144,57 @@ function initializeMenu() {
 //                    $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '</p>'));
                 });
         });
+        var results = {};
         console.log(' ');
         console.log('Code Results:');
         console.log(coderesults);
+        coderesults.forEach((courseid)=>{
+            results[courseid] = {weight:10};
+        });
         console.log('Department Results:');
         console.log(depresults);
+        depresults.forEach((courseid)=>{
+            if(results[courseid]==null)
+                results[courseid] = {weight:3};
+            else
+                results[courseid].weight+=3;
+        });
         console.log('Name Results:');
         console.log(nameresults);
+        nameresults.forEach((courseid)=>{
+            if(results[courseid]==null)
+                results[courseid] = {weight:5};
+            else
+                results[courseid].weight+=5;
+        });
         console.log('Instructor Results:');
         console.log(instructresults);
+        instructresults.forEach((courseid)=>{
+            if(results[courseid]==null)
+                results[courseid] = {weight:2};
+            else
+                results[courseid].weight+=2;
+        });
+        console.log('Ranked Results');
+        console.log(results);
         
         console.log('Union results:');
         var union = depresults.union(nameresults).union(instructresults).union(coderesults);
         console.log(union);
         
-        union.forEach((courseid)=>{
-            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '  ----  '+ courseid + '</p>'));
+        var resultsarray = $.map(results, function(value, index) {
+            return [{courseid:index, weight:value.weight}];
+        });
+        
+        resultsarray.sort(function (a, b) {
+                return (a['weight'] < b['weight']) ? 1 : ((a['weight'] > b['weight']) ? -1 : 0);
+        });
+        
+        console.log('results array');
+        console.log(resultsarray);
+        
+        resultsarray.forEach((result)=>{
+            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(result.courseid).code + '  --id:  '+ result.courseid + ' --weight: ' + result.weight+ '</p>'));
         });
     });
 }
