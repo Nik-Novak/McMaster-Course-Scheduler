@@ -867,10 +867,7 @@ button.accordion:hover {
 --- Calendar
 ============================ */
 #calendar .tentativeBox{
-    background-color: #7FDBFF;
-    opacity: 0.3;
-    border: 1px solid #7FDBFF;
-    
+    background: rgba(127, 219, 255, 0.3);  
 }
 
 

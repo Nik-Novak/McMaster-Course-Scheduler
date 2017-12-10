@@ -14,7 +14,7 @@ $.getJSON("data/databank.json", function (json) {
 //    loader.courses;
 //    loader.onLoad(parseSearch);
     loader.onLoad(()=>{
-        parseSearch(loader.getCourseById(1562));
+        parseSearch(loader.getCourseById(906));
     });
 
 });
@@ -37,12 +37,10 @@ function searchFor(courses) {
 
 
 var objectList = [];
+var coresList = [];
+var labsList = [];
+var tutorialsList = [];
 
-
-//function test(){
-//    console.log(loader.getCourseById(123));
-//    parseSearch(loader.getCourseById(123));
-//}
 function parseSearch(searchObject) {
 
     this.progCode = searchObject.code;          //setting full code -ie SFWRENG 4HC3
@@ -85,6 +83,16 @@ function parseSearch(searchObject) {
 
             this.r_periodsArr = r_periodsArr;                  
             var tempObj = new build(this.progCode, this.code, this.department, this.name, this.type, this.section, this.r_periodsArr, this.serial, this.section_full);
+            
+            if(tempObj.type === "C")
+                coresList.push(tempObj);
+            else if(tempObj.type === "L")
+                labsList.push(tempObj);
+            else if(tempObj.type === "T")
+                tutorialsList.push(tempObj);
+            else
+                alert("Object is not a Core, Lab or Tutorial")
+                
             objectList.push(tempObj);
 
         }
@@ -96,24 +104,29 @@ function parseSearch(searchObject) {
     //            $("#calendar tbody tr.r0").append(insert);
     //        $("#calendar tbody tr.r1").append(insert);
 
-    for (var q = 0; q < objectList.length; q++) {
-//        if (objectList[q].r_periodsArr[q][0] === undefined || objectList[q].r_periodsArr[q][3] === undefined){
-//            alert("WARNING: Start or End Time Undefined.");
-//        }
-//            
-//        else {
-//            var numBlocks = quikmafs(objectList[q]);
-//            locationMap(objectList[q], numBlocks);
-//        }
-//        var numBlocks = quikmafs(objectList[q]);
-//        locationMap(objectList[q], numBlocks);
-        
-        
-        meshGrid(objectList[q]);
-
-
-    }
-
+//    for (var q = 0; q < tutorialsList.length; q++) {
+////        if (objectList[q].r_periodsArr[q][0] === undefined || objectList[q].r_periodsArr[q][3] === undefined){
+////            alert("WARNING: Start or End Time Undefined.");
+////        }
+////            
+////        else {
+////            var numBlocks = quikmafs(objectList[q]);
+////            locationMap(objectList[q], numBlocks);
+////        }
+////        var numBlocks = quikmafs(objectList[q]);
+////        locationMap(objectList[q], numBlocks);
+//        
+//        
+//        meshGrid(tutorialsList[q]);
+//
+//
+//    }
+    
+    generateTentativeView("C");
+    generateTentativeView("T");
+    generateTentativeView("L");
+    
+    
 
     render();
 
@@ -250,6 +263,24 @@ function meshGrid(courseObject) {
 
 }
 
+function generateTentativeView(courseType){
+    var courseTypeList;
+    if(courseType === "C")
+        courseTypeList = coresList;
+    else if(courseType === "L")
+        courseTypeList = labsList;
+    else if(courseType === "T")
+        courseTypeList = tutorialsList;
+    else{
+        alert("Course Type Invalid");
+    }
+    
+    
+    for (var i = 0; i < courseTypeList.length; i++) {
+        meshGrid(courseTypeList[i]);
+    }
+}
+
 function render() {
 
     var insert = "<td><span></span><br><span></span></td>";
@@ -292,6 +323,7 @@ function render() {
         }
     }
 
+    console.log(fullGrid);
 
 }
 
@@ -310,6 +342,111 @@ function format(objWithClassNum) {
     return cInsertion;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(".cores").click(function () {
+    var screen = $('#coursecontent').css('display');
+    if (screen === "inline-block") {
+        $("#coursecontent").css("display", "none");
+        $("#menu").css("display", "inline-block");
+        //        $("#coursecontent").animate({width:'toggle'},350);
+    } else {
+        $("#coursecontent").css("display", "inline-block");
+        $("#menu").css("display", "none");
+    }
+})
 
 
 
