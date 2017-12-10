@@ -3,52 +3,35 @@
 //////////////////////////////////////
 
 //2676 courses
-var dummy = {};
-$.getJSON("data/databank.json", function (json) {
-    //    var courses = convertKeysToArray(json.timetables[2017][6].courses);
-    //    sortResults(courses, 'department', true);
-    //    dummy = courses[373];
-    //
-    //    console.log(dummy);
-    //    mClass(dummy);
-//    loader.courses;
-//    loader.onLoad(parseSearch);
-    loader.onLoad(()=>{
-        parseSearch(loader.getCourseById(1562))
-    });
-
+loader.onLoad(() => {
+    parseSearch(loader.getCourseById(906));
 });
-
-function searchFor(courses) {
-    var empty = [];
-    courses.forEach((e) => {
-        if (e.sections.C != null && e.sections.C != undefined && e.sections.C.C01 != null && e.sections.C.C01.r_periods != null)
-            e.sections.C.C01.r_periods.forEach((f) => {
-                if (f.day == 6)
-                    empty.push(e);
-            });
-    });
-    //console.log(empty);
-}
 
 //////////////////////////////////////
 //-------Niks Nonesense
 //////////////////////////////////////
+var grid = new Array(28);
+for (var i = 0; i < 28; i++) {
+    grid[i] = new Array(7);
+}
 
+window.fullGrid = grid;
 
 var objectList = [];
+var coresList = [];
+var labsList = [];
+var tutorialsList = [];
 
+//render();
 
-//function test(){
-//    console.log(loader.getCourseById(123));
-//    parseSearch(loader.getCourseById(123));
-//}
+window.viewMode = "locked";
+
 function parseSearch(searchObject) {
 
-    this.progCode = searchObject.code;          //setting full code -ie SFWRENG 4HC3
-    this.code = this.progCode.split(" ")[1];    //setting just course code -ie 4HC3
-    this.department = searchObject.department;  //setting department -ie SFWRENG
-    this.name = searchObject.name;              //setting course name -ie Human Computer Interfaces
+    this.progCode = searchObject.code; //setting full code -ie SFWRENG 4HC3
+    this.code = this.progCode.split(" ")[1]; //setting just course code -ie 4HC3
+    this.department = searchObject.department; //setting department -ie SFWRENG
+    this.name = searchObject.name; //setting course name -ie Human Computer Interfaces
 
 
     //loop that searches for the remainign categories for the course
@@ -62,10 +45,10 @@ function parseSearch(searchObject) {
                 continue;
 
 
-            this.section = j;                                               //setting section -ie C01, L02, T14
-            this.r_periods = searchObject.sections[i][j].r_periods;         //grabbing r_periods object 
-            this.serial = searchObject.sections[i][j].serial;               //setting unique 5 digit serial number -ie 11534
-            this.section_full = searchObject.sections[i][j].section_full;   //setting course status -ie true(course full) or false(course not full)
+            this.section = j; //setting section -ie C01, L02, T14
+            this.r_periods = searchObject.sections[i][j].r_periods; //grabbing r_periods object 
+            this.serial = searchObject.sections[i][j].serial; //setting unique 5 digit serial number -ie 11534
+            this.section_full = searchObject.sections[i][j].section_full; //setting course status -ie true(course full) or false(course not full)
 
             //initialize r_periods double array
             r_periodsArr = new Array(r_periods.length);
@@ -75,16 +58,26 @@ function parseSearch(searchObject) {
 
             //populating r_periods double array
             for (var k = 0; k < r_periods.length; k++) {
-                r_periodsArr[k][0] = r_periods[k].end;          //setting end time for course -ie 12:20
-                r_periodsArr[k][1] = r_periods[k].room;         //setting room for course -ie MDCL 1105
-                r_periodsArr[k][2] = r_periods[k].term;         //setting term for course -ie 2(winter term), 5(fall term)
-                r_periodsArr[k][3] = r_periods[k].start;        //setting end time for course -ie 14:30
-                r_periodsArr[k][4] = r_periods[k].day;          //setting day for course --> 1 though 6 which is Monday through Saturday
-                r_periodsArr[k][5] = r_periods[k].supervisors;  //setting class supervisor -ie John Doe (Professor Name)
+                r_periodsArr[k][0] = r_periods[k].end; //setting end time for course -ie 12:20
+                r_periodsArr[k][1] = r_periods[k].room; //setting room for course -ie MDCL 1105
+                r_periodsArr[k][2] = r_periods[k].term; //setting term for course -ie 2(winter term), 5(fall term)
+                r_periodsArr[k][3] = r_periods[k].start; //setting end time for course -ie 14:30
+                r_periodsArr[k][4] = r_periods[k].day; //setting day for course --> 1 though 6 which is Monday through Saturday
+                r_periodsArr[k][5] = r_periods[k].supervisors; //setting class supervisor -ie John Doe (Professor Name)
             }
 
-            this.r_periodsArr = r_periodsArr;                  
+            this.r_periodsArr = r_periodsArr;
             var tempObj = new build(this.progCode, this.code, this.department, this.name, this.type, this.section, this.r_periodsArr, this.serial, this.section_full);
+
+            if (tempObj.type === "C")
+                coresList.push(tempObj);
+            else if (tempObj.type === "L")
+                labsList.push(tempObj);
+            else if (tempObj.type === "T")
+                tutorialsList.push(tempObj);
+            else
+                alert("Object is not a Core, Lab or Tutorial")
+
             objectList.push(tempObj);
 
         }
@@ -96,23 +89,28 @@ function parseSearch(searchObject) {
     //            $("#calendar tbody tr.r0").append(insert);
     //        $("#calendar tbody tr.r1").append(insert);
 
-    for (var q = 0; q < objectList.length; q++) {
-//        if (objectList[q].r_periodsArr[q][0] === undefined || objectList[q].r_periodsArr[q][3] === undefined){
-//            alert("WARNING: Start or End Time Undefined.");
-//        }
-//            
-//        else {
-//            var numBlocks = quikmafs(objectList[q]);
-//            locationMap(objectList[q], numBlocks);
-//        }
-//        var numBlocks = quikmafs(objectList[q]);
-//        locationMap(objectList[q], numBlocks);
-        
-        
-        meshGrid(objectList[q]);
+    //    for (var q = 0; q < tutorialsList.length; q++) {
+    ////        if (objectList[q].r_periodsArr[q][0] === undefined || objectList[q].r_periodsArr[q][3] === undefined){
+    ////            alert("WARNING: Start or End Time Undefined.");
+    ////        }
+    ////            
+    ////        else {
+    ////            var numBlocks = quikmafs(objectList[q]);
+    ////            locationMap(objectList[q], numBlocks);
+    ////        }
+    ////        var numBlocks = quikmafs(objectList[q]);
+    ////        locationMap(objectList[q], numBlocks);
+    //        
+    //        
+    //        meshGrid(tutorialsList[q]);
+    //
+    //
+    //    }
 
+    //    generateTentativeView("C");
+    generateTentativeView("T");
+    //    generateTentativeView("L");
 
-    }
 
 
     render();
@@ -120,8 +118,8 @@ function parseSearch(searchObject) {
 }
 
 /*
-** Takes in a number (value) and precision (step)
-*/
+ ** Takes in a number (value) and precision (step)
+ */
 function round(value, step) {
     step || step(1.0);
     var inv = 1.0 / step;
@@ -147,22 +145,17 @@ function build(progCode, code, department, name, type, section, r_periodsArr, se
         section: section,
         r_periodsArr: r_periodsArr,
         serial: serial,
-        section_full: section_full
+        section_full: section_full,
+        is_selected: false,
+        is_clickable: true
     }
 }
 
-var grid = new Array(28);
-for (var i = 0; i < 28; i++) {
-    grid[i] = new Array(7);
-}
-
-window.fullGrid = grid;
-
-function blocks(endHour, startHour, endMin, startMin){
+function blocks(endHour, startHour, endMin, startMin) {
     var lenHour = (endHour - startHour) * 60;
     var lenMin = (parseInt(endMin / 10) - parseInt(startMin / 10)) * 10;
     var numBlocks = round((lenHour + lenMin) / 60, .5) * 2;
-    
+
     return numBlocks;
 }
 
@@ -218,18 +211,15 @@ function locationMap(courseObject) {
 
 /*  Populates gloabal grid if possible, will need to include conflicts here  */
 function meshGrid(courseObject) {
-    
+
     var locations = locationMap(courseObject);
 
-    for (var i = 0; i < fullGrid.length; i++) {
-        for (var j = 0; j < fullGrid[i].length; j++) {
-            //console.log("i: " + i + "j: " + j + " " + fullGrid[i][j]);
-        }
-    }
     for (var cnt1 = 0; cnt1 < locations.length; cnt1++) {
+
         var day = (courseObject.r_periodsArr[cnt1][4]) - 1;
-        //console.log("yoyo " + day);
+
         for (var cnt2 = 0; cnt2 < locations[cnt1][1]; cnt2++) {
+            //if (viewMode === "options" && courseObject.is_selected === false) {
             if (cnt2 == 0) {
                 fullGrid[locations[cnt1][0]][day] = {
                     courseObject: courseObject,
@@ -239,19 +229,35 @@ function meshGrid(courseObject) {
                 fullGrid[locations[cnt1][0] + cnt2][day] = "-";
             }
 
+            //}
+
+
         }
     }
-
-    //    for (var i = 0; i < fullGrid.length; i++) {
-    //        for (var j = 0; j < fullGrid[i].length; j++) {
-    //            console.log("i: " + i + "j: " + j + " " + fullGrid[i][j]);
-    //        }
-    //    }
-
 }
 
-function render() {
+function generateTentativeView(courseType) {
+    var courseTypeList;
+    if (courseType === "C")
+        courseTypeList = coresList;
+    else if (courseType === "L")
+        courseTypeList = labsList;
+    else if (courseType === "T")
+        courseTypeList = tutorialsList;
+    else {
+        alert("Course Type Invalid");
+    }
 
+    viewMode = "options";
+    //alert("we made it");
+    for (var i = 0; i < courseTypeList.length; i++) {
+        meshGrid(courseTypeList[i]);
+    }
+}
+
+
+function render() {
+    //alert("first render");
     var insert = "<td><span></span><br><span></span></td>";
     var none = "<td style='display:none;'><span></span><br><span></span></td>";
 
@@ -286,12 +292,21 @@ function render() {
     }
 
 
+    //removes all td's except the hour td's
+    $("#calendar tbody tr td:not(.hour)").remove();
+
+
+
     for (var k = 0; k < fullGrid.length; k++) {
         for (var m = 0; m < fullGrid[k].length; m++) {
             $("#calendar tbody tr.r" + k).append(masterRenderList[k][m]);
+            var hasid = $("#calendar tbody tr.r" + k + " td").attr('id');
+            console.log(hasid);
         }
     }
 
+
+    console.log(fullGrid);
 
 }
 
@@ -303,12 +318,30 @@ function format(objWithClassNum) {
     var numBlocks = quikmafs(objWithClassNum.courseObject)[classNum];
 
     var room = objWithClassNum.courseObject.r_periodsArr[classNum][1];
-    var cInsertion = "<td rowspan='" + numBlocks + "'><span>" + code + "-" + section + "</span><br><span>" + room + "</span></td>";
+    var cInsertion = "<td id='" + objWithClassNum.courseObject.serial + "' class='tentativeBox' rowspan='" + numBlocks + "'><span>" + code + "-" + section + "</span><br><span>" + room + "</span></td>";
 
 
     //        console.log(cInsertion);
     return cInsertion;
 }
+
+
+
+
+
+
+
+//$("#calendar table tbody tr td").on(click, dynamicChild, function() {});
+
+$(document).on("click", "#calendar table tbody tr td", function(e){
+
+    var hasid = $(this).attr('id');
+    
+    console.log(hasid);
+    
+    
+} );
+
 
 
 
@@ -365,7 +398,7 @@ for (var i = 0; i < acc.length; i++) {
 }
 
 // Course listings Table Details collapse 
-$('.header').click(function(){
+$('.header').click(function () {
     $(this).nextUntil('tr.header').slideToggle(1);
 });
 
