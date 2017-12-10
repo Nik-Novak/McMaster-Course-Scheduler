@@ -569,8 +569,8 @@ button.accordion:hover {
 }
 
 #coursecontent {
-    /*    display: inline-block;*/
-    display: none;
+        display: inline-block;
+/*    display: none;*/
     padding-top: 35px;
     /*margin-right: 10px;*/
     width: 29%;
@@ -1387,7 +1387,7 @@ span.day {
         width: 95%
     }
     #coursecontent {
-        display: none;
+/*        display: none;*/
     }
     #calendarcontent {
         width: 100%;
@@ -1428,6 +1428,9 @@ span.day {
 
 */
 
+#menu{
+    overflow-y: auto;
+}
 
 #sliiider-toggle{
     display: block;
