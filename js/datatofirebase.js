@@ -2,6 +2,10 @@ var database = firebase.database();
 //2676 courses
 
 function uploadToFirebase() {
+//    removeData('/courses');
+//    removeData('/department_courseid');
+//    removeData('/coursecode_courseid');
+//    removeData('/searchindex');
     $.getJSON("data/databank.json", function (json) {
         console.log('\nOVERWRITING DATABASE CONTENTS WITH NEW DATA\n');
         assignID(json);
@@ -29,27 +33,15 @@ function uploadToFirebase() {
         //SEPSEPSEPSEPSEPSDJFOSKDNCKJLDCMSDJVNCSD
         
         
-//        writeCourseIndexedByID(json.timetables[2017][6].courses); //DONE
-//        writeDepartmentToID(json.timetables[2017][6].courses, json.departments); //DONE
-//        writeCourseCodeToID(json.timetables[2017][6].courses); //DONE
-//          writeIndexes(json);
+//        writeCourseIndexedByID(json.timetables[2017][6].courses); //DONE  => '/courses'
+//        writeDepartmentToID(json.timetables[2017][6].courses, json.departments); //DONE  => '/department_courseid'
+//        writeCourseCodeToID(json.timetables[2017][6].courses); //DONE => '/coursecode_courseid'
+//          writeIndexes(json); //DONE => '/searchindex'
         
 //        console.log(json);
     });
 }
 
-
-
-function writeCourseCodeToID(courses){
-    var index = {};
-    $.each(courses, (key,course)=>{
-        var code = course.code.split(' ')[1];
-        if(index[code] == null)
-            index[code] = [];
-        index[code].push(course.id);
-    });
-    writeData('coursecode_courseid', index);
-}
 
 function writeCourseCodeToID(courses){
     var index = {};
@@ -99,9 +91,9 @@ function writeIndexes(json){
     var index = {};
     var insignificants = ['and', 'or', 'to', 'of', 'in', 'i', 'a', 'the', 'on', 'an'];
     var depindex =  mapPropValuesToProp(index, json.departments, null, null, ' ', insignificants, 'department'); //null on both defaults to mapping value to the oject's key
-    var nameindex =  mapPropValuesToProp(index, json.timetables[2017][6].courses, 'name', 'id', ' ', insignificants, 'id'); //map name words to ids
+    var nameindex =  mapPropValuesToProp(index, json.timetables[2017][6].courses, 'name', 'id', ' ', insignificants, 'name'); //map name words to ids
     mapInstructorsToID(json.timetables[2017][6].courses,index);
-//    writeData('searchindex', index); //console.log(index);
+    writeData('searchindex', index); //console.log(index);
 }
 
 function mapInstructorsToID(courses,index) {
@@ -117,7 +109,7 @@ function mapInstructorsToID(courses,index) {
                                 return;
                             if(index[name]==null)
                                 index[name]=[];
-                            index[name].push({indexedkey: course.id, type: 'id'});
+                            index[name].push({indexedkey: course.id, type: 'instructor'});
                         });
                     });
                 });

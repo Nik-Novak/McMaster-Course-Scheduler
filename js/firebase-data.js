@@ -1,6 +1,23 @@
 var database = firebase.database();
 var load = true;
+var test = new Set();
+Set.prototype.intersect = function intersect(...sets) {
+    if (!sets.length) return new Set();
+    const i = sets.reduce((m, s, i) => s.size < sets[m].size ? i : m, 0);
+    const [smallest] = sets.splice(i, 1);
+    const res = new Set();
+    for (let val of smallest)
+        if (sets.every(s => s.has(val)))
+             res.add(val);
+    return res;
+}
+Set.prototype.diff = function(other){
+    return new Set([...this].filter(x => !other.has(x)));
+}
 
+Set.prototype.union = function(other){
+    return new Set([...this, ...other]);
+}
 
 var loader = {
     init: function(){
@@ -32,12 +49,25 @@ var loader = {
     },
     getCourseById: function(id){
         return this.courses[id];
+    },
+    getCoursesByDepartment: function(department){
+        let list = [];
+        if(loader.departments[department]!=null)
+            loader.departments[department].courses.forEach((courseid)=>{
+                list.push(this.getCourseById(courseid));
+            });
+        return list;
+    },
+    getCourseIDsByDepartment: function(department){
+            return loader.departments[department].courses;
     }
+    
 }
 
 loader.init();
 
 function initializeMenu() {
+//    console.log(loader.getCourseById(1562));
     var departments = loader.departments;
     var def = $('<option value="-">Select Department</option>');
     $('.select-department').html('');
@@ -60,17 +90,43 @@ function initializeMenu() {
     });
     
     $('#quicksearch').on('input',function(){
+        var coderesults = new Set();
+        var depresults = new Set();
+        var nameresults = new Set();
+        var instructresults = new Set();
         $('#unicornsdontexist').html('');
         this.value.split(' ').forEach((word)=>{
             console.log('search: ' + word + ' result:');
             if(loader.searchindex[word]!=null)
                 loader.searchindex[word].forEach((result)=>{
-                    if(result.type!='id')
-                        return;
-                    var courseid = result.indexedkey;
-                    $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '</p>'));
+                    if(result.type=='name')
+                        nameresults.add(result.indexedkey);//nameresults.add(loader.getCourseById(result.indexedkey));
+                    else if(result.type=='department')
+                        loader.getCourseIDsByDepartment(result.indexedkey).forEach((courseid)=>{
+                             depresults.add(courseid);
+                        });
+                       //loader.getCoursesByDepartment(result.indexedkey).forEach((course)=>{ depresults.add(course); });
+                    else if (result.type=='instructor')
+                        instructresults.add(result.indexedkey);//instructresults.add(loader.getCourseById(result.indexedkey));
+//                    var courseid = result.indexedkey;
+//                    $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '</p>'));
                 });
-            console.log(loader.searchindex[word]);
+//            console.log(loader.searchindex[word]);
+        });
+        console.log(' ');
+        console.log('Department Results:');
+        console.log(depresults);
+        console.log('Name Results:');
+        console.log(nameresults);
+        console.log('Instructor Results:');
+        console.log(instructresults);
+        
+        console.log('Union results:');
+        var union = depresults.union(nameresults).union(instructresults);
+        console.log(union);
+        
+        union.forEach((courseid)=>{
+            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '--------'+ courseid + '</p>'));
         });
     });
 }
