@@ -874,6 +874,23 @@ button.accordion:hover {
     background: rgba(127, 219, 255, 1);
 }
 
+#calendar .conflictBox{
+    
+    background: rgba(255, 65, 54, 0.3);  
+}
+
+#calendar .conflictBox:hover{
+    background: rgba(255, 65, 54, 1);
+}
+
+#calendar .innerConflictBox{
+    
+    background: rgba(255, 220, 0, 0.3);  
+}
+
+#calendar .innerConflictBox:hover{
+    background: rgba(255, 220, 0, 1);
+}
 
 
 
@@ -1294,6 +1311,11 @@ span.day {
   -o-transform: scale(1.1, 1.1);
   transform: scale(1.1, 1.1);
 }
+
+
+
+
+
 
 
 /* ===========================
