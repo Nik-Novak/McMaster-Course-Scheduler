@@ -4,7 +4,7 @@
 
 //2676 courses
 loader.onLoad(() => {
-    parseSearch(loader.getCourseById(906));
+    parseSearch(loader.getCourseById(2369));
 });
 
 //////////////////////////////////////
@@ -25,6 +25,7 @@ var tutorialsList = [];
 //render();
 
 window.viewMode = "locked";
+window.currentSearch = "none";
 
 function parseSearch(searchObject) {
 
@@ -108,12 +109,9 @@ function parseSearch(searchObject) {
     //    }
 
     //    generateTentativeView("C");
-    generateTentativeView("T");
+//    viewMode = "options";
+//    generateTentativeView("T");
     //    generateTentativeView("L");
-
-
-
-    render();
 
 }
 
@@ -219,36 +217,85 @@ function meshGrid(courseObject) {
         var day = (courseObject.r_periodsArr[cnt1][4]) - 1;
 
         for (var cnt2 = 0; cnt2 < locations[cnt1][1]; cnt2++) {
-            //if (viewMode === "options" && courseObject.is_selected === false) {
-            if (cnt2 == 0) {
-                fullGrid[locations[cnt1][0]][day] = {
-                    courseObject: courseObject,
-                    classNum: cnt1
-                };
-            } else {
-                fullGrid[locations[cnt1][0] + cnt2][day] = "-";
-            }
-
-            //}
+            //            if ((viewMode === "locked" && courseObject.is_selected === true) || (viewMode === "options")) {
+            //                //                if (cnt2 == 0) {
+            //                //                    fullGrid[locations[cnt1][0]][day] = {
+            //                //                        courseObject: courseObject,
+            //                //                        classNum: cnt1
+            //                //                    };
+            //                //                } else {
+            //                //                    fullGrid[locations[cnt1][0] + cnt2][day] = "-";
+            //                //                }
+            //                updateGrid(cnt1, cnt2, day, courseObject, locations);
+            //
+            //            }
+            updateGrid(cnt1, cnt2, day, courseObject, locations);
 
 
         }
     }
+    render();
+}
+
+function updateGrid(outer, inner, day, courseObject, locations) {
+    if (viewMode === "options") {
+        
+        if (inner == 0) {
+            fullGrid[locations[outer][0]][day] = {
+                courseObject: courseObject,
+                classNum: outer
+            };
+        } 
+        else {
+            fullGrid[locations[outer][0] + inner][day] = "-";
+        }
+    } 
+    else if (viewMode === "locked") {
+        
+        if (courseObject.is_selected === true) {
+            if (inner == 0) {
+                fullGrid[locations[outer][0]][day] = {
+                    courseObject: courseObject,
+                    classNum: outer
+                };
+            } 
+            else {
+                fullGrid[locations[outer][0] + inner][day] = "-";
+            }
+
+        } 
+        else {
+            if (inner == 0) {
+                fullGrid[locations[outer][0]][day] = undefined;
+            } 
+            else {
+                fullGrid[locations[outer][0] + inner][day] = undefined;
+            }
+        }
+
+    }
+
 }
 
 function generateTentativeView(courseType) {
     var courseTypeList;
-    if (courseType === "C")
+    if (courseType === "C") {
         courseTypeList = coresList;
-    else if (courseType === "L")
+        currentSearch = "C";
+        currentSearchList = coresList;
+    } else if (courseType === "L") {
         courseTypeList = labsList;
-    else if (courseType === "T")
+        currentSearch = "L";
+        currentSearchList = labsList;
+    } else if (courseType === "T") {
         courseTypeList = tutorialsList;
-    else {
+        currentSearch = "T";
+        currentSearchList = tutorialsList;
+    } else {
         alert("Course Type Invalid");
     }
 
-    viewMode = "options";
+
     //alert("we made it");
     for (var i = 0; i < courseTypeList.length; i++) {
         meshGrid(courseTypeList[i]);
@@ -333,14 +380,62 @@ function format(objWithClassNum) {
 
 //$("#calendar table tbody tr td").on(click, dynamicChild, function() {});
 
-$(document).on("click", "#calendar table tbody tr td", function(e){
+$(document).on("click", "#calendar table tbody tr td", function (e) {
 
-    var hasid = $(this).attr('id');
-    
-    console.log(hasid);
-    
-    
-} );
+    var id = $(this).attr('id');
+
+    //    var courseTypeList;
+    //    
+    //    if (currentSearch === "C")
+    //        courseTypeList = coresList;       
+    //    else if (currentSearch === "L")
+    //        courseTypeList = labsList;
+    //    else if (currentSearch === "T")
+    //        courseTypeList = tutorialsList;
+
+
+
+
+    for (var i = 0; i < currentSearchList.length; i++) {
+        if (currentSearchList[i].serial === id) {
+            alert("id match");
+            currentSearchList[i].is_selected = true;
+            viewMode = "locked";
+        }
+
+    }
+
+    console.log(fullGrid);
+    generateTentativeView(currentSearch);
+    console.log(fullGrid);
+
+
+    //console.log(id);
+
+
+});
+
+
+$(".cores").click(function () {
+    viewMode = "options";
+    generateTentativeView("C");
+})
+
+$(".labs").click(function () {
+    viewMode = "options";
+    generateTentativeView("L");
+})
+
+$(".tutorials").click(function () {
+    viewMode = "options";
+    generateTentativeView("T");
+})
+
+
+
+
+
+
 
 
 
