@@ -4,12 +4,15 @@
 
 //2676 courses
 loader.onLoad(() => {
-    parseSearch(loader.getCourseById(2369));
+    setup();
+    console.log(loader.getCourseById(1318));
+    parseSearch(loader.getCourseById(1318));
 });
 
 //////////////////////////////////////
 //-------Niks Nonesense
 //////////////////////////////////////
+
 var grid = new Array(28);
 for (var i = 0; i < 28; i++) {
     grid[i] = new Array(7);
@@ -17,10 +20,15 @@ for (var i = 0; i < 28; i++) {
 
 window.fullGrid = grid;
 
-var objectList = [];
-var coresList = [];
-var labsList = [];
-var tutorialsList = [];
+function setup() {
+    window.objectList = [];
+    window.coresList = [];
+    window.labsList = [];
+    window.tutorialsList = [];
+    window.allConflicts = [];
+
+}
+
 
 //render();
 
@@ -86,33 +94,6 @@ function parseSearch(searchObject) {
 
     }
 
-    //    var insert = "<td><span></span><br><span></span></td>";
-    //            $("#calendar tbody tr.r0").append(insert);
-    //        $("#calendar tbody tr.r1").append(insert);
-
-    //    for (var q = 0; q < tutorialsList.length; q++) {
-    ////        if (objectList[q].r_periodsArr[q][0] === undefined || objectList[q].r_periodsArr[q][3] === undefined){
-    ////            alert("WARNING: Start or End Time Undefined.");
-    ////        }
-    ////            
-    ////        else {
-    ////            var numBlocks = quikmafs(objectList[q]);
-    ////            locationMap(objectList[q], numBlocks);
-    ////        }
-    ////        var numBlocks = quikmafs(objectList[q]);
-    ////        locationMap(objectList[q], numBlocks);
-    //        
-    //        
-    //        meshGrid(tutorialsList[q]);
-    //
-    //
-    //    }
-
-    //    generateTentativeView("C");
-//    viewMode = "options";
-//    generateTentativeView("T");
-    //    generateTentativeView("L");
-
 }
 
 /*
@@ -124,13 +105,6 @@ function round(value, step) {
     return Math.round(value * inv) / inv;
 }
 
-
-
-
-
-//searchObject.sections[i][j].r_periods.forEach(() => {
-//    for
-//})
 
 
 function build(progCode, code, department, name, type, section, r_periodsArr, serial, section_full) {
@@ -145,7 +119,9 @@ function build(progCode, code, department, name, type, section, r_periodsArr, se
         serial: serial,
         section_full: section_full,
         is_selected: false,
-        is_clickable: true
+        is_clickable: true,
+        conflict: false, 
+        conflict_with: null
     }
 }
 
@@ -199,7 +175,7 @@ function locationMap(courseObject) {
         loc[i][0] = timeToNum(obj.r_periodsArr[i][3]);
         loc[i][1] = numBlocks[i];
 
-        console.log(loc[i][0] + " " + loc[i][1]);
+        //console.log(loc[i][0] + " " + loc[i][1]);
 
     }
     //    console.log("HELLO: " + loc.length);
@@ -234,41 +210,292 @@ function meshGrid(courseObject) {
 
         }
     }
+    
+    
     render();
+}
+
+//function updateGrid(outer, inner, day, courseObject, locations) {
+//    if (viewMode === "options") {
+//        
+//        if (inner == 0) {
+//            fullGrid[locations[outer][0]][day] = {
+//                courseObject: courseObject,
+//                classNum: outer
+//            };
+//        } 
+//        else {
+//            fullGrid[locations[outer][0] + inner][day] = "-";
+//        }
+//    } 
+//    else if (viewMode === "locked") {
+//        
+//        if (courseObject.is_selected === true) {
+//            if (inner == 0) {
+//                fullGrid[locations[outer][0]][day] = {
+//                    courseObject: courseObject,
+//                    classNum: outer
+//                };
+//            } 
+//            else {
+//                fullGrid[locations[outer][0] + inner][day] = "-";
+//            }
+//
+//        } 
+//        else {
+//            if (inner == 0) {
+//                fullGrid[locations[outer][0]][day] = undefined;
+//            } 
+//            else {
+//                fullGrid[locations[outer][0] + inner][day] = undefined;
+//            }
+//        }
+//
+//    }
+//
+//}
+
+function LinkedList(){
+    this.head = null;
+}
+
+LinkedList.prototype.push = function(val){
+    var node = {
+       value: val,
+       next: null
+    }
+    if(!this.head){
+      this.head = node;      
+    }
+    else{
+      current = this.head;
+      while(current.next){
+        current = current.next;
+      }
+      current.next = node;
+    }
+}
+
+
+
+function deleteKthFromEnd(sll, k){
+   var node = sll.head,
+       i = 1,
+       kthNode,
+       previous;
+   if(k<=0) return sll;
+
+    while(node){
+      if(i == k) kthNode = sll.head;
+      else if(i-k>0){
+       previous = kthNode;
+       kthNode = kthNode.next;
+      }
+      i++;
+
+      node = node.next;
+    }
+    //kth node is the head
+    if(!previous)
+       sll.head = sll.head.next;
+    else{
+     previous.next = kthNode.next;
+   }
+   return sll;
+}
+
+function kthFromEnd(sll, k){
+   var node = sll.head,
+       i = 1,
+       kthNode;
+   //handle, 0 or negative value of k
+   if(k<=0) return;
+
+    while(node){
+      if(i == k) kthNode = sll.head;
+      else if(i-k>0){
+       kthNode = kthNode.next;
+      }
+      i++;
+
+      node = node.next;
+    }
+   return kthNode;
+}
+
+
+
+
+
+//LinkedList.prototype.length = function () {
+//
+//    var position = this.head;
+//    var length = 0;
+//    while(position !== null){
+//        position = position.next;
+//        length++;
+//    }
+//    return length;
+//    
+//}
+
+var c93892 = new LinkedList();
+c93892.push(1);
+c93892.push(2);
+c93892.push(3);
+deleteKthFromEnd(c93892, 1);
+c93892.push(4);
+console.log(kthFromEnd(c93892, 1));
+
+
+
+console.log(c93892.head);
+console.log(c93892.head.next);
+console.log(c93892.head.next.next);
+console.log(c93892.head.next.next.next);
+console.log(linkedListLength(c93892));
+
+function linkedListLength(LinkedList){
+    var position = LinkedList.head;
+    var length = 0;
+    while(position !== null){
+        position = position.next;
+        length++;
+    }
+    return length;
+}
+
+function printSLL() {
+    for (var i = 0; i < allConflicts.length; i++) {
+        var tempArr = [];
+        var index = allConflicts[i].head;
+//        console.log(index.value.courseObject.section);
+        console.log("#Conflicting Courses... " + linkedListLength(allConflicts[i]));
+//        console.log(linkedListLength(allConflicts[i]));
+       
+        var lengthj = linkedListLength(allConflicts[i]);
+        for (var j = 0; j < lengthj; j++) {
+////            if (j = linkedListLength(allConflicts[i]) - 1) {
+////                //console.log(index.value.section);
+////                console.log("i: " + i + " j: " + j);
+////                console.log(index.value.section);
+////            } 
+//            if(j = (linkedListLength(allConflicts[i]) - 1)){
+//                console.log(index.value.section);
+//            }
+//            else {
+//                //console.log("h");
+//                //console.log(allConflicts[0].head.value.courseObject.section);
+//                console.log("i: " + i + " j: " + j);
+//                console.log(index.value.courseObject.section);
+//                
+//            }
+//            index = index.next;
+////            console.log(tempArr[j]);
+            
+        
+            if(j < (lengthj-1)){
+                var print1 = index.value.courseObject.progCode + " " + index.value.courseObject.section;
+                console.log(print1);
+                
+            }
+            else{
+                var print2 = index.value.progCode + " " + index.value.section;
+                console.log(print2);
+            }
+            
+//            console.log("i: " + i + " j: " + j);
+//            console.log(index.value);
+            index = index.next;
+        }
+        console.log("");
+    }
+}
+
+
+
+function conflictManager(time, day, oldCourse, newCourse) {
+    if (oldCourse === "-")
+        alert("Dashed line");
+    else {
+        //if course hasn't conflicted yet create new linked list
+        if(oldCourse.courseObject.conflict === false){
+            var tempSLL = new LinkedList();
+            tempSLL.push(oldCourse);
+            tempSLL.push(newCourse);
+            allConflicts.push(tempSLL);
+            console.log("NEW Conflict.......");
+
+//            console.log(allConflicts[0].head.value.courseObject.section);
+//            console.log(allConflicts[0].head.next.value.section);
+            oldCourse.courseObject.conflict = true;
+            newCourse.conflict = true;
+            
+        }
+        else{
+            
+            newCourse.conflict = true;
+            //console.log(oldCourse.courseObject);
+            for(var i = 0; i < allConflicts.length; i++){
+                //console.log(kthFromEnd(allConflicts[i], 1).value);
+                if(kthFromEnd(allConflicts[i], 1).value === oldCourse.courseObject){
+                    //alert(kthFromEnd(allConflicts[i], 1).value.section +"  same as " + oldCourse.courseObject.section);
+                    deleteKthFromEnd(allConflicts[i], 1);
+                    allConflicts[i].push(oldCourse);
+                    allConflicts[i].push(newCourse);
+                }
+            }
+            console.log("OLD Conflict.......");
+            console.log(oldCourse.courseObject.section);
+        }
+        var old1 = oldCourse.hasOwnProperty("classNum");
+        var new1 = newCourse.hasOwnProperty("classNum");
+
+        console.log("Conflict at....");
+        console.log(time + "  " + day);
+        console.log("Between");
+        console.log(oldCourse.courseObject.section);
+        console.log(newCourse.section);
+        console.log(old1 + "  " + new1);
+        console.log("");
+
+    }
+
 }
 
 function updateGrid(outer, inner, day, courseObject, locations) {
     if (viewMode === "options") {
-        
+
         if (inner == 0) {
+
+            if (fullGrid[locations[outer][0]][day] !== undefined) {
+                //                console.log("THis isn't undefined?");
+                //                console.log(fullGrid[locations[outer][0]][day]);
+                conflictManager(locations[outer][0], day, fullGrid[locations[outer][0]][day], courseObject);
+            }
             fullGrid[locations[outer][0]][day] = {
                 courseObject: courseObject,
                 classNum: outer
             };
-        } 
-        else {
+        } else {
             fullGrid[locations[outer][0] + inner][day] = "-";
         }
-    } 
-    else if (viewMode === "locked") {
-        
+    } else if (viewMode === "locked") {
+        console.log("WTFhgfhgf?");
         if (courseObject.is_selected === true) {
             if (inner == 0) {
                 fullGrid[locations[outer][0]][day] = {
                     courseObject: courseObject,
                     classNum: outer
                 };
-            } 
-            else {
+            } else {
                 fullGrid[locations[outer][0] + inner][day] = "-";
             }
 
-        } 
-        else {
+        } else {
             if (inner == 0) {
                 fullGrid[locations[outer][0]][day] = undefined;
-            } 
-            else {
+            } else {
                 fullGrid[locations[outer][0] + inner][day] = undefined;
             }
         }
@@ -276,6 +503,8 @@ function updateGrid(outer, inner, day, courseObject, locations) {
     }
 
 }
+
+
 
 function generateTentativeView(courseType) {
     var courseTypeList;
@@ -305,6 +534,7 @@ function generateTentativeView(courseType) {
 
 function render() {
     //alert("first render");
+    printSLL();
     var insert = "<td><span></span><br><span></span></td>";
     var none = "<td style='display:none;'><span></span><br><span></span></td>";
 
@@ -347,13 +577,11 @@ function render() {
     for (var k = 0; k < fullGrid.length; k++) {
         for (var m = 0; m < fullGrid[k].length; m++) {
             $("#calendar tbody tr.r" + k).append(masterRenderList[k][m]);
-            var hasid = $("#calendar tbody tr.r" + k + " td").attr('id');
-            console.log(hasid);
         }
     }
 
 
-    console.log(fullGrid);
+    //console.log(fullGrid);
 
 }
 
@@ -397,17 +625,21 @@ $(document).on("click", "#calendar table tbody tr td", function (e) {
 
 
     for (var i = 0; i < currentSearchList.length; i++) {
-        if (currentSearchList[i].serial === id) {
-            alert("id match");
+        if (currentSearchList[i].serial === id && currentSearchList[i].is_selected === false) {
+            console.log("id match: ORIGINAL");
             currentSearchList[i].is_selected = true;
             viewMode = "locked";
+        } else if (currentSearchList[i].serial === id && currentSearchList[i].is_selected === true) {
+            console.log("id match: EDIT");
+            currentSearchList[i].is_selected = false;
+            viewMode = "options";
         }
 
     }
 
-    console.log(fullGrid);
+    //console.log(fullGrid);
     generateTentativeView(currentSearch);
-    console.log(fullGrid);
+    //console.log(fullGrid);
 
 
     //console.log(id);
@@ -439,10 +671,6 @@ $(".tutorials").click(function () {
 
 
 
-
-
-
-
 jQuery(window).load(function () {
     jQuery("#preloader").delay(100).fadeOut("slow");
     jQuery("#load").delay(100).fadeOut("slow");
@@ -463,18 +691,24 @@ $(".screenswitch").click(function () {
 })
 
 $(".remWeekend").click(function () {
-    var tableDisplay = $('.sun').css('display');
-    if (tableDisplay === "table-cell") {
-        $(".sun").css("display", "none");
-        $(".sat").css("display", "none");
-        $(".th-sun").css("display", "none");
-        $(".th-sat").css("display", "none");
-    } else {
-        $(".sun").css("display", "table-cell");
-        $(".sat").css("display", "table-cell");
-        $(".th-sun").css("display", "table-cell");
-        $(".th-sat").css("display", "table-cell");
-    }
+    //    var tableDisplay = $('.sun').css('display');
+    //    if (tableDisplay === "table-cell") {
+    //        $(".sun").css("display", "none");
+    //        $(".sat").css("display", "none");
+    //        $(".th-sun").css("display", "none");
+    //        $(".th-sat").css("display", "none");
+    //    } else {
+    //        $(".sun").css("display", "table-cell");
+    //        $(".sat").css("display", "table-cell");
+    //        $(".th-sun").css("display", "table-cell");
+    //        $(".th-sat").css("display", "table-cell");
+    //    }
+    setup();
+    var course = Math.floor(Math.random() * 2000);
+    console.log("Course: " + course)
+    parseSearch(loader.getCourseById(course));
+    console.log(loader.getCourseById(course));
+
 })
 
 // accordion collapse
