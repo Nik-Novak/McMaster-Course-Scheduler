@@ -1280,7 +1280,7 @@ span.day {
   transition: all 0.2s ease-out;
   text-align: center;
     margin:0;
-    line-height: 20px;
+    line-height: 2.3vh;
 }
 
 #calendar td .buttons a{
@@ -1289,7 +1289,7 @@ span.day {
     height: 40%;
     font-size: 0.6em;
     padding:0 ;
-    padding-top:3px;
+    padding-top:0.3vh;
 }
 
 #calendar td .buttons i{
@@ -1311,12 +1311,6 @@ span.day {
   -o-transform: scale(1.1, 1.1);
   transform: scale(1.1, 1.1);
 }
-
-
-
-
-
-
 
 /* ===========================
 --- Media Queries
@@ -1483,7 +1477,6 @@ span.day {
     width: 90%;
     height: 40%;
     font-size: 0.6em;
-        padding-top: 5px;
     }
 
 }
