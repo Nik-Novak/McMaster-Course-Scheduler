@@ -1,46 +1,131 @@
 var database = firebase.database();
+var load = true;
 
-$(document).ready(() => {
-    
-//    getData('/courses',(snapshot)=>{
-//        console.log(snapshot.val()); //print whoel database
-//    });
-//    
-//    getData('departments',(e)=>{
-//        var departments = e.val();
-//        console.log(departments);
-//    });
-    
-    loadDepartments();
-    loadProfs();
-    loadCourses();
-    
-    $('.select-department').change(function(){
-        var dep = this.value.toString();
-//        console.log(dep);
-        var index = binSearch(window.course_department, dep,'department');
-        $('#unicornsdontexist').html('');
-        if(index!=-1){
-            extractAll(window.course_department,index, dep, 'department').forEach((course)=>{
-                $('#unicornsdontexist').append( $('<p>'+course.code+'</p>') );
-            });
+
+var loader = {
+    init: function(){
+        $(document).ready(() => {
+            if(!load)
+                return;
+            loadDepartments();
+            loadCourses();
+            loadIndexes();
+            this.onLoad(()=>{initializeMenu();});
             
+        });
+    },
+    
+    onLoad: function(callback){
+        if(this.loadqueue==null)
+            this.loadqueue = [];
+        this.loadqueue.push(callback);
+    },
+    
+    checkLoad: function (){
+        if(loader.courses!=null && loader.departments!=null && loader.coursecodes!=null && loader.searchindex!=null){
+            $('#menu .loading-span').css('display', 'none');
+            if(this.loadqueue!=null)
+                this.loadqueue.forEach((callback)=>{
+                    callback();
+                });
         }
+    },
+    getCourseById: function(id){
+        return this.courses[id];
+    }
+}
+
+loader.init();
+
+function initializeMenu() {
+    var departments = loader.departments;
+    var def = $('<option value="-">Select Department</option>');
+    $('.select-department').html('');
+    $('.select-department').append(def);
+    for (var key in departments) {
+        if (!departments.hasOwnProperty(key))
+            continue;
+        var t = $('<option value="' + key + '">' + departments[key].name + '</option>');
+        $('.select-department').append(t);
+    }
+
+    $('.select-department').change(function () {
+        $('#unicornsdontexist').html('');
+        var dep = this.value.toString();
+        if (dep == '-')
+            return;
+        departments[dep].courses.forEach((courseid) => {
+            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '</p>'));
+        });
     });
     
-//    populateBrowseProgram();
-    
-});
-
-function tesing(){
-    var t = [];
-    
-    t.push ('abc');
-    t.unshift('cba');
-    t.push ('123');
-    t.unshift('bac');
-    return t;
+    $('#quicksearch').on('input',function(){
+        $('#unicornsdontexist').html('');
+        this.value.split(' ').forEach((word)=>{
+            console.log('search: ' + word + ' result:');
+            if(loader.searchindex[word]!=null)
+                loader.searchindex[word].forEach((result)=>{
+                    if(result.type!='id')
+                        return;
+                    var courseid = result.indexedkey;
+                    $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '</p>'));
+                });
+            console.log(loader.searchindex[word]);
+        });
+    });
 }
+
+function loadDepartments(){
+        onData('department_courseid',(e)=>{
+            loader.departments = e.val();
+            console.warn('Departments Successfully Loaded.');
+            loader.checkLoad();
+        });
+}
+
+function loadCourses(){
+    onData('/courses',(e)=>{  console.warn('Courses Successfully Loaded.'); loader.courses = e.val(); loader.checkLoad();}); //VIEW ALL COURSES
+    onData('/coursecode_courseid',(e)=>{  console.warn('Course Codes Successfully Loaded.'); loader.coursecodes = e.val(); loader.checkLoad();}); //VIEW ALL COURSES
+}
+
+function loadIndexes(){
+    onData('/searchindex',(e)=>{  console.warn('Search Index Successfully Loaded.'); loader.searchindex = e.val(); loader.checkLoad();}); //VIEW ALL COURSES
+}
+
+//$(document).ready(() => {
+//    
+//    if(!load)
+//        return;
+//    
+////    getData('/courses',(snapshot)=>{
+////        console.log(snapshot.val()); //print whoel database
+////    });
+////    
+////    getData('departments',(e)=>{
+////        var departments = e.val();
+////        console.log(departments);
+////    });
+//    
+//    loadDepartments();
+//    loadProfs();
+//    loadCourses();
+//    
+//    $('.select-department').change(function(){
+//        var dep = this.value.toString();
+////        console.log(dep);
+//        var index = binSearch(window.course_department, dep,'department');
+//        $('#unicornsdontexist').html('');
+//        if(index!=-1){
+//            extractAll(window.course_department,index, dep, 'department').forEach((course)=>{
+//                $('#unicornsdontexist').append( $('<p>'+course.code+'</p>') );
+//            });
+//            
+//        }
+//    });
+//    
+////    populateBrowseProgram();
+//    
+//});
 
 function debugPrintCourses(start, end){
     console.log('begin sweep from ' +start + " to " + end);
@@ -48,31 +133,14 @@ function debugPrintCourses(start, end){
         console.log(window.course_department[i]);
 }
 
-function loadCourses(){
-    onData('/course_department',(e)=>{  console.warn('Courses by Department Successfully Loaded.'); window.course_department = e.val(); checkLoad(); populateBrowseProgram('ENGINEER'); }); //VIEW ALL COURSES
-        onData('/course_name',(e)=>{  console.warn('Courses by Name Successfully Loaded.'); window.course_name = e.val();  checkLoad(); }); //VIEW ALL COURSES
-        onData('/course_code',(e)=>{  console.warn('Courses by Code Successfully Loaded.'); window.course_code = e.val();  checkLoad(); }); //VIEW ALL COURSES
-}
+//function loadCourses(){
+//    onData('/course_department',(e)=>{  console.warn('Courses by Department Successfully Loaded.'); window.course_department = e.val(); checkLoad(); populateBrowseProgram('ENGINEER'); }); //VIEW ALL COURSES
+//        onData('/course_name',(e)=>{  console.warn('Courses by Name Successfully Loaded.'); window.course_name = e.val();  checkLoad(); }); //VIEW ALL COURSES
+//        onData('/course_code',(e)=>{  console.warn('Courses by Code Successfully Loaded.'); window.course_code = e.val();  checkLoad(); }); //VIEW ALL COURSES
+//}
 
 function loadProfs(){
     onData('/professors',(e)=>{  console.warn('Professors  Successfully Loaded.'); window.professors = e.val();  }); //VIEW ALL COURSES
-}
-
-function loadDepartments(){
-    onData('departments',(e)=>{
-        var departments = e.val();
-        var def = $('<option value="-">Select Department</option>');
-        $('.select-department').html('');
-        $('.select-department').append(def);
-        for (var key in departments){
-            if(!departments.hasOwnProperty(key))
-                continue;
-            var t = $('<option value="'+key+'">'+departments[key]+'</option>');
-            $('.select-department').append(t);
-        }
-        console.warn('Departments Successfully Loaded.');
-        console.log(departments);
-    });
 }
 
 function populateBrowseProgram(program){
@@ -153,10 +221,3 @@ function onData(path, callback) {
     return firebase.database().ref(path).on('value',callback);
 }
 
-function checkLoad(){
-    if(window.course_code!=null && window.course_name!=null && window.course_department!=null && window.professors!=null){
-        $('#menu .loading-span').css('display', 'none');
-        console.log(window.course_department[800]);
-        parseSearch(window.course_department[800]);
-    }
-}

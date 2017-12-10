@@ -11,6 +11,11 @@ $.getJSON("data/databank.json", function (json) {
     //
     //    console.log(dummy);
     //    mClass(dummy);
+//    loader.courses;
+//    loader.onLoad(parseSearch);
+    loader.onLoad(()=>{
+        parseSearch(loader.getCourseById(1562))
+    });
 
 });
 
@@ -33,6 +38,11 @@ function searchFor(courses) {
 
 var objectList = [];
 
+
+//function test(){
+//    console.log(loader.getCourseById(123));
+//    parseSearch(loader.getCourseById(123));
+//}
 function parseSearch(searchObject) {
 
     this.progCode = searchObject.code;          //setting full code -ie SFWRENG 4HC3
