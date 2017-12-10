@@ -870,6 +870,9 @@ button.accordion:hover {
     background: rgba(127, 219, 255, 0.3);  
 }
 
+#calendar .tentativeBox:hover{
+    background: rgba(127, 219, 255, 1);
+}
 
 
 
