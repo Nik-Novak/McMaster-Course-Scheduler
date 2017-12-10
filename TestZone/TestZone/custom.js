@@ -10,4 +10,12 @@ var settingsRight = {
                 };
 $(document).ready(()=>{
     var menu = sliideMenu = $('#menu').sliiide(settingsRight);
+    setTimeout(()=>{
+        console.log('timeout execute');
+        sliideMenu.reset();
+//        setTimeout(()=>{
+//            $('#menu').css('position','relative');
+//            $('#menu').css('visibility','visible');
+//            },10);
+    },5000);
 });

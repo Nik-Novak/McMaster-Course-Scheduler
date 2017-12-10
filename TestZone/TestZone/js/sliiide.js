@@ -342,6 +342,9 @@
     $sliiider.css(sliiiderResetProp);
     $(window).off('resize', siiize);
     $toggle.off('click', handleToggle);
+      
+      //TODO: I modified this guy's code here to properly reset
+    $sliiider.removeAttr('style'); //this line only
   };
 
 
