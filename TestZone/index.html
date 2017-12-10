@@ -6,91 +6,39 @@
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
 <link href="style.css" rel="stylesheet">
-<script src="js/jquery.min.js"></script>
-<!--<script src='custom.js'></script>-->
 
-	<style type="text/css">
-	body{
-		font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
-	}
-	#theBox{
-		width:500px;
-		border:1px solid #CCC;
-		color: #317082;
-	}
-	#theBox2{
-		width:400px;
-		border:1px solid #CCC;
-		color:red;
-		text-align:center;
-	}
-	#theBox3{
-		width:800px;
-		height:50px;
-		border:1px solid #CCC;
-		color:red;
-		text-align:center;
-	}
-	</style>
-	<script type="text/javascript">
-	/************************************************************************************************************
-	(C) www.dhtmlgoodies.com, October 2005
-	
-	This is a script from www.dhtmlgoodies.com. You will find this and a lot of other scripts at our website.	
-	
-	Terms of use:
-	You are free to use this script as long as the copyright message is kept intact. However, you may not
-	redistribute, sell or repost it without our permission.
-	
-	Thank you!
-	
-	www.dhtmlgoodies.com
-	Alf Magne Kalleland
-	
-	************************************************************************************************************/	
-	var fitTextInBox_maxWidth = false;
-	var fitTextInBox_maxHeight = false;
-	var fitTextInBox_currentWidth = false;
-	var fitTextInBox_currentBox = false;
-	var fitTextInBox_currentTextObj = false;
-	function fitTextInBox(boxID,maxHeight)
-	{
-		if(maxHeight)fitTextInBox_maxHeight=maxHeight; else fitTextInBox_maxHeight = 10000;
-		var obj = document.getElementById(boxID);
-		fitTextInBox_maxWidth = obj.offsetWidth;	
-		fitTextInBox_currentBox = obj;
-		fitTextInBox_currentTextObj = obj.getElementsByTagName('SPAN')[0];
-		fitTextInBox_currentTextObj.style.fontSize = '1px';
-		fitTextInBox_currentWidth = fitTextInBox_currentTextObj.offsetWidth;
-		fitTextInBoxAutoFit();
-		
-	}	
-	
-	function fitTextInBoxAutoFit()
-	{
-		var tmpFontSize = fitTextInBox_currentTextObj.style.fontSize.replace('px','')/1;
-		fitTextInBox_currentTextObj.style.fontSize = tmpFontSize + 1 + 'px';
-		var tmpWidth = fitTextInBox_currentTextObj.offsetWidth;
-		var tmpHeight = fitTextInBox_currentTextObj.offsetHeight;
-		if(tmpWidth>=fitTextInBox_currentWidth && tmpWidth<fitTextInBox_maxWidth && tmpHeight<fitTextInBox_maxHeight && tmpFontSize<300){		
-			fitTextInBox_currentWidth = fitTextInBox_currentTextObj.offsetWidth;	
-			fitTextInBoxAutoFit();
-		}else{
-			fitTextInBox_currentTextObj.style.fontSize = fitTextInBox_currentTextObj.style.fontSize.replace('px','')/1 - 1 + 'px';
-		}		
-	}	
-	</script>
 </head>
 <body>
 
-<div id="theBox"><span>This is the content</span></div>
-<script type="text/javascript">fitTextInBox('theBox');</script>
-<br>
-<div id="theBox2"><span>www.dhtmlgoodies.com</span></div>
-<script type="text/javascript">fitTextInBox('theBox2');</script>
-<br>
-<div id="theBox3"><span>Max height of this box is set to 50px</span></div>
-<script type="text/javascript">fitTextInBox('theBox3',50);</script>
+<div id='menu'>
+    <button class="slider-exit-coursecontent">exit</button>
+    <button class="slider-exit-coursecontent">exit</button>
+    <button class="slider-exit-coursecontent">exit</button>
+    <button class="slider-exit-coursecontent">exit</button>
+    <button class="slider-exit-coursecontent">exit</button>
+    <button class="slider-exit-coursecontent">exit</button>
+</div>
 
+<div id='content'>
+   
+    <button id="sliiider-toggle-menu">Menu</button>
+    <button id="sliiider-toggle-coursecontent">CourseContent</button>
+    
+    <table>
+      <thead>
+      </thead>
+       <tbody>
+        <tr><td>td</td><td>td</td><td>td</td></tr>
+        <tr><td>td</td><td>td</td><td>td</td></tr>
+        <tr><td>td</td><td>td</td><td>td</td></tr>
+        <tr><td>td</td><td>td</td><td>td</td></tr>
+        <tr><td>td</td><td>td</td><td>td</td></tr>
+        <tr><td>td</td><td>td</td><td>td</td></tr>
+        </tbody>
+    </table>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="js/sliiide.js"></script>
+<script src='custom.js'></script>
 </body>
 </html>
