@@ -1263,7 +1263,7 @@ span.day {
   transition: all 0.2s ease-out;
   text-align: center;
     margin:0;
-    line-height: 2.2vh;
+    line-height: 2.3vh;
 }
 
 #calendar td .buttons a{
@@ -1460,7 +1460,6 @@ span.day {
     width: 90%;
     height: 40%;
     font-size: 0.6em;
-    padding-top: 5px;
     }
 
 }
