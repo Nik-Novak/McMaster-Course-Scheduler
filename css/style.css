@@ -1243,6 +1243,57 @@ span.day {
     background: transparent;
 }
 
+#calendar td .buttons {
+  clear: both;
+  position: absolute;
+  font-size: 1em;
+  bottom: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+    
+  width: 100%;
+
+  border: solid 1px transparent;
+    
+  display: none;
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  text-align: center;
+    margin:0;
+    line-height: 20px;
+}
+
+#calendar td .buttons a{
+    top:0;
+    width: 70%;
+    height: 40%;
+    font-size: 0.6em;
+    padding:0 ;
+    padding-top:3px;
+}
+
+#calendar td .buttons i{
+    margin-right: 2px;
+}
+
+#calendar td:hover .buttons {
+    display: inline;
+  clear: both;
+  position: absolute;
+  top: 0;
+    left: 0;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#calendar td:hover .image img {
+  -webkit-transform: scale(1.1, 1.1);
+  -ms-transform: scale(1.1, 1.1);
+  -o-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+}
 
 
 /* ===========================
@@ -1404,14 +1455,45 @@ span.day {
     #coursecontent {
         width: 100%;
     }
-
+    
+    #calendar td .buttons a{
+    top:0;
+    width: 90%;
+    height: 40%;
+    font-size: 0.6em;
+        padding-top: 5px;
+    }
 
 }
 
-}
 
-@media (max-width:480px) {}
+@media (max-width:480px) {
+    #calendar td .buttons a{
+    top:0;
+    width: 100%;
+    height: 40%;
+    font-size: 0.9em;
+    }
+}
 
 @media only screen and (max-width:1050px) {}
 
 @media (max-width:340px) {}
+
+
+/* ===========================
+--- Test Zone
+============================ */
+
+/*
+                                                         c=====e
+                                                            H
+   ____________                                         _,,_H__
+  (__((__((___()                                       //|     |
+ (__((__((___()()_____________________________________// |BOOM |
+(__((__((___()()()------------------------------------'  |_____|
+
+
+*/
+
+
