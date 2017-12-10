@@ -11,6 +11,11 @@ $.getJSON("data/databank.json", function (json) {
     //
     //    console.log(dummy);
     //    mClass(dummy);
+//    loader.courses;
+//    loader.onLoad(parseSearch);
+    loader.onLoad(()=>{
+        parseSearch(loader.getCourseById(1562))
+    });
 
 });
 
@@ -26,40 +31,6 @@ function searchFor(courses) {
     //console.log(empty);
 }
 
-function sortResults(array, prop, asc) {
-    if (prop == 'code')
-        return array.sort(function (a, b) {
-            if (asc) {
-                return (a[prop].split(' ')[1] > b[prop].split(' ')[1]) ? 1 : ((a[prop].split(' ')[1] < b[prop].split(' ')[1]) ? -1 : 0);
-            } else {
-                return (b[prop].split(' ')[1] > a[prop].split(' ')[1]) ? 1 : ((b[prop].split(' ')[1] < a[prop].split(' ')[1]) ? -1 : 0);
-            }
-        });
-    else
-        return array.sort(function (a, b) {
-            if (asc) {
-                return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
-            } else {
-                return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
-            }
-        });
-}
-
-function convertKeysToArray(json) {
-    var array = [];
-    $.each(json, function (key, value) {
-        array.push(value);
-    });
-    return array;
-}
-
-function test() {
-    //console.log();
-}
-
-
-test();
-
 //////////////////////////////////////
 //-------Niks Nonesense
 //////////////////////////////////////
@@ -67,28 +38,34 @@ test();
 
 var objectList = [];
 
-function mClass(searchObject) {
 
-    this.progCode = searchObject.code;
-    this.code = this.progCode.split(" ")[1]; //grabbing just course code
-    this.department = searchObject.department;
-    this.name = searchObject.name;
+//function test(){
+//    console.log(loader.getCourseById(123));
+//    parseSearch(loader.getCourseById(123));
+//}
+function parseSearch(searchObject) {
+
+    this.progCode = searchObject.code;          //setting full code -ie SFWRENG 4HC3
+    this.code = this.progCode.split(" ")[1];    //setting just course code -ie 4HC3
+    this.department = searchObject.department;  //setting department -ie SFWRENG
+    this.name = searchObject.name;              //setting course name -ie Human Computer Interfaces
 
 
+    //loop that searches for the remainign categories for the course
     for (var i in searchObject.sections) {
         if (!searchObject.sections.hasOwnProperty(i))
             continue;
 
-        this.type = i;
+        this.type = i; //setting type of course 
         for (var j in searchObject.sections[i]) {
             if (!searchObject.sections[i].hasOwnProperty(j))
                 continue;
 
 
-            this.section = j;
-            this.r_periods = searchObject.sections[i][j].r_periods;
-            this.serial = searchObject.sections[i][j].serial;
-            this.section_full = searchObject.sections[i][j].section_full;
+            this.section = j;                                               //setting section -ie C01, L02, T14
+            this.r_periods = searchObject.sections[i][j].r_periods;         //grabbing r_periods object 
+            this.serial = searchObject.sections[i][j].serial;               //setting unique 5 digit serial number -ie 11534
+            this.section_full = searchObject.sections[i][j].section_full;   //setting course status -ie true(course full) or false(course not full)
 
             //initialize r_periods double array
             r_periodsArr = new Array(r_periods.length);
@@ -98,15 +75,15 @@ function mClass(searchObject) {
 
             //populating r_periods double array
             for (var k = 0; k < r_periods.length; k++) {
-                r_periodsArr[k][0] = r_periods[k].end;
-                r_periodsArr[k][1] = r_periods[k].room;
-                r_periodsArr[k][2] = r_periods[k].term;
-                r_periodsArr[k][3] = r_periods[k].start;
-                r_periodsArr[k][4] = r_periods[k].day;
-                r_periodsArr[k][5] = r_periods[k].supervisors;
+                r_periodsArr[k][0] = r_periods[k].end;          //setting end time for course -ie 12:20
+                r_periodsArr[k][1] = r_periods[k].room;         //setting room for course -ie MDCL 1105
+                r_periodsArr[k][2] = r_periods[k].term;         //setting term for course -ie 2(winter term), 5(fall term)
+                r_periodsArr[k][3] = r_periods[k].start;        //setting end time for course -ie 14:30
+                r_periodsArr[k][4] = r_periods[k].day;          //setting day for course --> 1 though 6 which is Monday through Saturday
+                r_periodsArr[k][5] = r_periods[k].supervisors;  //setting class supervisor -ie John Doe (Professor Name)
             }
 
-            this.r_periodsArr = r_periodsArr;
+            this.r_periodsArr = r_periodsArr;                  
             var tempObj = new build(this.progCode, this.code, this.department, this.name, this.type, this.section, this.r_periodsArr, this.serial, this.section_full);
             objectList.push(tempObj);
 
@@ -128,8 +105,11 @@ function mClass(searchObject) {
 //            var numBlocks = quikmafs(objectList[q]);
 //            locationMap(objectList[q], numBlocks);
 //        }
-        var numBlocks = quikmafs(objectList[q]);
-            locationMap(objectList[q], numBlocks);
+//        var numBlocks = quikmafs(objectList[q]);
+//        locationMap(objectList[q], numBlocks);
+        
+        
+        meshGrid(objectList[q]);
 
 
     }
@@ -139,36 +119,18 @@ function mClass(searchObject) {
 
 }
 
+/*
+** Takes in a number (value) and precision (step)
+*/
 function round(value, step) {
     step || step(1.0);
     var inv = 1.0 / step;
     return Math.round(value * inv) / inv;
 }
 
-function quikmafs(courseObj) {
-
-    var courseLengths = [];
-
-    for (var i = 0; i < courseObj.r_periodsArr.length; i++) {
-        var startHour = courseObj.r_periodsArr[i][3].split(":")[0];
-        var startMin = courseObj.r_periodsArr[i][3].split(":")[1];
-        var endHour = courseObj.r_periodsArr[i][0].split(":")[0];
-        var endMin = courseObj.r_periodsArr[i][0].split(":")[1];
 
 
-        var lenHour = (endHour - startHour) * 60;
-        var lenMin = (parseInt(endMin / 10) - parseInt(startMin / 10)) * 10;
 
-        var cLength = round((lenHour + lenMin) / 60, .5);
-
-        var numBlocks = cLength * 2;
-
-        courseLengths.push(numBlocks);
-
-
-    }
-    return courseLengths;
-}
 
 //searchObject.sections[i][j].r_periods.forEach(() => {
 //    for
@@ -196,24 +158,45 @@ for (var i = 0; i < 28; i++) {
 
 window.fullGrid = grid;
 
-function timeToNum(time) {
-    var hr = time.split(":")[0];
-    var min = time.split(":")[1];
-
-    var starthr = 8;
-    var startmin = 0;
-
-    var lenhr = (hr - starthr) * 60;
-    var lenmin = (parseInt(min / 10) - parseInt(startmin / 10)) * 10;
-
-    var number = round((lenhr + lenmin) / 60, .5) * 2;
-    return number;
+function blocks(endHour, startHour, endMin, startMin){
+    var lenHour = (endHour - startHour) * 60;
+    var lenMin = (parseInt(endMin / 10) - parseInt(startMin / 10)) * 10;
+    var numBlocks = round((lenHour + lenMin) / 60, .5) * 2;
+    
+    return numBlocks;
 }
 
-//console.log(timeToNum("18:00"));
+//
+function timeToNum(time) {
+    var endHour = time.split(":")[0];
+    var endMin = time.split(":")[1];
+    var startHour = 8;
+    var startMin = 0;
 
-function locationMap(courseObject, numBlocks) {
+    var numBlocks = blocks(endHour, startHour, endMin, startMin);
 
+    return numBlocks;
+}
+
+function quikmafs(courseObj) {
+
+    var courseLengths = [];
+
+    for (var i = 0; i < courseObj.r_periodsArr.length; i++) {
+        var startHour = courseObj.r_periodsArr[i][3].split(":")[0];
+        var startMin = courseObj.r_periodsArr[i][3].split(":")[1];
+        var endHour = courseObj.r_periodsArr[i][0].split(":")[0];
+        var endMin = courseObj.r_periodsArr[i][0].split(":")[1];
+
+        var numBlocks = blocks(endHour, startHour, endMin, startMin);
+
+        courseLengths.push(numBlocks);
+    }
+    return courseLengths;
+}
+
+function locationMap(courseObject) {
+    var numBlocks = quikmafs(courseObject);
     var obj = courseObject;
     var loc = [numBlocks.length];
     for (var y = 0; y < numBlocks.length; y++) {
@@ -229,11 +212,14 @@ function locationMap(courseObject, numBlocks) {
 
     }
     //    console.log("HELLO: " + loc.length);
-    meshGrid(obj, loc);
+    return loc;
 }
 
+
 /*  Populates gloabal grid if possible, will need to include conflicts here  */
-function meshGrid(courseObject, locations) {
+function meshGrid(courseObject) {
+    
+    var locations = locationMap(courseObject);
 
     for (var i = 0; i < fullGrid.length; i++) {
         for (var j = 0; j < fullGrid[i].length; j++) {
@@ -289,7 +275,7 @@ function render() {
                 tempTransferList.unshift(formatted);
             } else if (typeof (fullGrid[i][j]) === "undefined") {
                 tempTransferList.unshift(insert);
-            } else if (typeof (fullGrid[i][j]) === "string") {
+            } else if (fullGrid[i][j] === "-") {
                 tempTransferList.unshift(null);
             } else {
                 alert("Not one of object, undefined or string");
