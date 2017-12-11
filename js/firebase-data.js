@@ -395,6 +395,19 @@ $(document).ready(()=>{
                 },200);
             }
         }
+//        else if($(window).width() > 1700){
+//            if(menu1!=null){
+//                enoughtime = false;
+////                console.log('reset');
+//                
+//                menu1.reset();
+//                setTimeout(()=>{
+//                    
+//                    menu1=null;
+//                    enoughtime=true;
+//                },700);
+//            }
+//        }
         else{
             console.log('reset');
             if(menu2!=null){

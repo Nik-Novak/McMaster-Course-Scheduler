@@ -1543,6 +1543,33 @@ span.day {
         width:29.4%
     }
     
+}
+    
+/*
+@media (min-width:1699px){
+    #coursecontent {
+        display: inline-block;
+        padding-left: 0px; 
+        padding-right: 0px; 
+        width:20%
+    }
+
+    #menu {
+        display: inline-block;
+        padding-left: 0px; 
+        padding-right: 0px; 
+        width:20%
+    }
+    
+    #calendarcontent {
+        display: inline-block;
+        width:59%
+    }
+    
+    #sliiider-toggle-coursecontent{
+        visibility: hidden;
+    }
+    
     #sliiider-toggle-coursecontent{
         visibility: hidden;
     }
@@ -1551,6 +1578,7 @@ span.day {
         float:left;
     }
 }
+*/
 
 
 
