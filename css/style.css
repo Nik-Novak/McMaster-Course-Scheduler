@@ -1554,7 +1554,6 @@ span.day {
     
 }
     
-/*
 @media (min-width:1699px){
     #coursecontent {
         display: inline-block;
@@ -1579,7 +1578,7 @@ span.day {
         visibility: hidden;
     }
     
-    #sliiider-toggle-coursecontent{
+    #sliiider-toggle-menu{
         visibility: hidden;
     }
     
@@ -1587,7 +1586,6 @@ span.day {
         float:left;
     }
 }
-*/
 
 
 
