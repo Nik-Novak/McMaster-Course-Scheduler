@@ -1549,6 +1549,7 @@ span.day {
     
     #coursecontent .top, #coursecontent .bottom{
         float:left;
+        width: 98%
     }
     
 }
