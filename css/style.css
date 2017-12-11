@@ -1312,6 +1312,16 @@ span.day {
   transform: scale(1.1, 1.1);
 }
 
+
+
+
+/*
+#calendar td.innerConflictBox:active{
+    
+    display: none;
+}
+*/
+
 /* ===========================
 --- Media Queries
 ============================ */
@@ -1511,4 +1521,13 @@ span.day {
 
 */
 
+
+#practice th{
+    background-color: white;
+    border-bottom: 2px solid black;
+}
+#practice td{
+    background-color: #7FDBFF;
+    border-bottom: 2px solid black;
+}
 
