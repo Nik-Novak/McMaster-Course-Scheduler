@@ -233,7 +233,7 @@
     outer.style.left = "0px";
     outer.style.visibility = "hidden";
     outer.style.width = "200px";
-    outer.style.height = "150px";
+    outer.style.height = "150px"; 
     outer.style.overflow = "hidden";
     outer.appendChild (inner);
 
@@ -345,13 +345,22 @@
       
       //TODO: I modified this guy's code here to properly reset
     $sliiider.removeAttr('style'); //this line only
+      $body.children().removeAttr('style'); //**Careful, removes all inline styles
+      $sliiider.off();
+//      $(window).off();
+      $toggle.off();
+      $exit.off();
+      $body.off();
+      
+      //end mod
   };
 
 
   var menu = {
     reset: function(name) {
+        deactivate();
       $body.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', deleteProp);
-      deactivate();
+      setTimeout(()=>{deleteProp()},100);
     },
     deactivate: function() {deactivate();},
     activate: function() {activate();}
