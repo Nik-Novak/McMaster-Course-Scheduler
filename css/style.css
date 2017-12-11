@@ -361,6 +361,70 @@ hr {
 }
 
 
+
+/*Sliiide Buttons*/
+
+.hide{
+    display: none;
+}
+
+.hamburger {
+  padding: 0px 0px !important;
+}
+
+.hamburger-box {
+  width: 20px !important;
+  height: 12px !important;
+}
+
+.hamburger-inner {
+  /*margin-top: -2px !important;*/
+}
+  .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    width: 22px !important;
+    height: 3px !important;
+    border-radius: 2px !important;}
+  .hamburger-inner::before {
+    top: -5px !important; }
+  .hamburger-inner::after {
+    bottom: -5px !important;}
+
+#sliiider-toggle-menu p, #sliiider-toggle-coursecontent p{
+    margin-bottom: -3px;
+    font-size: 10px;
+    font-style: bold;
+    line-height: 10px;
+}
+
+#sliiider-toggle-menu , #sliiider-toggle-coursecontent{
+    margin-left: 10px;
+    margin-right: 10px;
+
+    display: inline-block;
+    font-style: bold;
+
+    max-width: 80px;
+    /*max-height: 39px;*/
+    width: 14%;
+    height: 50px;
+    background-color: white;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#sliiider-toggle-menu{
+    float: left; 
+}
+#sliiider-toggle-coursecontent{
+    float: right;
+}
+
+
+
+/*End Sliiide Buttons*/
+
+
 /* ===========================
 --- Search Menus
 ============================ */
@@ -644,10 +708,11 @@ button.accordion:hover {
 ============================ */
 
 #calendarbanner {
-    width: 75%;
+    width: 100%;
     margin: 0 auto;
     margin-bottom: 5px;
     margin-top: 20px;
+    display: inline-block;
 }
 
 #calendarbanner i {
@@ -656,10 +721,12 @@ button.accordion:hover {
 
 #calendarbanner button.accordion {
     background-color: white;
+    display: block;
+    margin: 0 auto;
     color: black;
     cursor: pointer;
     padding: 8px;
-    width: 100%;
+    width: 60%;
     border: none;
     text-align: center;
     outline: none;
