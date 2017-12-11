@@ -62,7 +62,7 @@
     };
 
     var prepareProperties = {
-      visibility: 'hidden',
+//      visibility: 'hidden',
       transition: 'transform ' + settings.animation_duration + ' ' + settings.animation_curve,
       position: 'fixed'
     };
@@ -292,8 +292,8 @@
 
   var hideSlider = function(e) {
       setTimeout(()=>{
-    $sliiider.css('visibility','hidden');
-      },200);
+//    $sliiider.css('visibility','hidden');
+      },5000);
     $body.css(bodyResetProp);
     $('html').css(bodyResetProp);
     $body.unbind('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', hideSlider);

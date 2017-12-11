@@ -910,18 +910,6 @@ jQuery(window).load(function () {
 });
 
 
-// toggle screen
-$(".screenswitch").click(function () {
-    var screen = $('#coursecontent').css('display');
-    if (screen === "inline-block") {
-//        $("#coursecontent").css("display", "none");
-        $("#menu").css("display", "inline-block");
-        //        $("#coursecontent").animate({width:'toggle'},350);
-    } else {
-        $("#coursecontent").css("display", "inline-block");
-//        $("#menu").css("display", "none");
-    }
-})
 
 // Toggle Hamburger Buttons
 

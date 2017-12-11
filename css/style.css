@@ -744,6 +744,8 @@ button.accordion:hover {
     /*transition: 0.1s;*/
     border-radius: 4px;
     border-color: black;
+    height: 50px;
+    margin-top: 5px;
 }
 
 #calendarbanner button.accordion.active {
@@ -1607,3 +1609,16 @@ span.day {
     border-bottom: 2px solid black;
 }
 
+#menu .bottom{
+    width:95%;
+}
+
+#coursecontent .bottom, #coursecontent .top{
+    display: inline-block;
+    width:95%;
+    float:right;
+}
+
+#calendarbanner .accordion{
+    padding-top: 100px;
+}
