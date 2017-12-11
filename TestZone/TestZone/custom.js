@@ -41,6 +41,7 @@ var settingsRight = {
 $(document).ready(()=>{
     var enoughtime = true;
     var menu1 = null;
+    var menu2 = null;
     $(window).resize(()=>{
         console.log(enoughtime);
         if(!enoughtime)
@@ -49,6 +50,7 @@ $(document).ready(()=>{
             if(menu1==null){
                 enoughtime = false;
                 menu1 = $('#menu').sliiide(settingsLeft);
+                menu2 = $('#menu-right').sliiide(settingsRight);
                 setTimeout(()=>{
                     enoughtime=true;
                 },200);
@@ -60,8 +62,10 @@ $(document).ready(()=>{
                 enoughtime = false;
 //                console.log('reset');
                 menu1.reset();
+                menu2.reset();
                 setTimeout(()=>{
                     menu1=null;
+                    menu2=null;
                     enoughtime=true;
                 },700);
             }

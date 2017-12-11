@@ -338,7 +338,10 @@
   $exit.on('click', function() {deactivate();});
 
   var deleteProp = function() {
-    $body.css(bodyResetProp);
+         $body.css('transform', '');
+      $body.css('overflow-x', '');
+      $body.css('transition', '');
+      $body.css('position', '');
     $sliiider.css(sliiiderResetProp);
     $(window).off('resize', siiize);
     $toggle.off('click', handleToggle);
