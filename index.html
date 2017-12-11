@@ -22,6 +22,8 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/colour.css" rel="stylesheet">
 
+    <link href="js/hamburgers.min.css" rel="stylesheet">
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -36,9 +38,9 @@
 
 <body id="page-top">
     <!-- Preloader -->
-    <div id="preloader">
+<!--     <div id="preloader">
         <div id="load"></div>
-    </div>
+    </div> -->
 
     <div id="preloadimg">
         <!--
@@ -77,7 +79,7 @@
 
         <section id="menu" class="scrollable">
 
-           <button class="slider-exit-menu">Exit</button>
+           <!-- <button class="slider-exit-menu">Exit</button> -->
            
             <div class='top'>
             </div>
@@ -304,10 +306,30 @@
 
         <section id="calendarcontent">
 
-        <div class="buttonHolder">
-            <button id="sliiider-toggle-menu">Menu</button>
-            <button id="sliiider-toggle-coursecontent">CourseContent</button>
-        </div>
+        <!-- <div class="buttonHolder"> -->
+            <!-- <button id="sliiider-toggle-menu">Menu</button> -->
+            <!-- <button id="sliiider-toggle-coursecontent">CourseContent</button> -->
+
+
+            <button id="sliiider-toggle-menu" class="hamburger hamburger--arrowturn-r" type="button">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+             <p class = "buttonTextL">  Menu </p>
+             <p class ="buttonTextL hide"> Calender </p>
+            </button>
+
+            <button id="sliiider-toggle-coursecontent" class="hamburger hamburger--arrowturn" type="button">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+              <p class="buttonTextR" >My Courses</p>
+              <p class="buttonTextR hide"> Calender </p>
+            </button>
+
+
+
+        <!-- </div> -->
 
             <div id='calendarbanner'>
                 <button class="accordion">September 1<sup>st</sup> - 7<sup>th</sup><i class="fa fa-caret-down" aria-hidden="true"></i></button>
@@ -518,7 +540,7 @@
 
         <section id='coursecontent'>
 
-            <button class="slider-exit-coursecontent">Exit</button>
+            <!-- <button class="slider-exit-coursecontent">Exit</button> -->
 
             <div class='top'>
 
@@ -672,7 +694,7 @@
     </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/sliiide.min.js"></script>
+    <script src="js/sliiide.js"></script>
     
     <!-- Custom JavaScript -->
     <script src="js/firebase-data.js"></script>

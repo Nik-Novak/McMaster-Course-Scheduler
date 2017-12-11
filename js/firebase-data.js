@@ -379,32 +379,44 @@ var settingsRight = {
 // });
 
 
-var sliideMenu;
-var flagActive = false;
-$(window).resize(function() {
-    
-    
-    console.log(sliideMenu);
-    console.log(flagActive);
-    if (document.documentElement.clientWidth <= 600) {
-        if(sliideMenu==undefined){
-            console.log("set");
-            sliideMenu = $('#coursecontent').sliiide(settingsRight); //initialize sliiide
-            flagActive = true;
-        }
-    }
-    else{    
-        if(flagActive){
-            console.log("reset");
-            sliideMenu.deactivate(); //initialize sliiide
-            sliideMenu.reset(); //initialize sliiide
 
-            $('#coursecontent').css("visibility", "visible");
-            $('#coursecontent').css("left", "0");
+$( "#sliiider-toggle-menu" ).click(function() {
+  $( "#sliiider-toggle-menu" ).toggleClass( "is-active" ),
+  $( ".buttonTextL" ).toggleClass( "hide" )
+});
+
+$( "#sliiider-toggle-coursecontent" ).click(function() {
+  $( "#sliiider-toggle-coursecontent" ).toggleClass( "is-active" ),
+  $( ".buttonTextR" ).toggleClass( "hide" )
+});
+
+
+// var sliideMenu;
+// var flagActive = false;
+// $(window).resize(function() {
+    
+    
+//     console.log(sliideMenu);
+//     console.log(flagActive);
+//     if (document.documentElement.clientWidth <= 600) {
+//         if(sliideMenu==undefined){
+//             console.log("set");
+//             sliideMenu = $('#coursecontent').sliiide(settingsRight); //initialize sliiide
+//             flagActive = true;
+//         }
+//     }
+//     else{    
+//         if(flagActive){
+//             console.log("reset");
+//             sliideMenu.deactivate(); //initialize sliiide
+//             sliideMenu.reset(); //initialize sliiide
+
+//             $('#coursecontent').css("visibility", "visible");
+//             $('#coursecontent').css("left", "0");
             
-        }
-    }
-}).resize()
+//         }
+//     }
+// }).resize()
 
 // $(document).ready(()=>{
 //     setInterval(()=>{
@@ -413,3 +425,40 @@ $(window).resize(function() {
 //     },1000);
     
 // });
+
+
+
+$(document).ready(()=>{
+    var enoughtime = true;
+    var menu1 = null;
+    var menu2 = null;
+    $(window).resize(()=>{
+        console.log(enoughtime);
+        if(!enoughtime)
+            return;
+        if($(window).width() < 500){
+            if(menu1==null){
+                enoughtime = false;
+                menu1 = $('#menu').sliiide(settingsLeft);
+                menu2 = $('coursecontent').sliiide(settingsRight);
+                setTimeout(()=>{
+                    enoughtime=true;
+                },200);
+            }
+        }
+        else{
+            console.log('reset');
+            if(menu1!=null){
+                enoughtime = false;
+//                console.log('reset');
+                menu1.reset();
+                menu2.reset();
+                setTimeout(()=>{
+                    menu1=null;
+                    menu2=null;
+                    enoughtime=true;
+                },700);
+            }
+        }
+    });
+});

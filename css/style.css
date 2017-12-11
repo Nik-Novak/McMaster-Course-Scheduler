@@ -75,20 +75,60 @@ a:focus {
 
 /*Sliiide Buttons*/
 
-.buttonHolder{
-    /*display: inline-block;*/
-    width: 100%
-    background-color: red;
+.hide{
+    display: none;
+}
+
+.hamburger {
+  padding: 0px 0px !important;
+}
+
+.hamburger-box {
+  width: 20px !important;
+  height: 12px !important;
+}
+
+.hamburger-inner {
+  /*margin-top: -2px !important;*/
+}
+  .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    width: 22px !important;
+    height: 3px !important;
+    border-radius: 2px !important;}
+  .hamburger-inner::before {
+    top: -5px !important; }
+  .hamburger-inner::after {
+    bottom: -5px !important;}
+
+#sliiider-toggle-menu p, #sliiider-toggle-coursecontent p{
+    margin-bottom: -3px;
+    font-size: 10px;
+    font-style: bold;
+}
+
+#sliiider-toggle-menu , #sliiider-toggle-coursecontent{
+    margin-left: 10px;
+    margin-right: 10px;
+
+    display: inline-block;
+    font-style: bold;
+
+    width: 63px;
+    height: 50px;
+    background-color: white;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 #sliiider-toggle-menu{
-    display: inline-block;
-    float: left;
+    float: left; 
 }
 #sliiider-toggle-coursecontent{
-    display: inline-block;
     float: right;
 }
+
+
 
 /*End Sliiide Buttons*/
 
@@ -255,6 +295,8 @@ hr {
 
 .scrollable {
     overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: -10px: 
 }
 
 #contentwrapper {
@@ -421,11 +463,11 @@ hr {
 #menu {
     display: inline-block;
     /*    display: none;*/
-    padding-top: 35px;
+    /*padding-top: 35px;*/
     /*margin-right: 10px;*/
     width: 29%;
-    padding-left: 10px;
-    padding-right: 10px;
+    /*padding-left: 10px;*/
+    /*padding-right: 10px;*/
     vertical-align: top;
 }
 
@@ -662,10 +704,13 @@ button.accordion:hover {
 ============================ */
 
 #calendarbanner {
-    width: 75%;
+    width: 70%;
     margin: 0 auto;
     margin-bottom: 5px;
     margin-top: 20px;
+
+    /*float: left;*/
+
 }
 
 #calendarbanner i {
@@ -1419,7 +1464,8 @@ span.day {
         width: 75%;
     }
     #coursecontent {
-        width: 100%;
+        width: 80%;
+        margin: 0 auto;
     }
 
 
