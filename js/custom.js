@@ -914,6 +914,21 @@ $(".screenswitch").click(function () {
     }
 })
 
+// Toggle Hamburger Buttons
+
+
+$( "#sliiider-toggle-menu" ).click(function() {
+  $( "#sliiider-toggle-menu" ).toggleClass( "is-active" ),
+  $( ".buttonTextL" ).toggleClass( "hide" )
+});
+
+$( "#sliiider-toggle-coursecontent" ).click(function() {
+  $( "#sliiider-toggle-coursecontent" ).toggleClass( "is-active" ),
+  $( ".buttonTextR" ).toggleClass( "hide" )
+});
+
+
+
 $(".remWeekend").click(function () {
     //    var tableDisplay = $('.sun').css('display');
     //    if (tableDisplay === "table-cell") {
