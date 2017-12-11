@@ -395,19 +395,40 @@ $(document).ready(()=>{
                 },200);
             }
         }
-//        else if($(window).width() > 1700){
-//            if(menu1!=null){
-//                enoughtime = false;
-////                console.log('reset');
-//                
-//                menu1.reset();
-//                setTimeout(()=>{
-//                    
-//                    menu1=null;
-//                    enoughtime=true;
-//                },700);
-//            }
-//        }
+        else if($(window).width() > 1700){
+            if(menu1!=null){
+                enoughtime = false;
+//                console.log('reset');
+                
+                menu1.reset();
+                setTimeout(()=>{
+                    
+                    menu1=null;
+                    enoughtime=true;
+                },700);
+            }
+        }
+        else if($(window).width() <= 1700 && $(window).width() >= 780){
+            if(menu1==null){
+                enoughtime = false;
+                menu1 = $('#menu').sliiide(settingsLeft);
+                setTimeout(()=>{
+                    enoughtime=true;
+                },200);
+            }
+            
+            if(menu2!=null){
+                enoughtime = false;
+//                console.log('reset');
+                
+                menu2.reset();
+                setTimeout(()=>{
+                    
+                    menu2=null;
+                    enoughtime=true;
+                },700);
+            }
+        }
         else{
             console.log('reset');
             if(menu2!=null){
@@ -423,4 +444,6 @@ $(document).ready(()=>{
             }
         }
     });
+    
+    $(window).resize();
 });
