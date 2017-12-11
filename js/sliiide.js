@@ -340,9 +340,9 @@
   $exit.on('click', function() {deactivate();});
 
   var deleteProp = function() {
-         $body.children().css('transform', '');
+       
       $body.children().css('overflow-x', '');
-      $body.children().css('transition', '');
+      
       $body.children().css('transform', '');
       $body.children().css('position', '');
     $sliiider.css(sliiiderResetProp);
@@ -354,7 +354,7 @@
 //      $body.children().removeAttr('style'); //**Careful, removes all inline styles
       $sliiider.off();
 //      $(window).off();
-      $toggle.off();
+//      $toggle.off();
       $exit.off();
       $body.off();
       
