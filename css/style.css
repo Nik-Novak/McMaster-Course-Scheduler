@@ -104,6 +104,7 @@ a:focus {
     margin-bottom: -3px;
     font-size: 10px;
     font-style: bold;
+    line-height: 10px;
 }
 
 #sliiider-toggle-menu , #sliiider-toggle-coursecontent{
@@ -113,7 +114,9 @@ a:focus {
     display: inline-block;
     font-style: bold;
 
-    width: 63px;
+    max-width: 80px;
+    /*max-height: 39px;*/
+    width: 14%;
     height: 50px;
     background-color: white;
     padding: 0;
@@ -1323,7 +1326,6 @@ span.day {
         transition: background .5s ease-in-out, padding .5s ease-in-out;
     }
 
-
 }
 
 @media (max-width:1199px) {
@@ -1406,6 +1408,12 @@ span.day {
     #calendar tr td:not(.hour) {
         font-size: 0.55em;
     }
+
+    #calendarbanner button.accordion {
+        width: 95%;
+        margin: 0 auto;
+    }
+
 }
 
 @media (max-width: 395px) {
@@ -1471,7 +1479,7 @@ span.day {
 
 }
 
-}
+
 
 @media (max-width:480px) {}
 
