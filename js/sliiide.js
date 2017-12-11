@@ -252,11 +252,11 @@
     siiize(); //sets the size of the slider menu and the distance the body will travel on sliding
     $sliiider.css('visibility','visible');
     if(settings.body_slide)
-      {
+      { //body stuff!!
       $body.css(prefixCSS(bodySlidePrepare));
       $('html').css(htmlProp);
       $body.children().css(prefixCSS(bodyChildrenProp));
-      $body.children().css(prefixCSS(bodySlideProp[settings.place].activateAnimation));
+      $body.children().not('.sliiide-exclude').css(prefixCSS(bodySlideProp[settings.place].activateAnimation)); //added exclude
       if((ie !== false) && (ie <= 11))
         {
           $sliiider.css(prefixCSS(Prop[settings.place].activateAnimation));

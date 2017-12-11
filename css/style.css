@@ -476,7 +476,7 @@ hr {
 #menu {
     display: inline-block;
     /*    display: none;*/
-    padding-top: 15px;
+    padding-top: 0px;
     /*margin-right: 10px;*/
     width: 30%;
     padding-left: 10px;
@@ -644,7 +644,7 @@ button.accordion:hover {
 #coursecontent {
         display: inline-block;
 /*    display: none;*/
-    padding-top: 15px;
+    padding-top: 0px;
     /*margin-right: 10px;*/
 /*    width: 29%;*/
     padding-left: 10px;
@@ -719,7 +719,7 @@ button.accordion:hover {
     width: 100%;
     margin: 0 auto;
     margin-bottom: 5px;
-    margin-top: 20px;
+    margin-top: 5px;
     display: inline-block;
 }
 
