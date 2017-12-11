@@ -254,7 +254,7 @@ function loadIndexes(){
 function debugPrintCourses(start, end){
     console.log('begin sweep from ' +start + " to " + end);
     for (var i=start; i<=end; i++)
-        console.log(loader.getCourseById(i));
+        console.log(window.course_department[i]);
 }
 
 //function loadCourses(){
@@ -349,17 +349,15 @@ function onData(path, callback) {
 
 
 var settingsLeft = {
-      		toggle: "#sliiider-toggle-menu", // the selector for the menu toggle, whatever clickable element you want to activate or deactivate the menu. A click listener will be added to this element.
-      		exit_selector: ".slider-exit-menu", // the selector for an exit button in the div if needed, when the exit element is clicked the menu will deactivate, suitable for an exit element inside the nav menu or the side bar
-      		animation_duration: "0.5s", //how long it takes to slide the menu
-     		place: "left", //where is the menu sliding from, possible options are (left | right | top | bottom)
-      		animation_curve: "cubic-bezier(0.54, 0.01, 0.57, 1.03)", //animation curve for the sliding animation
-      		body_slide: true, //set it to true if you want to use the effect where the entire page slides and not just the div
-     		no_scroll: false, //set to true if you want the scrolling disabled while the menu is active
-				auto_close: false //set to true if you want the slider to auto close everytime a child link of it is clicked
-    			};
-
-$('#menu').sliiide(settingsLeft); //initialize sliiide
+            toggle: "#sliiider-toggle-menu", // the selector for the menu toggle, whatever clickable element you want to activate or deactivate the menu. A click listener will be added to this element.
+            exit_selector: ".slider-exit-menu", // the selector for an exit button in the div if needed, when the exit element is clicked the menu will deactivate, suitable for an exit element inside the nav menu or the side bar
+            animation_duration: "0.5s", //how long it takes to slide the menu
+            place: "left", //where is the menu sliding from, possible options are (left | right | top | bottom)
+            animation_curve: "cubic-bezier(0.54, 0.01, 0.57, 1.03)", //animation curve for the sliding animation
+            body_slide: true, //set it to true if you want to use the effect where the entire page slides and not just the div
+            no_scroll: false, //set to true if you want the scrolling disabled while the menu is active
+                auto_close: false //set to true if you want the slider to auto close everytime a child link of it is clicked
+                };
 
 var settingsRight = {
             toggle: "#sliiider-toggle-coursecontent", // the selector for the menu toggle, whatever clickable element you want to activate or deactivate the menu. A click listener will be added to this element.
@@ -372,93 +370,80 @@ var settingsRight = {
                 auto_close: false //set to true if you want the slider to auto close everytime a child link of it is clicked
                 };
 
-// $('#coursecontent').sliiide(settingsRight); //initialize sliiide
-// $(document).ready(() => {
-    // var Sliiidmenu = $('#coursecontent').sliiide(settingsRight); //initialize sliiide
-    // menu.activate(); //slides the menu open
-// });
-
-
-
-$( "#sliiider-toggle-menu" ).click(function() {
-  $( "#sliiider-toggle-menu" ).toggleClass( "is-active" ),
-  $( ".buttonTextL" ).toggleClass( "hide" )
-});
-
-$( "#sliiider-toggle-coursecontent" ).click(function() {
-  $( "#sliiider-toggle-coursecontent" ).toggleClass( "is-active" ),
-  $( ".buttonTextR" ).toggleClass( "hide" )
-});
-
-
-// var sliideMenu;
-// var flagActive = false;
-// $(window).resize(function() {
-    
-    
-//     console.log(sliideMenu);
-//     console.log(flagActive);
-//     if (document.documentElement.clientWidth <= 600) {
-//         if(sliideMenu==undefined){
-//             console.log("set");
-//             sliideMenu = $('#coursecontent').sliiide(settingsRight); //initialize sliiide
-//             flagActive = true;
-//         }
-//     }
-//     else{    
-//         if(flagActive){
-//             console.log("reset");
-//             sliideMenu.deactivate(); //initialize sliiide
-//             sliideMenu.reset(); //initialize sliiide
-
-//             $('#coursecontent').css("visibility", "visible");
-//             $('#coursecontent').css("left", "0");
-            
-//         }
-//     }
-// }).resize()
-
-// $(document).ready(()=>{
-//     setInterval(()=>{
-//             $('#coursecontent').css("visibility", "visible");
-//             $('#coursecontent').css("left", "0");
-//     },1000);
-    
-// });
-
-
+//$(document).ready(()=>{
+//    var menu1 = $('#menu').sliiide(settingsLeft);
+//    var menu2 = $('#coursecontent').sliiide(settingsRight);
+//});
 
 $(document).ready(()=>{
     var enoughtime = true;
-    var menu1 = null;
+    var menu1 = $('#menu').sliiide(settingsLeft);
     var menu2 = null;
+    if($(window).width() < 780)
+        menu2 = $('#coursecontent').sliiide(settingsRight);
     $(window).resize(()=>{
         console.log(enoughtime);
         if(!enoughtime)
             return;
-        if($(window).width() < 500){
-            if(menu1==null){
+        if($(window).width() < 780){
+            if(menu2==null){
                 enoughtime = false;
-                menu1 = $('#menu').sliiide(settingsLeft);
-                menu2 = $('coursecontent').sliiide(settingsRight);
+                
+                menu2 = $('#coursecontent').sliiide(settingsRight);
                 setTimeout(()=>{
                     enoughtime=true;
                 },200);
             }
         }
-        else{
-            console.log('reset');
+        else if($(window).width() > 1700){
             if(menu1!=null){
                 enoughtime = false;
 //                console.log('reset');
+                
                 menu1.reset();
+                setTimeout(()=>{
+                    
+                    menu1=null;
+                    enoughtime=true;
+                },700);
+            }
+        }
+        else if($(window).width() <= 1700 && $(window).width() >= 780){
+            if(menu1==null){
+                enoughtime = false;
+                menu1 = $('#menu').sliiide(settingsLeft);
+                setTimeout(()=>{
+                    enoughtime=true;
+                },200);
+            }
+            
+            if(menu2!=null){
+                enoughtime = false;
+//                console.log('reset');
+                
                 menu2.reset();
                 setTimeout(()=>{
-                    menu1=null;
+                    
+                    menu2=null;
+                    enoughtime=true;
+                },700);
+            }
+        }
+        else{
+            console.log('reset');
+            if(menu2!=null){
+                enoughtime = false;
+//                console.log('reset');
+                
+                menu2.reset();
+                setTimeout(()=>{
+                    
                     menu2=null;
                     enoughtime=true;
                 },700);
             }
         }
     });
+    
+    $(window).resize();
 });

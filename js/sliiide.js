@@ -62,7 +62,7 @@
     };
 
     var prepareProperties = {
-      visibility: 'hidden',
+//      visibility: 'hidden',
       transition: 'transform ' + settings.animation_duration + ' ' + settings.animation_curve,
       position: 'fixed'
     };
@@ -195,7 +195,7 @@
     var scroll = getScrollBarWidth();
     windowSize.height = $(window).height();
     windowSize.width = $(window).width() + scroll;
-    newSize = Prop[settings.place].size(windowSize.height, windowSize.width);
+    newSize = Prop[settings.place].size('100%', windowSize.width); //newSize = Prop[settings.place].size(windowSize.height, windowSize.width);  //default height
     $sliiider.css(newSize);
     $sliiider.css(prefixCSS(Prop[settings.place].properties()));
     setSlideDistance();
@@ -252,11 +252,11 @@
     siiize(); //sets the size of the slider menu and the distance the body will travel on sliding
     $sliiider.css('visibility','visible');
     if(settings.body_slide)
-      {
+      { //body stuff!!
       $body.css(prefixCSS(bodySlidePrepare));
       $('html').css(htmlProp);
       $body.children().css(prefixCSS(bodyChildrenProp));
-      $body.children().css(prefixCSS(bodySlideProp[settings.place].activateAnimation));
+      $body.children().not('.sliiide-exclude').css(prefixCSS(bodySlideProp[settings.place].activateAnimation)); //added exclude
       if((ie !== false) && (ie <= 11))
         {
           $sliiider.css(prefixCSS(Prop[settings.place].activateAnimation));
@@ -291,7 +291,9 @@
   };
 
   var hideSlider = function(e) {
-    $sliiider.css('visibility','hidden');
+      setTimeout(()=>{
+//    $sliiider.css('visibility','hidden');
+      },5000);
     $body.css(bodyResetProp);
     $('html').css(bodyResetProp);
     $body.unbind('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', hideSlider);
@@ -338,20 +340,21 @@
   $exit.on('click', function() {deactivate();});
 
   var deleteProp = function() {
-         $body.css('transform', '');
-      $body.css('overflow-x', '');
-      $body.css('transition', '');
-      $body.css('position', '');
+       
+      $body.children().css('overflow-x', '');
+      
+      $body.children().css('transform', '');
+      $body.children().css('position', '');
     $sliiider.css(sliiiderResetProp);
     $(window).off('resize', siiize);
     $toggle.off('click', handleToggle);
       
       //TODO: I modified this guy's code here to properly reset
     $sliiider.removeAttr('style'); //this line only
-      $body.children().removeAttr('style'); //**Careful, removes all inline styles
+//      $body.children().removeAttr('style'); //**Careful, removes all inline styles
       $sliiider.off();
 //      $(window).off();
-      $toggle.off();
+//      $toggle.off();
       $exit.off();
       $body.off();
       

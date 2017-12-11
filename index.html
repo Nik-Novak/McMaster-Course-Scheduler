@@ -21,8 +21,8 @@
     <!-- Squad theme CSS -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/colour.css" rel="stylesheet">
+    <link href="css/hamburgers.min.css" rel="stylesheet">
 
-    <link href="js/hamburgers.min.css" rel="stylesheet">
 
 
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -38,9 +38,9 @@
 
 <body id="page-top">
     <!-- Preloader -->
-<!--     <div id="preloader">
+    <div id="preloader">
         <div id="load"></div>
-    </div> -->
+    </div>
 
     <div id="preloadimg">
         <!--
@@ -52,7 +52,7 @@
     <!-- /Preloader -->
 
     <!-- Navbar-->
-    <div id="navbar">
+    <div id="navbar" class='sliiide-exclude'>
         <div class='left'>
             <a href="" class='navbarlink'><img src="img/mcmaster-crest.svg" alt="error"></a>
             <h5>McMaster University</h5>
@@ -73,14 +73,11 @@
         </div>
     </div>
     <!-- /Navbar-->
-
     
     <div id='contentwrapper'>
 
         <section id="menu" class="scrollable">
 
-           <!-- <button class="slider-exit-menu">Exit</button> -->
-           
             <div class='top'>
             </div>
             <div class='bottom'>
@@ -306,36 +303,34 @@
 
         <section id="calendarcontent">
 
+
+
+
             <div id='calendarbanner'>
 
-                <div class="buttonHolder">
-                    <button id="sliiider-toggle-menu" class="hamburger hamburger--arrowturn-r" type="button">
-                      <span class="hamburger-box">
-                        <span class="hamburger-inner"></span>
-                      </span>
-                     <p class = "buttonTextL">  Menu </p>
-                     <p class ="buttonTextL hide"> Calender </p>
-                    </button>
+                <button id="sliiider-toggle-menu" class="hamburger hamburger--arrowturn-r" type="button">
+                  <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                  </span>
+                 <p class = "buttonTextL">  Menu </p>
+                 <p class ="buttonTextL hide"> Calender </p>
+                </button>
 
-                </div>
+                <button id="sliiider-toggle-coursecontent" class="hamburger hamburger--arrowturn" type="button">
+                  <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                  </span>
+                  <p class="buttonTextR" >My Courses</p>
+                  <p class="buttonTextR hide"> Calender </p>
+                </button>
 
+                
                 <button class="accordion">September 1<sup>st</sup> - 7<sup>th</sup><i class="fa fa-caret-down" aria-hidden="true"></i></button>
                 <div class="panel">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
-
-
-
-
-                    <button id="sliiider-toggle-coursecontent" class="hamburger hamburger--arrowturn" type="button">
-                      <span class="hamburger-box">
-                        <span class="hamburger-inner"></span>
-                      </span>
-                      <p class="buttonTextR" >My Courses</p>
-                      <p class="buttonTextR hide"> Calender </p>
-                    </button>
-
             </div>
+
 
             <div id='calendar'>
                 <table>
@@ -435,11 +430,15 @@
 
                         <tr class="r12">
                             <td class="hour" rowspan="2"><span>2:30</span></td>
-                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td>
+                            <td class='tentativeBox' rowspan='2'><span>2K03 - C01</span><br><span>BSB 201</span><p class="buttons">
+                                            <a href="#" class="btn btn-default"><i class="fa fa-refresh"></i>Change</a>
+                                            <a href="#" class="btn btn-default"><i class="fa fa-times"></i>Remove</a>
+                                        </p></td>
+                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td>
                         </tr>
 
                         <tr class="r13">
-                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td>
+                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td>
                         </tr>
 
                         <tr class="r14">
@@ -462,11 +461,14 @@
 
                         <tr class="r18">
                             <td class="hour" rowspan="2"><span>5:30</span></td>
-                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td>
+                            <td class='conflictBox' rowspan='2'><span>CONFLICT</span><p class="buttons">
+                                            <a href="#" class="btn btn-default"><i class="fa fa-refresh"></i>Change</a>
+                                            <a href="#" class="btn btn-default"><i class="fa fa-times"></i>Remove</a>
+                                        </p></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td>
                         </tr>
 
                         <tr class="r19">
-                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td>
+                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td>
                         </tr>
 
                         <tr class="r20">
@@ -484,7 +486,7 @@
                         </tr>
 
                         <tr class="r23">
-                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td>
+                            <td class='testing' style="background-color: aqua;" ><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td>
                         </tr>
 
                         <tr class="r24">
@@ -497,11 +499,13 @@
 
                         <tr class="r26">
                             <td class="hour" rowspan="2"><span>9:30</span></td>
-                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td>
+                            <td class='innerConflictBox' rowspan='2'><span>Multiple Courses</span><p class="buttons">
+                                            <a href="#" class="btn btn-default"><i class="fa fa-pencil-square-o"></i>Choose One</a>
+                                        </p></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td>
                         </tr>
 
                         <tr class="r27">
-                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td>
+                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td>
                         </tr>
 
 
@@ -525,23 +529,36 @@
                 <span class="green"><i class="fa fa-square" aria-hidden="true"></i><span>Enrolled Classes</span></span>
                 <span class="red"><i class="fa fa-square" aria-hidden="true"></i><span>Conflicting Classes</span></span>
             </div>
-<!--            <button class="screenswitch">Switch The Screen</button>-->
+            <button class="screenswitch">Switch The Screen</button>
             <button class="remWeekend">Remove Weekend</button>
             
             <button class="cores">Cores</button>
             <button class="labs">Labs</button>
             <button class="tutorials">Tutorials</button>
-            <div id='caloptions'>
-
-
-
+            <br>
+            <button class="tutorials">Tutorials</button>
+            
+            
+            <div id='practice'>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <span>OPTIONS</span>
+                            </th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span>ksjdhfddkjshdf</span><br><span>ksdkjfh</span></td>    
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+            
+            
         </section>
 
         <section id='coursecontent'>
-
-            <!-- <button class="slider-exit-coursecontent">Exit</button> -->
-
             <div class='top'>
 
                 <button class="accordion">Your Tentative Classes<i class="fa fa-caret-down" aria-hidden="true"></i></button>
@@ -695,10 +712,10 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/sliiide.js"></script>
-    
     <!-- Custom JavaScript -->
     <script src="js/firebase-data.js"></script>
     <script src="js/custom.js"></script>
+    <script src="/js/jquery.balloon.js"></script>
     
     <script src="js/datatofirebase.js"></script>
 </body>

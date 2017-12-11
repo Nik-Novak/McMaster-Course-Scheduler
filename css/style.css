@@ -73,67 +73,6 @@ a:focus {
 }
 
 
-/*Sliiide Buttons*/
-
-.hide{
-    display: none;
-}
-
-.hamburger {
-  padding: 0px 0px !important;
-}
-
-.hamburger-box {
-  width: 20px !important;
-  height: 12px !important;
-}
-
-.hamburger-inner {
-  /*margin-top: -2px !important;*/
-}
-  .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-    width: 22px !important;
-    height: 3px !important;
-    border-radius: 2px !important;}
-  .hamburger-inner::before {
-    top: -5px !important; }
-  .hamburger-inner::after {
-    bottom: -5px !important;}
-
-#sliiider-toggle-menu p, #sliiider-toggle-coursecontent p{
-    margin-bottom: -3px;
-    font-size: 10px;
-    font-style: bold;
-    line-height: 10px;
-}
-
-#sliiider-toggle-menu , #sliiider-toggle-coursecontent{
-    margin-left: 10px;
-    margin-right: 10px;
-
-    display: inline-block;
-    font-style: bold;
-
-    max-width: 80px;
-    /*max-height: 39px;*/
-    width: 14%;
-    height: 50px;
-    background-color: white;
-    padding: 0;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-#sliiider-toggle-menu{
-    float: left; 
-}
-#sliiider-toggle-coursecontent{
-    float: right;
-}
-
-
-
-/*End Sliiide Buttons*/
 
 
 /* loader */
@@ -298,8 +237,6 @@ hr {
 
 .scrollable {
     overflow-y: auto;
-    overflow-x: hidden;
-    padding-right: -10px: 
 }
 
 #contentwrapper {
@@ -424,6 +361,79 @@ hr {
 }
 
 
+
+/*Sliiide Buttons*/
+
+#sliiider-toggle-menu.hide ,#sliiider-toggle-coursecontent.hide {
+    display: none;
+}
+
+.hamburger {
+  padding: 0px 0px !important;
+}
+
+.hamburger-box {
+  width: 20px !important;
+  height: 12px !important;
+}
+
+.hamburger-inner {
+  /*margin-top: -2px !important;*/
+}
+  .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    width: 22px !important;
+    height: 3px !important;
+    border-radius: 2px !important;}
+  .hamburger-inner::before {
+    top: -5px !important; }
+  .hamburger-inner::after {
+    bottom: -5px !important;}
+
+#sliiider-toggle-menu p, #sliiider-toggle-coursecontent p{
+    margin-bottom: -3px;
+    font-size: 10px;
+    font-style: bold;
+    line-height: 10px;
+}
+
+#sliiider-toggle-menu , #sliiider-toggle-coursecontent{
+    margin-left: auto;
+    margin-right: auto;
+
+    display: inline-block;
+    font-style: bold;
+
+    max-width: 80px;
+    min-width: 42;
+    /*max-height: 39px;*/
+    width: 14%;
+    height: 50px;
+    background-color: white;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: black;
+
+}
+
+#sliiider-toggle-menu{
+    float: left; 
+    margin-left: 10px;
+}
+#sliiider-toggle-coursecontent{
+    float: right;
+    margin-right: 10px;
+}
+
+
+
+/*End Sliiide Buttons*/
+
+
 /* ===========================
 --- Search Menus
 ============================ */
@@ -440,7 +450,7 @@ hr {
     display: inline-block;
     position: absolute;
     z-index:0;
-    width:29%;
+/*    width:29%;*/
     height:285px;
     left:-0.01%;
     text-align: center;
@@ -466,11 +476,11 @@ hr {
 #menu {
     display: inline-block;
     /*    display: none;*/
-    /*padding-top: 35px;*/
+    padding-top: 0px;
     /*margin-right: 10px;*/
-    width: 29%;
-    /*padding-left: 10px;*/
-    /*padding-right: 10px;*/
+    width: 30%;
+    padding-left: 10px;
+    padding-right: 10px;
     vertical-align: top;
 }
 
@@ -634,9 +644,9 @@ button.accordion:hover {
 #coursecontent {
         display: inline-block;
 /*    display: none;*/
-    padding-top: 35px;
+    padding-top: 0px;
     /*margin-right: 10px;*/
-    width: 29%;
+/*    width: 29%;*/
     padding-left: 10px;
     padding-right: 10px;
     vertical-align: top;
@@ -645,8 +655,6 @@ button.accordion:hover {
 #coursecontent .accordion i {
     float: right;
 }
-
-
 
 #coursecontent button.accordion {
     background-color: white;
@@ -705,15 +713,12 @@ button.accordion:hover {
 /* ===========================
 --- Calendar Banner
 ============================ */
-
 #calendarbanner {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
     margin-bottom: 5px;
-    margin-top: 20px;
-
-    /*float: left;*/
-
+    margin-top: 5px;
+    display: inline-block;
 }
 
 #calendarbanner i {
@@ -722,10 +727,12 @@ button.accordion:hover {
 
 #calendarbanner button.accordion {
     background-color: white;
+    display: block;
+    margin: 0 auto;
     color: black;
     cursor: pointer;
     padding: 8px;
-    width: 100%;
+    width: 60%;
     border: none;
     text-align: center;
     outline: none;
@@ -735,6 +742,8 @@ button.accordion:hover {
     /*transition: 0.1s;*/
     border-radius: 4px;
     border-color: black;
+    height: 50px;
+    margin-top: 5px;
 }
 
 #calendarbanner button.accordion.active {
@@ -938,6 +947,24 @@ button.accordion:hover {
 
 #calendar .tentativeBox:hover{
     background: rgba(127, 219, 255, 1);
+}
+
+#calendar .conflictBox{
+    
+    background: rgba(255, 65, 54, 0.3);  
+}
+
+#calendar .conflictBox:hover{
+    background: rgba(255, 65, 54, 1);
+}
+
+#calendar .innerConflictBox{
+    
+    background: rgba(255, 220, 0, 0.3);  
+}
+
+#calendar .innerConflictBox:hover{
+    background: rgba(255, 220, 0, 1);
 }
 
 
@@ -1308,7 +1335,67 @@ span.day {
     background: transparent;
 }
 
+#calendar td .buttons {
+  clear: both;
+  position: absolute;
+  font-size: 1em;
+  bottom: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+    
+  width: 100%;
 
+  border: solid 1px transparent;
+    
+  display: none;
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  text-align: center;
+    margin:0;
+    line-height: 2.3vh;
+}
+
+#calendar td .buttons a{
+    top:0;
+    width: 70%;
+    height: 40%;
+    font-size: 0.6em;
+    padding:0 ;
+    padding-top:0.3vh;
+}
+
+#calendar td .buttons i{
+    margin-right: 2px;
+}
+
+#calendar td:hover .buttons {
+    display: inline;
+  clear: both;
+  position: absolute;
+  top: 0;
+    left: 0;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#calendar td:hover .image img {
+  -webkit-transform: scale(1.1, 1.1);
+  -ms-transform: scale(1.1, 1.1);
+  -o-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+}
+
+
+
+
+/*
+#calendar td.innerConflictBox:active{
+    
+    display: none;
+}
+*/
 
 /* ===========================
 --- Media Queries
@@ -1325,6 +1412,7 @@ span.day {
         -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
         transition: background .5s ease-in-out, padding .5s ease-in-out;
     }
+
 
 }
 
@@ -1408,12 +1496,6 @@ span.day {
     #calendar tr td:not(.hour) {
         font-size: 0.55em;
     }
-
-    #calendarbanner button.accordion {
-        width: 95%;
-        margin: 0 auto;
-    }
-
 }
 
 @media (max-width: 395px) {
@@ -1437,6 +1519,73 @@ span.day {
     }
 }
 
+#menu .bottom{
+    width:95%;
+}
+
+#coursecontent .bottom, #coursecontent .top{
+    display: inline-block;
+    width:95%;
+    float:right;
+}
+
+#calendarbanner .accordion{
+    padding-top: 100px;
+}
+
+@media (min-width:769px){
+    #coursecontent {
+        display: inline-block;
+        padding-left: 0px; 
+        padding-right: 0px; 
+        width:29.4%
+    }
+    
+    #sliiider-toggle-coursecontent{
+        visibility: hidden;
+    }
+    
+    #coursecontent .top, #coursecontent .bottom{
+        float:left;
+        width: 98%
+    }
+    
+}
+    
+@media (min-width:1699px){ 
+    #coursecontent {
+        display: inline-block;
+        padding-left: 0px; 
+        padding-right: 0px; 
+        width:20%
+    }
+
+    #menu {
+        display: inline-block;
+        padding-left: 0px; 
+        padding-right: 0px; 
+        width:20%
+    }
+    
+    #calendarcontent {
+        display: inline-block;
+        width:59%
+    }
+    
+    #sliiider-toggle-coursecontent{
+        visibility: hidden;
+    }
+    
+    #sliiider-toggle-menu{
+        visibility: hidden;
+    }
+    
+    #coursecontent .top, #coursecontent .bottom{
+        float:left;
+    }
+}
+
+
 
 @media (max-width:768px) {
     #navbar h5,
@@ -1459,6 +1608,7 @@ span.day {
     }
     #coursecontent {
 /*        display: none;*/
+        display:inline-block;
     }
     #calendarcontent {
         width: 100%;
@@ -1473,37 +1623,54 @@ span.day {
     }
     #coursecontent {
         width: 80%;
-        margin: 0 auto;
     }
-
+    
+    #calendar td .buttons a{
+    top:0;
+    width: 90%;
+    height: 40%;
+    font-size: 0.6em;
+    }
 
 }
 
 
-
-@media (max-width:480px) {}
+@media (max-width:480px) {
+    #calendar td .buttons a{
+    top:0;
+    width: 100%;
+    height: 40%;
+    font-size: 0.9em;
+    }
+}
 
 @media only screen and (max-width:1050px) {}
 
 @media (max-width:340px) {}
 
+
 /* ===========================
---- TESTING ZONE
+--- Test Zone
 ============================ */
+
 /*
                                                          c=====e
                                                             H
    ____________                                         _,,_H__
   (__((__((___()                                       //|     |
- (__((__((___()()_____________________________________// |ACME |
+ (__((__((___()()_____________________________________// |BOOM |
 (__((__((___()()()------------------------------------'  |_____|
+
 
 */
 
-#menu{
-    overflow-y: auto;
+
+#practice th{
+    background-color: white;
+    border-bottom: 2px solid black;
+}
+#practice td{
+    background-color: #7FDBFF;
+    border-bottom: 2px solid black;
 }
 
-#sliiider-toggle{
-    display: block;
-}
