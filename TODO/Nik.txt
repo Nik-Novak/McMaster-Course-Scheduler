@@ -1,0 +1,8 @@
+Sliiide:
+	nav exclude
+	move fixed height of menu
+	
+Search:
+	Multiple hits on a name (intra-category search scoring)
+	Searchable by building/room number
+	Searchable by term: fall/winter
