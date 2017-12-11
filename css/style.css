@@ -1543,6 +1543,14 @@ span.day {
         width:29.4%
     }
     
+    #sliiider-toggle-coursecontent{
+        visibility: hidden;
+    }
+    
+    #coursecontent .top, #coursecontent .bottom{
+        float:left;
+    }
+    
 }
     
 /*
