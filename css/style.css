@@ -1540,7 +1540,8 @@ span.day {
         width: 95%
     }
     #coursecontent {
-        display: none;
+/*        display: none;*/
+        display:inline-block;
     }
     #calendarcontent {
         width: 100%;
@@ -1554,7 +1555,7 @@ span.day {
         width: 75%;
     }
     #coursecontent {
-        width: 100%;
+        width: 80%;
     }
     
     #calendar td .buttons a{
