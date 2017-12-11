@@ -450,7 +450,7 @@ hr {
     display: inline-block;
     position: absolute;
     z-index:0;
-    width:29%;
+/*    width:29%;*/
     height:285px;
     left:-0.01%;
     text-align: center;
@@ -476,9 +476,9 @@ hr {
 #menu {
     display: inline-block;
     /*    display: none;*/
-    padding-top: 35px;
+    padding-top: 15px;
     /*margin-right: 10px;*/
-    width: 29%;
+    width: 30%;
     padding-left: 10px;
     padding-right: 10px;
     vertical-align: top;
@@ -642,11 +642,11 @@ button.accordion:hover {
 }
 
 #coursecontent {
-    /*    display: inline-block;*/
-    display: none;
-    padding-top: 35px;
+        display: inline-block;
+/*    display: none;*/
+    padding-top: 15px;
     /*margin-right: 10px;*/
-    width: 29%;
+/*    width: 29%;*/
     padding-left: 10px;
     padding-right: 10px;
     vertical-align: top;
@@ -1521,6 +1521,38 @@ span.day {
     }
 }
 
+#menu .bottom{
+    width:95%;
+}
+
+#coursecontent .bottom, #coursecontent .top{
+    display: inline-block;
+    width:95%;
+    float:right;
+}
+
+#calendarbanner .accordion{
+    padding-top: 100px;
+}
+
+@media (min-width:769px){
+    #coursecontent {
+        display: inline-block;
+        padding-left: 0px; 
+        padding-right: 0px; 
+        width:29.4%
+    }
+    
+    #sliiider-toggle-coursecontent{
+        visibility: hidden;
+    }
+    
+    #coursecontent .top, #coursecontent .bottom{
+        float:left;
+    }
+}
+
+
 
 @media (max-width:768px) {
     #navbar h5,
@@ -1609,16 +1641,3 @@ span.day {
     border-bottom: 2px solid black;
 }
 
-#menu .bottom{
-    width:95%;
-}
-
-#coursecontent .bottom, #coursecontent .top{
-    display: inline-block;
-    width:95%;
-    float:right;
-}
-
-#calendarbanner .accordion{
-    padding-top: 100px;
-}

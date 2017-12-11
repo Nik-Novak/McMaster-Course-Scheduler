@@ -370,18 +370,25 @@ var settingsRight = {
                 auto_close: false //set to true if you want the slider to auto close everytime a child link of it is clicked
                 };
 
+//$(document).ready(()=>{
+//    var menu1 = $('#menu').sliiide(settingsLeft);
+//    var menu2 = $('#coursecontent').sliiide(settingsRight);
+//});
+
 $(document).ready(()=>{
     var enoughtime = true;
-    var menu1 = null;
+    var menu1 = $('#menu').sliiide(settingsLeft);
     var menu2 = null;
+    if($(window).width() < 780)
+        menu2 = $('#coursecontent').sliiide(settingsRight);
     $(window).resize(()=>{
         console.log(enoughtime);
         if(!enoughtime)
             return;
         if($(window).width() < 780){
-            if(menu1==null){
+            if(menu2==null){
                 enoughtime = false;
-                menu1 = $('#menu').sliiide(settingsLeft);
+                
                 menu2 = $('#coursecontent').sliiide(settingsRight);
                 setTimeout(()=>{
                     enoughtime=true;
@@ -390,13 +397,13 @@ $(document).ready(()=>{
         }
         else{
             console.log('reset');
-            if(menu1!=null){
+            if(menu2!=null){
                 enoughtime = false;
 //                console.log('reset');
-                menu1.reset();
+                
                 menu2.reset();
                 setTimeout(()=>{
-                    menu1=null;
+                    
                     menu2=null;
                     enoughtime=true;
                 },700);

@@ -6,3 +6,4 @@ Search:
 	Multiple hits on a name (intra-category search scoring)
 	Searchable by building/room number
 	Searchable by term: fall/winter
+    Fix reset animatons

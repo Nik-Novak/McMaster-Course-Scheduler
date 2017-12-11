@@ -195,7 +195,7 @@
     var scroll = getScrollBarWidth();
     windowSize.height = $(window).height();
     windowSize.width = $(window).width() + scroll;
-    newSize = Prop[settings.place].size(windowSize.height, windowSize.width);
+    newSize = Prop[settings.place].size('100%', windowSize.width); //newSize = Prop[settings.place].size(windowSize.height, windowSize.width);  //default height
     $sliiider.css(newSize);
     $sliiider.css(prefixCSS(Prop[settings.place].properties()));
     setSlideDistance();
