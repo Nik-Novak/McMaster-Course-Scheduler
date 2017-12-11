@@ -394,6 +394,13 @@ $(document).ready(()=>{
                     enoughtime=true;
                 },200);
             }
+            if(menu1==null){
+                enoughtime = false;
+                menu1 = $('#menu').sliiide(settingsLeft);
+                setTimeout(()=>{
+                    enoughtime=true;
+                },200);
+            }
         }
         else if($(window).width() > 1700){
             if(menu1!=null){
@@ -404,6 +411,18 @@ $(document).ready(()=>{
                 setTimeout(()=>{
                     
                     menu1=null;
+                    enoughtime=true;
+                },700);
+            }
+            
+            if(menu2!=null){
+                enoughtime = false;
+//                console.log('reset');
+                
+                menu2.reset();
+                setTimeout(()=>{
+                    
+                    menu2=null;
                     enoughtime=true;
                 },700);
             }
