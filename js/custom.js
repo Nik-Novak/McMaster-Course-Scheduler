@@ -713,7 +713,8 @@ $(document).on("click", "#calendar table tbody tr td", function (e) {
 
     var id = $(this).attr('id');
     var className = $(this).attr('class');
-    alert(id + "  " + className);
+//    alert(id + "  " + className);
+    
 
     //    var courseTypeList;
     //    
@@ -728,7 +729,7 @@ $(document).on("click", "#calendar table tbody tr td", function (e) {
 
     if (className === "innerConflictBox") {
         //alert("innerCOnflictzzzz");
-   
+   alert("Showing options at page bottom ");
         for (var i = 0; i < allConflicts.length; i++) {
             //alert("CHeck 0 : " + kthFromEnd(allConflicts[i], 1).value);
             //console.log("HEllooooo " + i);
@@ -799,7 +800,8 @@ $(document).on("click", "#practice table tbody tr td", function (e) {
 
     var id = $(this).attr('id');
     var className = $(this).attr('class');
-    alert(id + "  " + className);
+//    alert("Enroll? " + id + "  " + className);
+    alert("Enroll? ");
 
     //    var courseTypeList;
     //    
