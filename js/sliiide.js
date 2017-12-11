@@ -291,7 +291,9 @@
   };
 
   var hideSlider = function(e) {
+      setTimeout(()=>{
     $sliiider.css('visibility','hidden');
+      },200);
     $body.css(bodyResetProp);
     $('html').css(bodyResetProp);
     $body.unbind('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', hideSlider);
