@@ -364,7 +364,7 @@ hr {
 
 /*Sliiide Buttons*/
 
-.hide{
+#sliiider-toggle-menu.hide ,#sliiider-toggle-coursecontent.hide {
     display: none;
 }
 

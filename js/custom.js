@@ -402,9 +402,16 @@ function printSLL() {
 
 
 function conflictManager(time, day, oldCourse, newCourse) {
-    if (oldCourse === "-")
-        alert("Dashed line");
-    else {
+    if (oldCourse === "-") {
+        
+        while (fullGrid[index][day] !== undefined) {
+            if (fullGrid[index][day] === undefined) {
+                alert("WTF IS GOING ON");
+            }
+            console.log(fullGrid[index][day]);
+            index = index - 1;
+        }
+    } else {
         //if course hasn't conflicted yet create new linked list
         if(oldCourse.courseObject.conflict === false){
             var tempSLL = new LinkedList();
@@ -920,13 +927,19 @@ $(".screenswitch").click(function () {
 
 
 $( "#sliiider-toggle-menu" ).click(function() {
-  $( "#sliiider-toggle-menu" ).toggleClass( "is-active" ),
-  $( ".buttonTextL" ).toggleClass( "hide" )
+    setTimeout(()=>{
+        $( "#sliiider-toggle-menu" ).toggleClass( "is-active" );
+    }, 300);
+
+  $( ".buttonTextL" ).toggleClass( "hide" );
 });
 
 $( "#sliiider-toggle-coursecontent" ).click(function() {
-  $( "#sliiider-toggle-coursecontent" ).toggleClass( "is-active" ),
-  $( ".buttonTextR" ).toggleClass( "hide" )
+        setTimeout(()=>{
+    $( "#sliiider-toggle-coursecontent" ).toggleClass( "is-active" );
+    }, 300);
+
+  $( ".buttonTextR" ).toggleClass( "hide" );
 });
 
 
