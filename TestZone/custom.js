@@ -25,5 +25,21 @@
     backgroundColor: '#666',
     color: '#fff'
   },
-      contents:'afhjbvcsdfbcv'
+      contents:$('<img src="img/smiley.jpg" alt="failed to laod"><div style="display:block; margin:0 auto;" ><input type="text" place-holder="Search for a course"><button>Search</button></div>'),//contents:'<img src="img/smiley.jpg" alt="failed to laod">',
+      html:true
+});
+
+  $('#cook').balloon({
+  tipSize: 24,
+  css: {
+    border: 'solid 4px #5baec0',
+    padding: '10px',
+    fontSize: '150%',
+    fontWeight: 'bold',
+    lineHeight: '3',
+    backgroundColor: '#666',
+    color: '#fff'
+  },
+      contents:$('<img src="img/gas.jpg" alt="failed to laod">'),//contents:'<img src="img/smiley.jpg" alt="failed to laod">',
+      html:true
 });

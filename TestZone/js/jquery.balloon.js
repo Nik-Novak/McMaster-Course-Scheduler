@@ -228,7 +228,6 @@
       if($.balloon.defaults.css === null) { $.balloon.defaults.css = {}; }
       this.data('options', $.extend(true, {}, $.balloon.defaults, options || {}));
     }
-      
     options = this.data('options');
     return this.each(function() {
       var target = this, $target = $(target);
@@ -240,12 +239,9 @@
       const contents = $.isFunction(options.contents) ? options.contents.call(target)
         : (options.contents || $target.attr('title') || $target.attr('alt'));
       $target.removeAttr('title');
-        
       var ajax = $.isFunction(options.ajax) || options.url;
-//      if(!ajax && contents === '' || contents == null) { return; }
-//        alert();
+      if(!ajax && contents === '' || contents == null) { return; }
       if(!$.isFunction(options.contents)) { options.contents = contents; }
-        
       if(!ajax) {
         assignContents($balloon, options, contents);
       } else if(!$balloon.data('ajaxDisabled')) {
@@ -292,13 +288,11 @@
         .removeClass(optionsOld.classname)
         .addClass(options.classname);
       if(isNew) {
-//          alert();
         $balloon.css({ visibility: 'hidden', position: 'absolute' }).appendTo('body');
         $target.data('balloon', $balloon);
         makeupBalloon($target, $balloon, options);
         $balloon.hide().css('visibility', 'visible');
       } else {
-//          alert();
         makeupBalloon($target, $balloon, options);
       }
       $balloon.data('delay', setTimeout(function() {

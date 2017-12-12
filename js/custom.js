@@ -884,6 +884,20 @@ $(document).on("click", "#practice table tbody tr td", function (e) {
 $(".cores").click(function () {
     viewMode = "search";
     generateTentativeView("C");
+    
+  $('.innerConflictBox').balloon({
+  tipSize: 24,
+  css: {
+    border: 'solid 4px #5baec0',
+    padding: '10px',
+    fontSize: '150%',
+    fontWeight: 'bold',
+    lineHeight: '3',
+    backgroundColor: '#666',
+    color: '#fff'
+  },
+      contents:'Hello'
+});
 })
 
 $(".labs").click(function () {
@@ -1115,6 +1129,8 @@ function removeClass(courseCode, room, instructor, startTime, endTime, day) {
     $(startTimeClass + " " + dayClass + ' span:eq(0)').text("");
     $(startTimeClass + " " + dayClass + ' span:eq(1)').text("");
 }
+
+
 
 
 
