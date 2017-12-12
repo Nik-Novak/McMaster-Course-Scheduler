@@ -572,6 +572,8 @@ function generateTentativeView(courseType) {
 
 
 function render() {
+    
+    
     //alert("first render");
     //printSLL();
     var insert = "<td><span></span><br><span></span></td>";
@@ -619,20 +621,33 @@ function render() {
         masterRenderList[i] = tempTransferList;
     }
 
-
-    //removes all td's except the hour td's
-    $("#calendar tbody tr td:not(.hour)").remove();
-
+//removes all td's except the hour td's
+$("#calendar tbody tr td:not(.hour)").remove();
 
 
-    for (var k = 0; k < fullGrid.length; k++) {
-        for (var m = 0; m < fullGrid[k].length; m++) {
-            $("#calendar tbody tr.r" + k).append(masterRenderList[k][m]);
-        }
+
+for (var k = 0; k < fullGrid.length; k++) {
+    for (var m = 0; m < fullGrid[k].length; m++) {
+        $("#calendar tbody tr.r" + k).append(masterRenderList[k][m]);
     }
+}
 
 
-    //console.log(fullGrid);
+//console.log(fullGrid);
+$('.innerConflictBox').balloon({
+    tipSize: 0,
+    css: {
+        border: 'solid 4px #5baec0',
+        padding: '10px',
+        fontSize: '150%',
+        fontWeight: 'bold',
+        lineHeight: '3',
+        backgroundColor: '#666',
+        color: '#fff'
+    },
+    contents: $('<div style="display:block; margin:0 auto;" ><input type="text" place-holder="Search for a course"><button>Search</button></div>'),
+    html: true
+});
 
 }
 
@@ -757,6 +772,7 @@ $(document).on("click", "#calendar table tbody tr td", function (e) {
                 var numConflicts = linkedListLength(allConflicts[i]);
                 index = allConflicts[i].head;
                 //console.log(index);
+                $("#practice tbody tr td").remove();
                 for (var j = 0; j < numConflicts; j++) {
                     //alert("CHeck 2");
 //                    innerConflictsList.push(index);
@@ -767,6 +783,7 @@ $(document).on("click", "#calendar table tbody tr td", function (e) {
                     var section = index.value.courseObject.section;
                     var room = index.value.courseObject.r_periodsArr[index.value.classNum][1];
                     var cInsertion = "<td id='" + index.value.courseObject.serial + "' class='tentativeBox' rowspan='" + numBlocks + "'><span>" + code + "-" + section + "</span><br><span>" + room + "</span></td>";
+                    
                     $("#practice tbody tr").append(cInsertion);
                     index = index.next;
                 }
@@ -891,20 +908,7 @@ $(".cores").click(function () {
     viewMode = "search";
     generateTentativeView("C");
     
-  $('.innerConflictBox').balloon({
-  tipSize: 24,
-  css: {
-    border: 'solid 4px #5baec0',
-    padding: '10px',
-    fontSize: '150%',
-    fontWeight: 'bold',
-    lineHeight: '3',
-    backgroundColor: '#666',
-    color: '#fff'
-  },
-      contents:$('<img style="margin: 0 auto" src="img/home.svg" alt="failed to laod"><div style="display:block; margin:0 auto;" ><input type="text" place-holder="Search for a course"><button>Search</button></div>'),
-      html:true
-});
+
 })
 
 $(".labs").click(function () {
