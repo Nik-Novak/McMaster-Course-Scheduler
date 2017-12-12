@@ -644,8 +644,14 @@ function formatNoConflict(objWithClassNum) {
     var numBlocks = quikmafs(objWithClassNum.courseObject)[classNum];
 
     var room = objWithClassNum.courseObject.r_periodsArr[classNum][1];
-    var cInsertion = "<td id='" + objWithClassNum.courseObject.serial + "' class='tentativeBox' rowspan='" + numBlocks + "'><span>" + code + "-" + section + "</span><br><span>" + room + "</span></td>";
-
+    if(!objWithClassNum.courseObject.is_selected){
+         var cInsertion = "<td id='" + objWithClassNum.courseObject.serial + "' class='tentativeBox' rowspan='" + numBlocks + "'><span>" + code + "-" + section + "</span><br><span>" + room + "</span></td>";
+    }
+    else{
+        var cInsertion = "<td id='" + objWithClassNum.courseObject.serial + "' class='tentativeBoxSelected' rowspan='" + numBlocks + "'><span>" + code + "-" + section + "</span><br><span>" + room + "</span></td>";
+    }
+    
+   
 
     //        console.log(cInsertion);
     return cInsertion;

@@ -949,6 +949,13 @@ button.accordion:hover {
     background: rgba(127, 219, 255, 1);
 }
 
+#calendar .tentativeBoxSelected{
+    background: rgba(127, 219, 255, 1);
+}
+
+
+
+
 #calendar .conflictBox{
     
     background: rgba(255, 65, 54, 0.3);  
