@@ -896,7 +896,8 @@ $(".cores").click(function () {
     backgroundColor: '#666',
     color: '#fff'
   },
-      contents:'Hello'
+      contents:$('<img style="margin: 0 auto" src="img/home.svg" alt="failed to laod"><div style="display:block; margin:0 auto;" ><input type="text" place-holder="Search for a course"><button>Search</button></div>'),
+      html:true
 });
 })
 
