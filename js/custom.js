@@ -645,7 +645,7 @@ $('.innerConflictBox').balloon({
         backgroundColor: '#666',
         color: '#fff'
     },
-    contents: $('<div style="display:block; margin:0 auto;" ><input type="text" place-holder="Search for a course"><button>Search</button></div>'),
+    contents: $("<div id='practice'><table><thead><tr><th><span>OPTIONS</span></th></thead><tbody><tr><td><span>ksjdhfddkjshdf</span><br><span>ksdkjfh</span></td></tr></tbody></table></div>"),
     html: true
 });
 
@@ -725,7 +725,9 @@ function formatInnerConflict(objWithClassNum) {
 
 function formatConflict(objWithClassNum){
     
-    
+    var cInsertion = "<td id='temp" + objWithClassNum.courseObject.serial + "' class='innerConflictBox' rowspan='" + numBlocks + "'><span>CONFLICT!</span><br><span>Select</span></td>";
+
+
 }
 
 
