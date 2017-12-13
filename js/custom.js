@@ -743,23 +743,6 @@ for (var k = 0; k < fullGrid.length; k++) {
     }
 }
 
-
-//console.log(fullGrid);
-$('.innerConflictBox').balloon({
-    tipSize: 0,
-    css: {
-        border: 'solid 4px #5baec0',
-        padding: '10px',
-        fontSize: '150%',
-        fontWeight: 'bold',
-        lineHeight: '3',
-        backgroundColor: '#666',
-        color: '#fff'
-    },
-    contents: $("<div id='practice'><table><thead><tr><th><span>OPTIONS</span></th></thead><tbody><tr><td><span>ksjdhfddkjshdf</span><br><span>ksdkjfh</span></td></tr></tbody></table></div>"),
-    html: true
-});
-
 }
 
 function formatNoConflict(objWithClassNum) {

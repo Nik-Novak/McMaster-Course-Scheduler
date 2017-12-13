@@ -301,9 +301,6 @@
 
         <section id="calendarcontent">
 
-
-
-
             <div id='calendarbanner'>
 
                 <button id="sliiider-toggle-menu" class="hamburger hamburger--arrowturn-r" type="button">
@@ -425,13 +422,44 @@
                         <tr class="r11">
                             <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td>
                         </tr>
+                        
+<!--
+                        <div class='popup-wrapper'>     
+                                            <p class="course-popup">
+
+                                                <a href="#" class="btn btn-default"><i class="fa fa-refresh"></i>Change</a>
+                                                <a href="#" class="btn btn-default"><i class="fa fa-times"></i>Remove</a>
+                                            </p>
+WAS WITHIN r12.tentative
+                                          <p class="course-popup">
+                                           
+                                            <a href="#" class="btn btn-default"><i class="fa fa-refresh"></i>Change</a>
+                                            <a href="#" class="btn btn-default"><i class="fa fa-times"></i>Remove</a>
+                                            </p>
+                                </div>    
+-->
 
                         <tr class="r12">
                             <td class="hour" rowspan="2"><span>2:30</span></td>
+                            <td class='tentativeBox' rowspan='2'><span>2K03 - C01</span><br><span>BSB 201</span>
+                                           
+                                           <div class='popup-wrapper'>     
+                                            <p class="course-popup">
+                                                    <table>
+                                                        
+                                                    </table>
+                                            </p>
+
+                                         
+                                            </div>    
+                                  
+                                            </td>
+<!--
                             <td class='tentativeBox' rowspan='2'><span>2K03 - C01</span><br><span>BSB 201</span><p class="buttons">
                                             <a href="#" class="btn btn-default"><i class="fa fa-refresh"></i>Change</a>
                                             <a href="#" class="btn btn-default"><i class="fa fa-times"></i>Remove</a>
                                         </p></td>
+-->
                             <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td>
                         </tr>
 
@@ -693,6 +721,22 @@
     );
     </script>
 -->
+   
+   
+   
+   <div class='popup-wrapper'>     
+                                            <p class="course-popup">
+
+                                                <a href="#" class="btn btn-default"><i class="fa fa-refresh"></i>Change</a>
+                                                <a href="#" class="btn btn-default"><i class="fa fa-times"></i>Remove</a>
+                                            </p>
+
+                                          <p class="course-popup">
+                                           
+                                            <a href="#" class="btn btn-default"><i class="fa fa-refresh"></i>Change</a>
+                                            <a href="#" class="btn btn-default"><i class="fa fa-times"></i>Remove</a>
+                                            </p>
+                                </div>    
     
 
     <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
@@ -712,7 +756,6 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/sliiide.js"></script>
-    <script src="js/jquery.balloon.js"></script> 
     <!-- Custom JavaScript -->
     <script src="js/firebase-data.js"></script>
     <script src="js/custom.js"></script>
