@@ -73,7 +73,6 @@ var loader = {
 loader.init();
 
 function initializeMenu() {
-    console.log(loader.coursecodes['1AA3']);
     var departments = loader.departments;
     var def = $('<option value="-">Select Department</option>');
     $('.select-department').html('');
@@ -194,7 +193,7 @@ function initializeMenu() {
         console.log(resultsarray);
         
         resultsarray.forEach((result)=>{
-            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(result.courseid).code + '  --id:  '+ result.courseid + ' --weight: ' + result.weight+ '</p>'));
+            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(result.courseid).code + /*'  --id:  '+ result.courseid + ' --weight: ' + result.weight+*/ '</p>'));
         });
     });
 }
