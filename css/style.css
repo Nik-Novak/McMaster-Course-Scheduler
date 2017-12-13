@@ -439,18 +439,91 @@ hr {
 /* ===========================
 --- Search Menus
 ============================ */
+#omg{
+    width: 80%;
+    margin: 0 auto;
+
+}
 
 #qs-form input{
      margin:0 10%;
-    width:80%
+    width:80%;
+    border-radius: 10px;
 }
 
-#menu .bottom {
+#menu .qs p{
+     margin: 0 auto;
+    padding-top:2%;
+    width: 80%;
+    line-height:2vh;
+    font-size: 1vw;
+}
+
+/* Search*/
+#qs-form input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+#qs-form label{
+    margin:0;
+    margin-top: 10px
+}
+
+#qs-form input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#qs-form input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+#qs-form #unicornsdontexist {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+#qs-form .filters input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#qs-form .sub-filters input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+/* /Search*/
+
+#qs-form #menu .bottom {
     /*background-color: white;*/
     display: inline-block;
 }
 
-#menu .loading-span{
+#qs-form #menu .loading-span{
     background-color: rgba(30,30,30,0.5);
     display: inline-block;
     position: absolute;
@@ -461,7 +534,7 @@ hr {
     text-align: center;
 }
 
-#menu .loading-span i{
+#qs-form #menu .loading-span i{
     position: relative;
     display: inline-block;
     float: left;
@@ -470,7 +543,7 @@ hr {
     color: aliceblue;
 }
 
-#menu .loading-span h2{
+#qs-form #menu .loading-span h2{
     position: relative;
     display: inline-block;
     float: left;
@@ -1749,3 +1822,9 @@ span.day {
     border-bottom: 2px solid black;
 }
 
+
+
+#qs-form #unicornsdontexist {
+    padding-top:0;
+    padding-bottom:10px;
+}

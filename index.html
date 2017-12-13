@@ -81,10 +81,46 @@
             <div class='bottom'>
                 <span class='loading-span'><i class="fa fa-circle-o-notch fa-5x faa-spin animated" aria-hidden fa="true"></i><h2>Loading Course Data...</h2></span>
                 <button class="accordion">Quick Search <i class="fa fa-caret-down" aria-hidden="true"></i></button>
-                <div class="panel">
-                   <p>Search for a course by entering: course codes, course names, departments, professors</p>
+                <div id='qs-form' class="panel qs">
+
+                <form id='omg' action="/action_page.php">
+                    <label for="fname">Search for a Course:</label>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                    <label >Filter Results:</label>
+                    <div class='filters'>
+                        <select name="department" value="department" class='select-department'>
+                            <option value="-">Select Department</option>
+                        </select>
+                        <div class='sub-filters'>
+                            <select name="term">
+                                <option value="-">Select Term</option>
+                                <option value="Fall">Fall</option>
+                                <option value="Winter">Winter</option>
+                                <option value="Summer Term 1">Summer Term 1</option>
+                                <option value="Summer Term 2">Summer Term 2</option>
+                            </select>
+                            <select name="level">
+                                <option value="-">Select Level</option>
+                                <option value="First Year">First Year</option>
+                                <option value="Second Year">Second Year</option>
+                                <option value="Third Year">Third Year</option>
+                                <option value="Fourth Year">Fourth Year</option>
+                                <option value="Masters">Masters</option>
+                                <option value="PhD">PhD</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+
+
+                </form>
+                
+<!--
                     <form id='qs-form'>
+                       
+                        <p>Search for a course: by entering: course codes, course names, departments, professors</p>
                         <input id='quicksearch' placeholder="Search..." type="text">
+                        
                         <br>
                         <select name="department" value="department" class='select-department'>
                         <option value="-">Select Department</option>
@@ -109,10 +145,11 @@
                     </select>
 
                         <br>
-<!--                        <button type="submit" value="Submit">Submit</button>-->
+                        <button type="submit" value="Submit">Submit</button>
                     </form>
+-->
                     <div id='unicornsdontexist'>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <label for="">Results:</label>
                     </div>
                 </div>
 
@@ -557,6 +594,7 @@ WAS WITHIN r12.tentative
                 <span class="green"><i class="fa fa-square" aria-hidden="true"></i><span>Enrolled Classes</span></span>
                 <span class="red"><i class="fa fa-square" aria-hidden="true"></i><span>Conflicting Classes</span></span>
             </div>
+<!--
             <button class="screenswitch">Switch The Screen</button>
             <button class="remWeekend">Remove Weekend</button>
             
@@ -582,6 +620,7 @@ WAS WITHIN r12.tentative
                     </tbody>
                 </table>
             </div>
+-->
             
             
         </section>
@@ -719,6 +758,7 @@ WAS WITHIN r12.tentative
    
    
    
+<!--
    <div class='popup-wrapper'>     
                                             <p class="course-popup">
 
@@ -732,6 +772,7 @@ WAS WITHIN r12.tentative
                                             <a href="#" class="btn btn-default"><i class="fa fa-times"></i>Remove</a>
                                             </p>
                                 </div>    
+-->
     
 
     <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
