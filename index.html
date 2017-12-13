@@ -82,21 +82,12 @@
                 <span class='loading-span'><i class="fa fa-circle-o-notch fa-5x faa-spin animated" aria-hidden fa="true"></i><h2>Loading Course Data...</h2></span>
                 <button class="accordion">Quick Search <i class="fa fa-caret-down" aria-hidden="true"></i></button>
                 <div class="panel">
-                    <form>
+                   <p>Search for a course by entering: course codes, course names, departments, professors</p>
+                    <form id='qs-form'>
                         <input id='quicksearch' placeholder="Search..." type="text">
                         <br>
                         <select name="department" value="department" class='select-department'>
                         <option value="-">Select Department</option>
-                    </select>
-                        <br>
-                        <select name="credits">
-                        <option value="-">Select Number of Units</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
                     </select>
                         <br>
                         <select name="term">
@@ -118,11 +109,6 @@
                     </select>
 
                         <br>
-                        <select name="status">
-                        <option value="-">Select Status</option>
-                        <option value="Open">Open</option>
-                        <option value="Closed">Closed</option>
-                    </select>
 <!--                        <button type="submit" value="Submit">Submit</button>-->
                     </form>
                     <div id='unicornsdontexist'>
@@ -448,7 +434,7 @@ WAS WITHIN r12.tentative
 
                         <tr class="r12">
                             <td class="hour" rowspan="2"><span>2:30</span></td>
-                            <td class='enrolledBox' rowspan='2'><span>2K03 - C01</span><br><span>BSB 201</span>
+                            <td class='tentativeBox' rowspan='2'><span>2K03 - C01</span><br><span>BSB 201</span>
                                            
                                            <div class='popup-wrapper'>     
                                             <p class="course-popup">

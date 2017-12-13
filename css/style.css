@@ -438,7 +438,10 @@ hr {
 --- Search Menus
 ============================ */
 
-#menu .top {}
+#qs-form input{
+     margin:0 10%;
+    width:80%
+}
 
 #menu .bottom {
     /*background-color: white;*/
