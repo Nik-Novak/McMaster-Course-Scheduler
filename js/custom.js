@@ -22,13 +22,16 @@ window.fullGrid = grid;
 
 function setup() {
     window.objectList = [];
-    window.coresList = [];
-    window.labsList = [];
-    window.tutorialsList = [];
     window.allConflicts = [];
     window.numConflictIDs = 0;
     window.conflictNumResolved = null;
+//    window.conflictType = null;
 
+}
+function newSearch(){
+    window.coresList = [];
+    window.labsList = [];
+    window.tutorialsList = [];
 }
 
 
@@ -38,7 +41,8 @@ window.viewMode = "locked";
 window.currentSearch = "none";
 
 function parseSearch(searchObject) {
-
+    newSearch();
+    console.log(searchObject);
     this.progCode = searchObject.code; //setting full code -ie SFWRENG 4HC3
     this.code = this.progCode.split(" ")[1]; //setting just course code -ie 4HC3
     this.department = searchObject.department; //setting department -ie SFWRENG
@@ -123,7 +127,9 @@ function build(progCode, code, department, name, type, section, r_periodsArr, se
         is_selected: false,
         is_clickable: true,
         conflict: false, 
-        conflict_id: null
+        conflict_id: null, 
+        conflict_type: null,
+        numBlocks: null
     }
 }
 
@@ -147,6 +153,10 @@ function timeToNum(time) {
     return numBlocks;
 }
 
+/* 
+* Returns courseLength[] 
+* This is an array containing number of rows of each day of each section 
+*/
 function quikmafs(courseObj) {
 
     var courseLengths = [];
@@ -164,29 +174,30 @@ function quikmafs(courseObj) {
     return courseLengths;
 }
 
+/* 2D array sending start time plus length */
 function locationMap(courseObject) {
     var numBlocks = quikmafs(courseObject);
     var obj = courseObject;
     var loc = [numBlocks.length];
+    
+    //creating 2D array with numblocks rows and 2 columns 
     for (var y = 0; y < numBlocks.length; y++) {
         loc[y] = new Array(2);
     }
 
     for (var i = 0; i < numBlocks.length; i++) {
 
-        loc[i][0] = timeToNum(obj.r_periodsArr[i][3]);
-        loc[i][1] = numBlocks[i];
-
-        //console.log(loc[i][0] + " " + loc[i][1]);
-
+        loc[i][0] = timeToNum(obj.r_periodsArr[i][3]);  //start time
+        loc[i][1] = numBlocks[i];                       //length
     }
-    //    console.log("HELLO: " + loc.length);
+
     return loc;
 }
 
 
-/*  Populates gloabal grid if possible, will need to include conflicts here  */
+/*  Populates gloabal grid  */
 function meshGrid(courseObject) {
+    
 
     var locations = locationMap(courseObject);
 
@@ -207,7 +218,8 @@ function meshGrid(courseObject) {
             //                updateGrid(cnt1, cnt2, day, courseObject, locations);
             //
             //            }
-            updateGrid(cnt1, cnt2, day, courseObject, locations);
+
+            updateGrid(cnt1, cnt2, day, courseObject, locations, 0);
 
 
         }
@@ -328,38 +340,7 @@ function kthFromEnd(sll, k){
    return kthNode;
 }
 
-
-
-
-
-//LinkedList.prototype.length = function () {
-//
-//    var position = this.head;
-//    var length = 0;
-//    while(position !== null){
-//        position = position.next;
-//        length++;
-//    }
-//    return length;
-//    
-//}
-
-var c93892 = new LinkedList();
-c93892.push(1);
-c93892.push(2);
-c93892.push(3);
-deleteKthFromEnd(c93892, 1);
-c93892.push(4);
-console.log(kthFromEnd(c93892, 1));
-
-
-
-console.log(c93892.head);
-console.log(c93892.head.next);
-console.log(c93892.head.next.next);
-console.log(c93892.head.next.next.next);
-console.log(linkedListLength(c93892));
-
+/* Returns linked list length */
 function linkedListLength(LinkedList){
     var position = LinkedList.head;
     var length = 0;
@@ -370,6 +351,10 @@ function linkedListLength(LinkedList){
     return length;
 }
 
+/* 
+* 
+* Print to console all classes that are conflicting with each other 
+*/
 function printSLL() {
     for (var i = 0; i < allConflicts.length; i++) {
         var tempArr = [];
@@ -399,83 +384,195 @@ function printSLL() {
     }
 }
 
+//var c93892 = new LinkedList();
+//c93892.push(1);
+//c93892.push(2);
+//c93892.push(3);
+//deleteKthFromEnd(c93892, 1);
+//c93892.push(4);
+//console.log(kthFromEnd(c93892, 1));
+//
+//
+//
+//console.log(c93892.head);
+//console.log(c93892.head.next);
+//console.log(c93892.head.next.next);
+//console.log(c93892.head.next.next.next);
+//console.log(linkedListLength(c93892));
 
 
-function conflictManager(time, day, oldCourse, newCourse) {
-    if (oldCourse === "-") {
-        
-        while (fullGrid[index][day] !== undefined) {
-            if (fullGrid[index][day] === undefined) {
-                alert("WTF IS GOING ON");
-            }
-            console.log(fullGrid[index][day]);
-            index = index - 1;
-        }
-    } else {
-        //if course hasn't conflicted yet create new linked list
-        if(oldCourse.courseObject.conflict === false){
-            var tempSLL = new LinkedList();
-            tempSLL.push(oldCourse);
-            tempSLL.push(newCourse);
-            allConflicts.push(tempSLL);
-//            console.log("NEW Conflict.......");
 
-//            console.log(allConflicts[0].head.value.courseObject.section);
-//            console.log(allConflicts[0].head.next.value.section);
-            oldCourse.courseObject.conflict = true;
-            newCourse.conflict = true;
-            oldCourse.courseObject.conflict_id = numConflictIDs;
-            newCourse.conflict_id = numConflictIDs; 
-            
-            numConflictIDs++;
-        
-            
-        }
-        else{
-            
-            newCourse.conflict = true;
-            //console.log(oldCourse.courseObject);
-            for(var i = 0; i < allConflicts.length; i++){
-                //console.log(kthFromEnd(allConflicts[i], 1).value);
-                if(kthFromEnd(allConflicts[i], 1).value === oldCourse.courseObject){
-                    //alert(kthFromEnd(allConflicts[i], 1).value.section +"  same as " + oldCourse.courseObject.section);
-                    
-                    var tempID = kthFromEnd(allConflicts[i], 1).value.conflict_id;
-                    deleteKthFromEnd(allConflicts[i], 1);
-                    
-                    oldCourse.courseObject.conflict_id = tempID;
-                    newCourse.conflict_id = tempID; 
-                    allConflicts[i].push(oldCourse);
-                    allConflicts[i].push(newCourse);
-                }
-            }
-//            console.log("OLD Conflict.......");
-//            console.log(oldCourse.courseObject.section);
-        }
-//        var old1 = oldCourse.hasOwnProperty("classNum");
-//        var new1 = newCourse.hasOwnProperty("classNum");
 
-//        console.log("Conflict at....");
-//        console.log(time + "  " + day);
-//        console.log("Between");
-//        console.log(oldCourse.courseObject.section);
-//        console.log(newCourse.section);
-//        console.log(old1 + "  " + new1);
-//        console.log("");
 
+
+/*
+ * Dash = true means that you are conflciting with a dah and not a course
+ */
+function conflictManager(time, day, oldCourse, newCourse, numDash) {
+    if (oldCourse.courseObject.is_selected === true) {
+        //alert("Should be seeing a conflict...");
+        console.log("Should be seeing a conflict...");
+        console.log(oldCourse.courseObject);
+        console.log(newCourse);
     }
+
+
+
+    /* Find a better way for if statements, right now there is overlap -- doing things twice for no reason */
+    //console.log("print");
+    //console.log(oldCourse);
+
+    //make initial statement that says that we are dealing with a tentative course
+    //    if(oldCourse === "-"){
+    //        al
+    //    }
+    //    if(oldCourse.courseObject.is_selected === true){
+    //        alert("oldCourse.courseObject.is_selected === true");
+    //        
+    //        oldCourse.courseObject.conflict_type = "between";
+    //        newCourse.conflict_type = "between";
+    //        
+    //    }
+    //    
+    //    //this means we are dealing with 
+    //    else if(oldCourse.courseObject.conflict_type === "between"){
+    //        alert("oldCourse.courseObject.conflict_type === 'between'");
+    //        newCourse.conflict_type = "between";
+    //        
+    //    }
+    //    else{
+    //        //alert("'inner'");
+    //        oldCourse.courseObject.conflict_type = "inner";
+    //        newCourse.conflict_type = "inner";
+    //       
+    //    }
+
+
+    //    if (numDash === 8765) {
+    //        alert("YA SHIT IS NULL FAHM");
+    //        //conflictManager(time - 1, day, oldCourse, newCourse, dash);            
+    //
+    //        
+    //    } 
+    //    
+    //    
+    //    else {
+
+    //if course hasn't conflicted yet create new linked list
+    if (oldCourse.courseObject.conflict == false) {
+
+        //if else to seperate whether a course is conflicting with a tentative course or with itself
+
+        if (oldCourse.courseObject.is_selected === true) {
+            //alert("oldCourse.courseObject.is_selected === true");
+            //alert("BETWEEN -- 1");
+            oldCourse.courseObject.conflict_type = "between";
+            newCourse.conflict_type = "between";
+        } else {
+            //alert("INNER -- 1");
+            oldCourse.courseObject.conflict_type = "inner";
+            newCourse.conflict_type = "inner";
+        }
+
+        var tempSLL = new LinkedList();
+        tempSLL.push(oldCourse);
+        tempSLL.push(newCourse);
+        allConflicts.push(tempSLL);
+        //            console.log("NEW Conflict.......");
+
+        //            console.log(allConflicts[0].head.value.courseObject.section);
+        //            console.log(allConflicts[0].head.next.value.section);
+        oldCourse.courseObject.conflict = true;
+        newCourse.conflict = true;
+        oldCourse.courseObject.conflict_id = numConflictIDs;
+        newCourse.conflict_id = numConflictIDs;
+
+        numConflictIDs++;
+
+
+    } else {
+
+        //if else to seperate whether a course is conflicting with a tentative course or with itself
+        if (oldCourse.courseObject.conflict_type === "between") {
+            //alert("BETWEEN -- 2");
+            newCourse.conflict_type = "between";
+        } else {
+            //alert("INNER -- 2");
+            newCourse.conflict_type = "inner";
+        }
+
+
+        newCourse.conflict = true;
+        //console.log(oldCourse.courseObject);
+        for (var i = 0; i < allConflicts.length; i++) {
+            //console.log(kthFromEnd(allConflicts[i], 1).value);
+            if (kthFromEnd(allConflicts[i], 1).value === oldCourse.courseObject) {
+                //alert(kthFromEnd(allConflicts[i], 1).value.section +"  same as " + oldCourse.courseObject.section);
+
+                var tempID = kthFromEnd(allConflicts[i], 1).value.conflict_id;
+                deleteKthFromEnd(allConflicts[i], 1);
+
+                oldCourse.courseObject.conflict_id = tempID;
+                newCourse.conflict_id = tempID;
+                allConflicts[i].push(oldCourse);
+                allConflicts[i].push(newCourse);
+            }
+        }
+        //            console.log("OLD Conflict.......");
+        //            console.log(oldCourse.courseObject.section);
+    }
+    //        var old1 = oldCourse.hasOwnProperty("classNum");
+    //        var new1 = newCourse.hasOwnProperty("classNum");
+
+    //        console.log("Conflict at....");
+    //        console.log(time + "  " + day);
+    //        console.log("Between");
+    //        console.log(oldCourse.courseObject.section);
+    //        console.log(newCourse.section);
+    //        console.log(old1 + "  " + new1);
+    //        console.log("");
+
+
 
 }
 
-function updateGrid(outer, inner, day, courseObject, locations) {
-    if (viewMode === "search") {
 
+
+/*
+*if object is the initial object do something else keep searching for initial object
+*if object is the same size as the object that it finds that is not the original you make sure it gets sent but you do not
+*override this because it is the 'same' object --> ie tutorial
+*if object is smaller you add to the current location with same idea for adding the original object 
+*if larger you resend in the large one first and then send in the smaller one 
+*the smaller object must always come last
+*if overlap is possible between elements that are being placed you must always check to make sure you aren't replacing the
+*object below by a dash or a rowspan
+*lets code this bitch :->>>>>>>>>>>>>>>
+*/
+function updateGrid(outer, inner, day, courseObject, locations, numDash) {
+    if (viewMode === "search") {
+        console.log("Number of Dashes: " + numDash);
         if (inner == 0) {
 
-            if (fullGrid[locations[outer][0]][day] !== undefined) {
-
-                conflictManager(locations[outer][0], day, fullGrid[locations[outer][0]][day], courseObject);
+            //if object is the initial object do something else keep searching for initial object
+            //if object is the same size as the object that it finds that is not the original you make sure it gets sent but you do not
+            //override this because it is the 'same' object --> ie tutorial
+            //if object is smaller you add to the current location with same idea for adding the original object 
+            //if larger you resend in the large one first and then send in the smaller one 
+            //the smaller object must always come last
+            //if overlap is possible between elements that are being placed you must always check to make sure you aren't replacing the
+            //object below by a dash or a rowspan
+            //lets code this bitch :->>>>>>>>>>>>>>>
+            if (typeof(fullGrid[locations[outer][0] - numDash][day]) === "object") {
+                conflictManager(locations[outer][0], day, fullGrid[locations[outer][0] - numDash][day], courseObject, numDash);
             }
+            else if(fullGrid[locations[outer][0] - numDash][day] === "-"){
+                numDash++;
+                updateGrid(outer, inner, day, courseObject, locations, numDash);
+            }
+            
+            
+            //this is where we used to populate fullGrid, moving functionality into conflictManager
             fullGrid[locations[outer][0]][day] = {
                 courseObject: courseObject,
                 classNum: outer
@@ -538,7 +635,8 @@ function updateGrid(outer, inner, day, courseObject, locations) {
 
         }
 
-    } else if (viewMode === "options") {}
+    } 
+//    else if (viewMode === "options") {}
 
 }
 
@@ -575,7 +673,7 @@ function render() {
     
     
     //alert("first render");
-    //printSLL();
+    printSLL();
     var insert = "<td><span></span><br><span></span></td>";
     var none = "<td style='display:none;'><span></span><br><span></span></td>";
 
@@ -597,14 +695,27 @@ function render() {
             
             if ((typeof(fullGrid[i][j]) === "object")) {
                 //console.log(fullGrid[i][j].courseObject.is_selected);
-                if (fullGrid[i][j].courseObject.conflict && (fullGrid[i][j].courseObject.is_selected===false)) {
+                if (fullGrid[i][j].courseObject.conflict_type === "inner" && viewMode==="search") {
                     //console.log("True " + fullGrid[i][j].courseObject.conflict + " i: " + i + " j:" + j);
                     var formatted1 = formatInnerConflict(fullGrid[i][j]);
                     tempTransferList.unshift(formatted1);
-                } else {
-                    //console.log("False " + fullGrid[i][j].courseObject.conflict + " i: " + i + " j:" + j);
-                    var formatted2 = formatNoConflict(fullGrid[i][j]);
+                } 
+                else if(fullGrid[i][j].courseObject.conflict_type === "between" && viewMode==="search"){
+//                    alert("HELLOOOLDJFOSJDOIFJOI");
+                    console.log(fullGrid[i][j].courseObject);
+                    var formatted2 = formatConflict(fullGrid[i][j]);
                     tempTransferList.unshift(formatted2);
+                    
+                    
+                }else {
+                    //console.log("False " + fullGrid[i][j].courseObject.conflict + " i: " + i + " j:" + j);
+                    
+                    fullGrid[i][j].courseObject.conflict_type = null;
+                    
+                    
+                    
+                    var formatted3 = formatNoConflict(fullGrid[i][j]);
+                    tempTransferList.unshift(formatted3);
                 }
                 
                 
@@ -713,21 +824,60 @@ function formatInnerConflict(objWithClassNum) {
     
     var cInsertion = "<td id='temp" + objWithClassNum.courseObject.serial + "' class='innerConflictBox' rowspan='" + numBlocks + "'><span>Multiple Options</span><br><span>Select</span></td>";
 
-
-    
-    
-
     return cInsertion;
 }
 
 
 
 
-function formatConflict(objWithClassNum){
+function formatConflict(objWithClassNum) {
+
+    var code = objWithClassNum.courseObject.code;
+    var section = objWithClassNum.courseObject.section;
+    var classNum = objWithClassNum.classNum;
+
+    var numBlocks = quikmafs(objWithClassNum.courseObject)[classNum];
+
+    var room = objWithClassNum.courseObject.r_periodsArr[classNum][1];
     
-    var cInsertion = "<td id='temp" + objWithClassNum.courseObject.serial + "' class='innerConflictBox' rowspan='" + numBlocks + "'><span>CONFLICT!</span><br><span>Select</span></td>";
+    //        console.log(cInsertion);
+    
+//    var innerConflictsList = [];
+    for (var i = 0; i < allConflicts.length; i++) {
+        if (kthFromEnd(allConflicts[i], 1).value === objWithClassNum.courseObject) {
+            //alert(kthFromEnd(allConflicts[i], 1).value.section + "  same as " + objWithClassNum.courseObject.section);
+            deleteKthFromEnd(allConflicts[i], 1);
+            allConflicts[i].push(objWithClassNum);
+            
+//            var numConflicts = linkedListLength(allConflicts[i]);
+//            index = allConflicts[i].head;
+//            
+//            for(var j = 0; j < numConflicts; j++){
+//                innerConflictsList.push(index);
+//                //var print1 = index.value.courseObject.progCode + " " + index.value.courseObject.section;
+//                //console.log(print1);
+//                index = index.next;
+//            }
+//            
+            
+        }
+    }
+    
+//    for(var k = 0; k < innerConflictsList.length; k++){
+//    
+//        console.log(innerConflictsList[k]);
+//        //$("#practice tbody tr" + k).append(masterRenderList[k][m]);
+//        
+//    }
+    
+    
+    var cInsertion = "<td id='temp" + objWithClassNum.courseObject.serial + "' class='conflictBox' rowspan='" + numBlocks + "'><span>Conflict With</span><br><span>Tentative Course!</span></td>";
 
 
+    
+    
+
+    return cInsertion;
 }
 
 
@@ -759,17 +909,19 @@ $(document).on("click", "#calendar table tbody tr td", function (e) {
 
     if (className === "innerConflictBox") {
         //alert("innerCOnflictzzzz");
-   alert("Showing options at page bottom ");
+        //alert("Inner Conflict! See options at bottom...");
+        
+        
         for (var i = 0; i < allConflicts.length; i++) {
             //alert("CHeck 0 : " + kthFromEnd(allConflicts[i], 1).value);
             //console.log("HEllooooo " + i);
             //console.log("temp"+kthFromEnd(allConflicts[i], 1).value.courseObject.serial);
-            var optionID = "temp"+kthFromEnd(allConflicts[i], 1).value.courseObject.serial
+            var optionID = "temp" + kthFromEnd(allConflicts[i], 1).value.courseObject.serial;
             if (optionID === id) {
                 //alert("CHeck 1");
                 //alert(kthFromEnd(allConflicts[i], 1).value.section + "  same as " + objWithClassNum.courseObject.section);
-//                deleteKthFromEnd(allConflicts[i], 1);
-//                allConflicts[i].push(objWithClassNum);
+                //                deleteKthFromEnd(allConflicts[i], 1);
+                //                allConflicts[i].push(objWithClassNum);
 
                 var numConflicts = linkedListLength(allConflicts[i]);
                 index = allConflicts[i].head;
@@ -777,7 +929,7 @@ $(document).on("click", "#calendar table tbody tr td", function (e) {
                 $("#practice tbody tr td").remove();
                 for (var j = 0; j < numConflicts; j++) {
                     //alert("CHeck 2");
-//                    innerConflictsList.push(index);
+                    //                    innerConflictsList.push(index);
                     //var print1 = index.value.courseObject.progCode + " " + index.value.courseObject.section;
                     //console.log(print1);
                     var numBlocks = quikmafs(index.value.courseObject)[index.value.classNum];
@@ -785,17 +937,15 @@ $(document).on("click", "#calendar table tbody tr td", function (e) {
                     var section = index.value.courseObject.section;
                     var room = index.value.courseObject.r_periodsArr[index.value.classNum][1];
                     var cInsertion = "<td id='" + index.value.courseObject.serial + "' class='tentativeBox' rowspan='" + numBlocks + "'><span>" + code + "-" + section + "</span><br><span>" + room + "</span></td>";
-                    
                     $("#practice tbody tr").append(cInsertion);
                     index = index.next;
                 }
             }
         }
-        
-        
-        
-        
-        
+    }
+    else if(className === "conflictBox"){
+        //alert("Conflict! See options at bottom...");
+        var optionID = "temp" + kthFromEnd(allConflicts[i], 1).value.courseObject.serial;
     }
     else {
         for (var i = 0; i < currentSearchList.length; i++) {
@@ -833,7 +983,7 @@ $(document).on("click", "#practice table tbody tr td", function (e) {
     var id = $(this).attr('id');
     var className = $(this).attr('class');
 //    alert("Enroll? " + id + "  " + className);
-    alert("Enroll? ");
+    //alert("Enroll? ");
 
     //    var courseTypeList;
     //    
@@ -890,6 +1040,11 @@ $(document).on("click", "#practice table tbody tr td", function (e) {
                 console.log("id match: ORIGINAL");
                 console.log(currentSearchList[i]);
                 currentSearchList[i].is_selected = true;
+                
+                //need to ensure that you make the course have property conflict: false 
+                //alert("About to print!!!!!");
+                console.log(currentSearchList[i].conflict);
+                currentSearchList[i].conflict = false;
                 viewMode = "locked";
             } else if (currentSearchList[i].serial === id && currentSearchList[i].is_selected === true) {
                 console.log("id match: EDIT");
@@ -1062,7 +1217,6 @@ function dayChange(dayNum) {
     }
     return dayClass;
 }
-
 
 function startTimeConvert(start) {
     var startTimeClass;
