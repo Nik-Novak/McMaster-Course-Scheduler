@@ -88,6 +88,7 @@
                     <input type="text" id="quicksearch" name="firstname" placeholder="Code, Department, Name, Prof">
                     <label >Filter Results:</label>
                     <div class='filters'>
+                        
                         <select name="department" value="department" class='select-department'>
                             <option value="-">Select Department</option>
                         </select>
@@ -395,11 +396,32 @@
                     <tbody>
                         <tr class="r0">
                             <td class="hour" rowspan="2"><span>8:30</span></td>
-                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td>
+                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td class='enrolledBox' rowspan='2'><span>4H03 - C01</span><br><span>ITB AB102</span>
+                                                <div class='popup-wrapper'>
+                                               <div class='popup-info'>
+                                                   <table>
+                                                            <thead>
+                                                                <tr><th colspan='3'>SFWRENG 3XA3</th></tr>
+                                                                <tr><th colspan='3'>Software design and nonsense</th></tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr><td>Dept.</td><td colspan='2'>SFWRENG</td></tr>
+                                                                <tr><td>Term</td><td colspan='2'>1</td></tr>
+                                                                <tr><td>Credits</td><td colspan='2'>3</td></tr>
+                                                                <tr><td>Instr.</td><td colspan='2'>Aaron Childs</td></tr>
+                                                                <tr><td>Status</td><td colspan='2'>FULL</td></tr>
+                                                                <tr><td>Start</td><td>Mon</td><td>11:30</td></tr>
+                                                                <tr><td>End</td><td>Mon</td><td>14:20</td></tr>
+                                                            </tbody>
+                                                        </table>
+                                               </div>     
+
+                                                </div>  
+                                            </td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td>
                         </tr>
 
                         <tr class="r1">
-                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td>
+                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td>
                         </tr>
 
                         <tr class="r2">
@@ -425,13 +447,35 @@
                             <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td>
                         </tr>
                         <tr class="r7">
-                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td id="12541" class="tentativeBoxSelected" rowspan="6"><span>2K03-C12</span><br><span>MDCL 3304</span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td>
+                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td id="12541" class="tentativeBox" rowspan="6"><span>2K03-C12</span><br><span>MDCL 3304</span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td>
                         </tr>
 
                         <tr class="r8">
                             <td class="hour" rowspan="2"><span>12:30</span></td>
                             <td class='enrolledBox' rowspan='2'><span>4H03 - C01</span><br><span>ITB AB102</span>
                                             </td><td><span></span><br><span></span></td><td class='enrolledBox' rowspan='2'><span>4H03 - C01</span><br><span>ITB AB102</span>
+
+                                              <div class='popup-wrapper'>
+                                               <div class='popup-info'>
+                                                   <table>
+                                                            <thead>
+                                                                <tr><th colspan='3'>SFWRENG 3XA3</th></tr>
+                                                                <tr><th colspan='3'>Software design and nonsense</th></tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr><td>Dept.</td><td colspan='2'>SFWRENG</td></tr>
+                                                                <tr><td>Term</td><td colspan='2'>1</td></tr>
+                                                                <tr><td>Credits</td><td colspan='2'>3</td></tr>
+                                                                <tr><td>Instr.</td><td colspan='2'>Aaron Childs</td></tr>
+                                                                <tr><td>Status</td><td colspan='2'>FULL</td></tr>
+                                                                <tr><td>Start</td><td>Mon</td><td>11:30</td></tr>
+                                                                <tr><td>End</td><td>Mon</td><td>14:20</td></tr>
+                                                            </tbody>
+                                                        </table>
+                                               </div>     
+                                                
+
+                                           </div>  
                                             </td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td>
                         </tr>
                         
@@ -473,14 +517,25 @@ WAS WITHIN r12.tentative
                             <td class="hour" rowspan="2"><span>2:30</span></td>
                             <td class='tentativeBox' rowspan='2'><span>2K03 - C01</span><br><span>BSB 201</span>
                                            
-                                           <div class='popup-wrapper'>     
-                                            <p class="course-popup">
-<!--
-                                                    <table>
-                                                        
+                                           <div class='popup-wrapper'>
+                                           <div class='popup-info'>
+                                               <table>
+                                                        <thead>
+                                                            <tr><th colspan='3'>SFWRENG 3XA3</th></tr>
+                                                            <tr><th colspan='3'>Software design and nonsense</th></tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr><td>Dept.</td><td colspan='2'>SFWRENG</td></tr>
+                                                            <tr><td>Term</td><td colspan='2'>1</td></tr>
+                                                            <tr><td>Credits</td><td colspan='2'>3</td></tr>
+                                                            <tr><td>Instr.</td><td colspan='2'>Aaron Childs</td></tr>
+                                                            <tr><td>Status</td><td colspan='2'>FULL</td></tr>
+                                                            <tr><td>Start</td><td>Mon</td><td>11:30</td></tr>
+                                                            <tr><td>End</td><td>Mon</td><td>14:20</td></tr>
+                                                        </tbody>
                                                     </table>
--->
-                                            </p>
+                                           </div>     
+                                           
 
                                          
                                             </div>    
@@ -505,7 +560,7 @@ WAS WITHIN r12.tentative
                         </tr>
 
                         <tr class="r15">
-                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td id="16109" class="tentativeBoxSelected" rowspan="4"><span>3L03-L08</span><br><span>ABB 106</span></td><td><span></span><br><span></span></td>
+                            <td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td id="16109" class="tentativeBox" rowspan="4"><span>3L03-L08</span><br><span>ABB 106</span></td><td><span></span><br><span></span></td>
                         </tr>
 
                         <tr class="r16">
@@ -564,7 +619,7 @@ WAS WITHIN r12.tentative
 
                         <tr class="r26">
                             <td class="hour" rowspan="2"><span>9:30</span></td>
-                            <td></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td id="15375" class="tentativeBoxSelected" rowspan="2"><span>2LL3-T04</span><br><span>ETB 237</span></td><td><span></span><br><span></span></td><td>
+                            <td></td><td><span></span><br><span></span></td><td><span></span><br><span></span></td><td id="15375" class="tentativeBox" rowspan="2"><span>2LL3-T04</span><br><span>ETB 237</span></td><td><span></span><br><span></span></td><td>
                         </tr>
 
                         <tr class="r27">
@@ -736,6 +791,7 @@ WAS WITHIN r12.tentative
         </section>
 
     </div>
+
     
     
 <!--  CUSTOM REACT..???

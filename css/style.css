@@ -1484,9 +1484,11 @@ span.day {
 
 #calendar td .popup-wrapper {
      position: absolute;
-    bottom: 110%;
-    
+    bottom: 100%;
+    width:142%;
+    left: -1.7vw;
 }
+
 
 #calendar td .popup-wrapper{
 
@@ -1545,6 +1547,24 @@ span.day {
 }
 */
 
+/* POPUP STUFF */
+
+#calendar .popup-info table{
+    display: inline-block;
+ margin: 0 auto;
+    padding:0 auto;
+    margin-top: 10px;
+    margin-bottom: 5px;
+   table-layout: fixed;
+    text-align: center;
+    width: auto;
+}
+
+#calendar  thead > tr:nth-child(2) > th{
+    font-size: 10px;
+}
+/* /POPUP STUFF */
+
 /* ===========================
 --- Media Queries
 ============================ */
@@ -1580,11 +1600,20 @@ span.day {
     #calendar tr td:not(.hour) {
         font-size: 0.8em;
     }
+    #calendar  thead > tr:nth-child(2) > th{
+    font-size: 8px;
+}
 }
 
 @media (max-width:875px) {
     #calendar tr td:not(.hour) {
         font-size: 0.75em;
+    }
+    
+    #calendar td .popup-wrapper {
+        width:200%;
+        left: -6vw;
+        font-size: 15px;
     }
 }
 
@@ -1789,6 +1818,14 @@ span.day {
     width: 100%;
     height: 40%;
     font-size: 0.9em;
+    }
+    
+    #calendar td .popup-wrapper {
+         position: absolute;
+        bottom: 100%;
+        width:400%;
+        left: -17vw;
+        font-size: 15px !important;
     }
 }
 
