@@ -242,14 +242,10 @@ function initializeMenu() {
 //            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(result.courseid).code + /*'  --id:  '+ result.courseid + ' --weight: ' + result.weight+*/ '</p>'));
             var course = loader.getCourseById(result.courseid);
             $('#search-table').append( $(createResultTable(course)) );
-            $('.header').off();
-            $('#qs-form .header').click(function () {
-                $(this).nextUntil('tr.header').slideToggle(0.1);
-                $('#qs-form .header').not(this).nextUntil('tr.header').slideUp(0.1);
-                
-            });
+            
         
         });
+        refreshListeners();
     });
 }
 
@@ -286,27 +282,22 @@ function createResultTable(course){
     */
     
             if(course.sections.C !=null){
-                final+='<tr class = "subTable">' +
+                final+='<tr class = "subTable unselectable">' +
                                             '<td>CORE</td>' +
                                             '<td><i class="fa fa-circle" aria-hidden="true"></i></td>' +
                                             '<td><button class="enrollButton">ADD</button></td>' +
-                                        '</tr>' +
-
-                                        '<tr class = "subTable details">' +
-                                            '<td>Instructor:</td>' +
-                                            '<td colspan="2">Staff</td>' +
                                         '</tr>';
             }
     
             if(course.sections.L !=null){
-                final += '<tr class = "subTable">' +
+                final += '<tr class = "subTable unselectable">' +
                                             '<td>LAB</td>' +
                                             '<td><i class="fa fa-square" aria-hidden="true"></i></td>' +
                                             '<td><button class="enrollButton">ADD</button></td>' +
                                         '</tr>';
             }
             if(course.sections.T !=null){
-                final += '<tr class = "subTable">' +
+                final += '<tr class = "subTable unselectable">' +
                                             '<td>Tutorial</td>' +
                                             '<td><i class="fa fa-play" aria-hidden="true"></i></td>' +
                                             '<td><button class="enrollButton">ADD</button></td>' +
@@ -461,6 +452,44 @@ function onData(path, callback) {
     return firebase.database().ref(path).on('value',callback);
 }
 
+var isDragging = false;
+var hasClicked = false;
+function refreshListeners(){
+    $('.header').off();
+    $('#qs-form .header').click(function () {
+        $(this).nextUntil('tr.header').slideToggle(0.1);
+        $('#qs-form .header').not(this).nextUntil('tr.header').slideUp(0.1);
+    });
+    
+    
+    $('#menu tr.subTable').mousedown((event)=>{
+        isDragging = false;
+        hasClicked = true;
+        console.log('mdown');
+    });
+    $('html').mousemove(()=>{
+        
+        if(hasClicked){
+            isDragging = true;
+            var offsetX=0;
+            if(menu1!=null)
+                offsetX = $('#menu').width();
+            var x = event.pageX - offsetX - 120/2;
+            var y = event.pageY - 50/2;
+            console.log('dragging ' + x + " " + y);
+            $('#drag-image').css('left', x).css('top', y).css('display','initial'); 
+        }
+    });
+    $('html').mouseup(()=>{
+        console.log('mup');
+        if(isDragging){
+            $('#drag-image').css('display','none')
+        }
+        isDragging = false;
+        hasClicked = false;
+    });
+}
+
 //TEST ZONE
 
 
@@ -490,11 +519,11 @@ var settingsRight = {
 //    var menu1 = $('#menu').sliiide(settingsLeft);
 //    var menu2 = $('#coursecontent').sliiide(settingsRight);
 //});
-
+var menu1 = $('#menu').sliiide(settingsLeft);
+var menu2 = null;
 $(document).ready(()=>{
     var enoughtime = true;
-    var menu1 = $('#menu').sliiide(settingsLeft);
-    var menu2 = null;
+    
     if($(window).width() < 780)
         menu2 = $('#coursecontent').sliiide(settingsRight);
     $(window).resize(()=>{
@@ -579,6 +608,8 @@ $(document).ready(()=>{
             }
         }
     });
-    
+    refreshListeners();
     $(window).resize();
 });
+
+
