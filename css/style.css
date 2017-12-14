@@ -241,6 +241,7 @@ hr {
 
 #contentwrapper {
     display: inline-block;
+    height: calc(100% - 41.33px);
 }
 
 .fa-check{
@@ -560,6 +561,7 @@ hr {
     padding-left: 10px;
     padding-right: 10px;
     vertical-align: top;
+    height: 100%;
 }
 
 #menu button.accordion {
@@ -1490,7 +1492,7 @@ span.day {
 }
 
 #calendar .r0 td .popup-wrapper, #calendar .r1 td .popup-wrapper, #calendar .r2 td .popup-wrapper {
-    bottom: -150%;
+    bottom: -190%;
 }
 
 
