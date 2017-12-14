@@ -164,7 +164,6 @@ function initializeMenu() {
             //department
             if(word.length<=8 && word.length>=2){
                 var courses = loader.getCourseIDsByDepartment(word);
-                console.error(courses + '--' + word);
                 if(courses!=null)
                     courses.forEach((courseid)=>{
                         depresults.add(courseid);
