@@ -66,6 +66,17 @@ var loader = {
         var courseids = loader.departments[department];
         if (courseids!=null)
             return courseids.courses;
+    },
+    
+    parseTerm: function(course){
+        switch(course.term){
+            case 2:
+                return 1;
+            case 5:
+                return 2;
+            default:
+                return 'unknown';
+        }
     }
     
 } 
@@ -90,7 +101,42 @@ function initializeMenu() {
         if (dep == '-')
             return;
         departments[dep].courses.forEach((courseid) => {
-            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '</p>'));
+            //$('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '</p>'));
+            
+//            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '</p>'));
+            
+            
+            
+            
+            /*
+            <tr class="header">
+                                        <td>SFWRENG 4H03</td>
+                                        <td><i class="fa fa-square" aria-hidden="true"></i></td>
+                                        <td><i class="fa fa-caret-down" aria-hidden="true"></i></td>
+                                    </tr>
+                                        <tr class = "subTable">
+                                            <td>CORE</td>
+                                            <td><i class="fa fa-circle" aria-hidden="true"></i></td>
+                                            <td><button class="enrollButton">ADD</button></td>
+                                        </tr>
+
+                                        <tr class = "subTable details">
+                                            <td>Instructor:</td>
+                                            <td colspan="2">Staff</td>
+                                        </tr>
+
+                                        <tr class = "subTable">
+                                            <td>LAB</td>
+                                            <td><i class="fa fa-square" aria-hidden="true"></i></td>
+                                            <td><button class="enrollButton">ADD</button></td>
+                                        </tr>
+                                        <tr class = "subTable">
+                                            <td>Tutorial</td>
+                                            <td><i class="fa fa-play" aria-hidden="true"></i></td>
+                                            <td><button class="enrollButton">ADD</button></td>
+                                        </tr>  
+            */
+            
         });
     });
     
@@ -99,7 +145,7 @@ function initializeMenu() {
         var depresults = new Set();
         var nameresults = new Set();
         var instructresults = new Set();
-        $('#unicornsdontexist').html('');
+        $('#search-table').html('');
         this.value.split(' ').forEach((word)=>{
             console.log('search: ' + word + ' result:');
             
@@ -193,9 +239,79 @@ function initializeMenu() {
         console.log(resultsarray);
         
         resultsarray.forEach((result)=>{
-            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(result.courseid).code + /*'  --id:  '+ result.courseid + ' --weight: ' + result.weight+*/ '</p>'));
+            
+//            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(result.courseid).code + /*'  --id:  '+ result.courseid + ' --weight: ' + result.weight+*/ '</p>'));
+            var course = loader.getCourseById(result.courseid);
+            $('#search-table').append( $(createResultTable(course)) );
+            $('.header').off();
+            $('.header').click(function () {
+                $(this).nextUntil('tr.header').slideToggle(1);
+            });
+        
         });
     });
+}
+
+function createResultTable(course){
+            var final =             '<tr class="header">' + 
+                                        '<td>'+course.code+'</td>' + 
+                                        '<td>'+loader.parseTerm(course)+'</i></td>' +
+                                        '<td><i class="fa fa-caret-down" aria-hidden="true"></i></td>' +
+                                    '</tr>';
+    
+    /*
+    +
+                                        '<tr class = "subTable">' +
+                                            '<td>CORE</td>' +
+                                            '<td><i class="fa fa-circle" aria-hidden="true"></i></td>' +
+                                            '<td><button class="enrollButton">ADD</button></td>' +
+                                        '</tr>' +
+
+                                        '<tr class = "subTable details">' +
+                                            '<td>Instructor:</td>' +
+                                            '<td colspan="2">Staff</td>' +
+                                        '</tr>' +
+
+                                        '<tr class = "subTable">' +
+                                            '<td>LAB</td>' +
+                                            '<td><i class="fa fa-square" aria-hidden="true"></i></td>' +
+                                            '<td><button class="enrollButton">ADD</button></td>' +
+                                        '</tr>' +
+                                        '<tr class = "subTable">' +
+                                            '<td>Tutorial</td>' +
+                                            '<td><i class="fa fa-play" aria-hidden="true"></i></td>' +
+                                            '<td><button class="enrollButton">ADD</button></td>' +
+                                        '</tr>'
+    */
+    
+            if(course.sections.C !=null){
+                final+='<tr class = "subTable">' +
+                                            '<td>CORE</td>' +
+                                            '<td><i class="fa fa-circle" aria-hidden="true"></i></td>' +
+                                            '<td><button class="enrollButton">ADD</button></td>' +
+                                        '</tr>' +
+
+                                        '<tr class = "subTable details">' +
+                                            '<td>Instructor:</td>' +
+                                            '<td colspan="2">Staff</td>' +
+                                        '</tr>';
+            }
+    
+            if(course.sections.L !=null){
+                final += '<tr class = "subTable">' +
+                                            '<td>LAB</td>' +
+                                            '<td><i class="fa fa-square" aria-hidden="true"></i></td>' +
+                                            '<td><button class="enrollButton">ADD</button></td>' +
+                                        '</tr>';
+            }
+            if(course.sections.T !=null){
+                final += '<tr class = "subTable">' +
+                                            '<td>Tutorial</td>' +
+                                            '<td><i class="fa fa-play" aria-hidden="true"></i></td>' +
+                                            '<td><button class="enrollButton">ADD</button></td>' +
+                                        '</tr>';
+            }
+    return final;
 }
 
 function loadDepartments(){

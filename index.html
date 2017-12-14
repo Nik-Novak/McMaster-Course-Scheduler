@@ -83,24 +83,24 @@
                 <button class="accordion">Quick Search <i class="fa fa-caret-down" aria-hidden="true"></i></button>
                 <div id='qs-form' class="panel qs">
 
-                <form id='omg' action="/action_page.php">
+                <div id='omg'>
                     <label for="fname">Search for a Course:</label>
-                    <input type="text" id="quicksearch" name="firstname" placeholder="Code, Department, Name, Prof">
+                    <input type="text" id="quicksearch" placeholder="Code, Department, Name, Prof">
                     <label >Filter Results:</label>
                     <div class='filters'>
                         
-                        <select name="department" value="department" class='select-department'>
+                        <select value="department" class='select-department'>
                             <option value="-">Select Department</option>
                         </select>
                         <div class='sub-filters'>
-                            <select name="term">
+                            <select>
                                 <option value="-">Select Term</option>
                                 <option value="Fall">Fall</option>
                                 <option value="Winter">Winter</option>
                                 <option value="Summer Term 1">Summer Term 1</option>
                                 <option value="Summer Term 2">Summer Term 2</option>
                             </select>
-                            <select name="level">
+                            <select>
                                 <option value="-">Select Level</option>
                                 <option value="First Year">First Year</option>
                                 <option value="Second Year">Second Year</option>
@@ -111,10 +111,7 @@
                             </select>
                         </div>
                     </div>
-                    
-
-
-                </form>
+                </div>
                 
 <!--
                     <form id='qs-form'>
@@ -150,6 +147,50 @@
                     </form>                 
 -->
                    
+                   <div class="table-holder">
+                        <div class="table-center">
+                            <table>
+                                <col style="width:50%">
+                                <col style="width:25%">
+                                <col style="width:25%">
+                                <thead>
+                                    <tr>
+                                        <th>Course</th>
+                                        <th>Term</th>
+                                        <th> </th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody id='search-table'>
+                                    <tr class="header">
+                                        <td>SFWRENG 4H03</td>
+                                        <td><i class="fa fa-square" aria-hidden="true"></i></td>
+                                        <td><i class="fa fa-caret-down" aria-hidden="true"></i></td>
+                                    </tr>
+                                        <tr class = "subTable">
+                                            <td>CORE</td>
+                                            <td><i class="fa fa-circle" aria-hidden="true"></i></td>
+                                            <td><button class="enrollButton">ADD</button></td>
+                                        </tr>
+
+                                        <tr class = "subTable details">
+                                            <td>Instructor:</td>
+                                            <td colspan="2">Staff</td>
+                                        </tr>
+
+                                        <tr class = "subTable">
+                                            <td>LAB</td>
+                                            <td><i class="fa fa-square" aria-hidden="true"></i></td>
+                                            <td><button class="enrollButton">ADD</button></td>
+                                        </tr>
+                                        <tr class = "subTable">
+                                            <td>Tutorial</td>
+                                            <td><i class="fa fa-play" aria-hidden="true"></i></td>
+                                            <td><button class="enrollButton">ADD</button></td>
+                                        </tr>                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                    
                     <div id='unicornsdontexist'>
                         <label for="">Results:</label>
