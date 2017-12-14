@@ -291,6 +291,7 @@ hr {
 }
 
 
+
 /* ===========================
 --- Navbar
 ============================ */
@@ -490,11 +491,7 @@ hr {
     background-color: #45a049;
 }
 
-#qs-form #unicornsdontexist {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}
+
 
 #qs-form .filters input[type=text], select {
     width: 100%;
@@ -692,6 +689,14 @@ button.accordion:hover {
 #menu .details td {
     font-size: 10px !important;
     border-top: 1px solid transparent;
+}
+
+#menu .header{
+    cursor: pointer;
+}
+
+#menu tr.subTable{
+    cursor: move;
 }
 
 /*#menu .bottom tr:nth-child(even) {
@@ -1869,4 +1874,7 @@ span.day {
 #qs-form #unicornsdontexist {
     padding-top:0;
     padding-bottom:10px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
 }

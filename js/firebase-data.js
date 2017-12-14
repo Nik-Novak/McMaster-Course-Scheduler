@@ -244,8 +244,10 @@ function initializeMenu() {
             var course = loader.getCourseById(result.courseid);
             $('#search-table').append( $(createResultTable(course)) );
             $('.header').off();
-            $('.header').click(function () {
-                $(this).nextUntil('tr.header').slideToggle(1);
+            $('#qs-form .header').click(function () {
+                $(this).nextUntil('tr.header').slideToggle(0.1);
+                $('#qs-form .header').not(this).nextUntil('tr.header').slideUp(0.1);
+                
             });
         
         });
