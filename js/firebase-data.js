@@ -1,6 +1,9 @@
 var database = firebase.database();
 var load = true;
 var test = new Set();
+var searchResults = [];
+var subResults = null;
+
 Set.prototype.intersect = function intersect(...sets) {
     if (!sets.length) return new Set();
     const i = sets.reduce((m, s, i) => s.size < sets[m].size ? i : m, 0);
@@ -74,9 +77,15 @@ var loader = {
                 return 1;
             case 5:
                 return 2;
+            case 6:
+                return '1 & 2'
             default:
                 return 'unknown';
         }
+    },
+    
+    parseCode: function(course){
+        return course.code.split(' ')[1];
     }
     
 } 
@@ -86,57 +95,88 @@ loader.init();
 function initializeMenu() {
     var departments = loader.departments;
     var def = $('<option value="-">Select Department</option>');
-    $('.select-department').html('');
-    $('.select-department').append(def);
+    $('.select-department, .filter-department').html('');
+    $('.select-department, .filter-department').append(def);
     for (var key in departments) {
         if (!departments.hasOwnProperty(key))
             continue;
         var t = $('<option value="' + key + '">' + departments[key].name + '</option>');
-        $('.select-department').append(t);
+        $('.select-department, .filter-department').append(t);
     }
 
     $('.select-department').change(function () {
-        $('#unicornsdontexist').html('');
         var dep = this.value.toString();
         if (dep == '-')
             return;
+        $('#program-table').html('');
         departments[dep].courses.forEach((courseid) => {
-            //$('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '</p>'));
-            
-//            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(courseid).code + '</p>'));
-            
-            
-            
-            
-            /*
-            <tr class="header">
-                                        <td>SFWRENG 4H03</td>
-                                        <td><i class="fa fa-square" aria-hidden="true"></i></td>
-                                        <td><i class="fa fa-caret-down" aria-hidden="true"></i></td>
-                                    </tr>
-                                        <tr class = "subTable">
-                                            <td>CORE</td>
-                                            <td><i class="fa fa-circle" aria-hidden="true"></i></td>
-                                            <td><button class="enrollButton">ADD</button></td>
-                                        </tr>
-
-                                        <tr class = "subTable details">
-                                            <td>Instructor:</td>
-                                            <td colspan="2">Staff</td>
-                                        </tr>
-
-                                        <tr class = "subTable">
-                                            <td>LAB</td>
-                                            <td><i class="fa fa-square" aria-hidden="true"></i></td>
-                                            <td><button class="enrollButton">ADD</button></td>
-                                        </tr>
-                                        <tr class = "subTable">
-                                            <td>Tutorial</td>
-                                            <td><i class="fa fa-play" aria-hidden="true"></i></td>
-                                            <td><button class="enrollButton">ADD</button></td>
-                                        </tr>  
-            */
-            
+            $('#program-table').append( $(createResultTable( loader.getCourseById(courseid) )) );
+        });
+        refreshListeners();
+    });
+    
+    //filters
+    $('.filter-department').change(function () { //TODO fix
+        var dep = this.value.toString();
+        if (dep == '-'){
+            subResults=null;
+            searchResults.forEach((course)=>{
+                $('#search-table').append( $(createResultTable(course)) );
+            });
+            return;
+        }
+        $('#search-table').html('');
+        var subresults = [];
+        var iterator = (subResults == null ? searchResults : subResults);
+        iterator.forEach((course)=>{
+            if(course.department == dep)
+                subresults.push(course);
+        });
+        subResults=subresults;
+        subResults.forEach((course)=>{
+            $('#search-table').append( $(createResultTable(course)) );
+        });
+    });
+    $('.filter-term').change(function () { //TODO fix
+        var val = this.value.toString();
+        if (val == '-'){
+            subResults=null;
+            searchResults.forEach((course)=>{
+                $('#search-table').append( $(createResultTable(course)) );
+            });
+            return;
+        }
+        $('#search-table').html('');
+        var subresults = [];
+        var iterator = (subResults == null ? searchResults : subResults);
+        iterator.forEach((course)=>{
+            if(loader.parseTerm(course) == val)
+                subresults.push(course);
+        });
+        subResults=subresults;
+        subResults.forEach((course)=>{
+            $('#search-table').append( $(createResultTable(course)) );
+        });
+    });
+    $('.filter-level').change(function () { //TODO fix
+        var val = this.value.toString();
+        if (val == '-'){
+            subResults=null;
+            searchResults.forEach((course)=>{
+                $('#search-table').append( $(createResultTable(course)) );
+            });
+            return;
+        }
+        $('#search-table').html('');
+        var subresults = [];
+        var iterator = (subResults == null ? searchResults : subResults);
+        iterator.forEach((course)=>{
+            if(loader.parseCode(course).charAt(0) == val)
+                subresults.push(course);
+        });
+        subResults=subresults;
+        subResults.forEach((course)=>{
+            $('#search-table').append( $(createResultTable(course)) );
         });
     });
     
@@ -226,6 +266,15 @@ function initializeMenu() {
         var union = depresults.union(nameresults).union(instructresults).union(coderesults);
         console.log(union);
         
+        if($.isEmptyObject(results)){
+            $('#qs-form .filters').addClass('hide');
+            $('#qs-form .table-holder').addClass('hide');
+        }
+        else{
+            $('#qs-form .filters').removeClass('hide');
+            $('#qs-form .table-holder').removeClass('hide');
+        }
+        
         var resultsarray = $.map(results, function(value, index) {
             return [{courseid:index, weight:value.weight}];
         });
@@ -237,13 +286,14 @@ function initializeMenu() {
         console.log('results array');
         console.log(resultsarray);
         
+        searchResults=[];
         resultsarray.forEach((result)=>{
             
 //            $('#unicornsdontexist').append($('<p>' + loader.getCourseById(result.courseid).code + /*'  --id:  '+ result.courseid + ' --weight: ' + result.weight+*/ '</p>'));
             var course = loader.getCourseById(result.courseid);
+            searchResults.push(course);
             $('#search-table').append( $(createResultTable(course)) );
             
-        
         });
         refreshListeners();
     });
@@ -461,11 +511,15 @@ function refreshListeners(){
         $('#qs-form .header').not(this).nextUntil('tr.header').slideUp(0.1);
     });
     
+    $('#program-form .header').click(function () {
+        $(this).nextUntil('tr.header').slideToggle(0.1);
+        $('#program-form .header').not(this).nextUntil('tr.header').slideUp(0.1);
+    });
     
     $('#menu tr.subTable').mousedown((event)=>{
         isDragging = false;
         hasClicked = true;
-        console.log('mdown');
+//        console.log('mdown');
     });
     $('html').mousemove(()=>{
         
@@ -476,12 +530,12 @@ function refreshListeners(){
                 offsetX = $('#menu').width();
             var x = event.pageX - offsetX - 120/2;
             var y = event.pageY - 50/2;
-            console.log('dragging ' + x + " " + y);
+//            console.log('dragging ' + x + " " + y);
             $('#drag-image').css('left', x).css('top', y).css('display','initial'); 
         }
     });
     $('html').mouseup(()=>{
-        console.log('mup');
+//        console.log('mup');
         if(isDragging){
             $('#drag-image').css('display','none')
         }

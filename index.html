@@ -86,28 +86,30 @@
                 <div id='omg'>
                     <label for="fname">Search for a Course:</label>
                     <input type="text" id="quicksearch" placeholder="Code, Department, Name, Prof">
-                    <label >Filter Results:</label>
-                    <div class='filters'>
-                        
-                        <select value="department" class='select-department'>
+                    
+                    
+                    <div class='filters hide'>
+                       <label >Filter Results:</label>
+                        <select value="department" class='filter-department'>
                             <option value="-">Select Department</option>
                         </select>
                         <div class='sub-filters'>
-                            <select>
+                            <select class='filter-term'>
                                 <option value="-">Select Term</option>
-                                <option value="Fall">Fall</option>
-                                <option value="Winter">Winter</option>
+                                <option value="1">Fall</option>
+                                <option value="2">Winter</option>
+<!--
                                 <option value="Summer Term 1">Summer Term 1</option>
                                 <option value="Summer Term 2">Summer Term 2</option>
+-->
                             </select>
-                            <select>
+                            <select class='filter-level'>
                                 <option value="-">Select Level</option>
-                                <option value="First Year">First Year</option>
-                                <option value="Second Year">Second Year</option>
-                                <option value="Third Year">Third Year</option>
-                                <option value="Fourth Year">Fourth Year</option>
-                                <option value="Masters">Masters</option>
-                                <option value="PhD">PhD</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                             </select>
                         </div>
                     </div>
@@ -147,7 +149,7 @@
                     </form>                 
 -->
                    
-                   <div class="table-holder">
+                   <div class="table-holder hide">
                         <div class="table-center">
                             <table>
                                 <col style="width:50%">
@@ -194,9 +196,11 @@
                         </div>
                     </div>
                    
+<!--
                     <div id='unicornsdontexist'>
                         <label for="">Results:</label>
                     </div>
+-->
                 </div>
 
             </div>
@@ -248,7 +252,7 @@
 
 
                 <button class="accordion">Browse By Program <i class="fa fa-caret-down" aria-hidden="true"></i></button>
-                <div class="panel" id='butterytests'>
+                <div class="panel" id='program-form'>
                      <form>
                         <select name="department" value="department" class='select-department'>
                         <option value="-">Select Department</option>
@@ -257,37 +261,20 @@
                     <div class="table-holder">
                         <div class="table-center">
                             <table>
+                               <col style="width:50%">
+                                <col style="width:25%">
+                                <col style="width:25%">
                                 <thead>
                                     <tr>
                                         <th>Course</th>
-                                        <th>Status</th>
+                                        <th>Term</th>
                                         <th> </th>                                        
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id='program-table'>
                                     <tr>
                                         <td>SFWRENG 4H03</td>
                                         <td><i class="fa fa-square" aria-hidden="true"></i></td>
-                                        <td><i class="fa fa-caret-down" aria-hidden="true"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>SFWRENG 4H03</td>
-                                        <td><i class="fa fa-circle" aria-hidden="true"></i></td>
-                                        <td><i class="fa fa-caret-down" aria-hidden="true"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>SFWRENG 4H03</td>
-                                        <td><i class="fa fa-play" aria-hidden="true"></i></td>
-                                        <td><i class="fa fa-caret-down" aria-hidden="true"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>SFWRENG 4H03</td>
-                                        <td><i class="fa fa-circle" aria-hidden="true"></i></td>
-                                        <td><i class="fa fa-caret-down" aria-hidden="true"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>SFWRENG 4H03</td>
-                                        <td><i class="fa fa-circle" aria-hidden="true"></i></td>
                                         <td><i class="fa fa-caret-down" aria-hidden="true"></i></td>
                                     </tr>
                                 </tbody>
